@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+        android:width="2sp"
+        android:color="#000000" />
+
+    <corners
+        android:topLeftRadius="0sp"
+        android:topRightRadius="0sp"
+        android:bottomLeftRadius="0sp"
+        android:bottomRightRadius="0sp" />
+</shape>

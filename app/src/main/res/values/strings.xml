@@ -1,0 +1,43 @@
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<resources>
+    <!-- GLOBAL -->
+    <string name="app_name">TutorCave</string>
+
+    <!-- CONTENT DESCRIPTION -->
+    <string name="content_desc_login">login</string>
+    <string name="content_desc_register">register</string>
+    <string name="content_desc_guest">guest</string>
+
+    <!-- SPLASH SCREEN -->
+    <string name="act_splash_intro">Make your own way</string>
+
+    <!-- WELCOME SCREEN -->
+    <string name="go_to">Get me there</string>
+    <string name="login">Login</string>
+    <string name="login_desc">Tutor Cave to broaden your horizon, to expand the magnitude of possibilities, to become your best self. Come and join us once again.</string>
+    <string name="register">Register</string>
+    <string name="register_desc">Some people sit while others are working. Sitters learn nothing, sitters earn nothing. But workers do. Do you want to earn &amp; learn while sitting?</string>
+    <string name="guest">Guest</string>
+    <string name="guest_desc">You are welcome as a guest. Tutor Cave values all of its users each type. Keep in mind that you will be limited accessing Tutor Cave\'s features as a guest.</string>
+    <string name="selection_invalid">Invalid selection</string>
+
+    <!-- REGISTER SCREEN -->
+    <string name="forward">Forward</string>
+    <string name="register_username">Type your username</string>
+    <string name="register_password">Pick a strong password</string>
+    <string name="register_email">Provide your e-mail address</string>
+    <string name="register_name">Your first name (optional)</string>
+    <string name="register_surname">Your surname (optional)</string>
+    <string name="invalid_username">Invalid username!</string>
+    <string name="invalid_password">Invalid password!</string>
+    <string name="invalid_password_length">Password should be 6–22 characters long!</string>
+    <string name="invalid_email">Invalid e-mail!</string>
+
+    <!-- LOGIN SCREEN -->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="invalid_credentials">Username and/or password cannot be empty</string>
+</resources>

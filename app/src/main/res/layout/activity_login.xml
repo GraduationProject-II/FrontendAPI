@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="@color/welcomeShading1"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:id="@+id/lytRltLogin"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:background="@color/welcomeShading1">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_centerInParent="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="4dp"
+            android:padding="2dp"
+            android:background="@color/welcomeShading1"
+            app:cardCornerRadius="23dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp">
+
+                <RelativeLayout
+                    android:id="@+id/lytRltInnerLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="20dp"
+                    android:gravity="center"
+                    android:layout_gravity="top">
+
+                    <ImageView
+                        android:id="@+id/imgVwLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_centerInParent="true"
+                        android:layout_margin="8dp"
+                        android:src="@drawable/login"
+                        android:contentDescription="@string/content_desc_login" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/lytRltInnerLogin"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="20dp">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2" />
+
+                    <EditText
+                        android:id="@+id/editTextUsernameLogin"
+                        android:layout_width="250dp"
+                        android:layout_height="33dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_register"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/ic_username_24"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="4dp"
+                        android:inputType="text"
+                        android:hint="@string/username"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:autofillHints="username" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/editTextPasswordLogin"
+                        android:layout_width="250dp"
+                        android:layout_height="33dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_register"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/ic_password_24"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="4dp"
+                        android:inputType="textPassword"
+                        android:hint="@string/password"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="16sp"
+                        android:textAlignment="center"
+                        android:autofillHints="password" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lytLnrLogin"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:layout_below="@id/lytRltLogin"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="3dp">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+
+        <EditText
+            android:id="@+id/btnLogin"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="2dp"
+            android:layout_marginVertical="5dp"
+            android:padding="1dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/round_purple"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="@string/login"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:contentDescription="@string/content_desc_login"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:editable="false"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+
+</RelativeLayout>

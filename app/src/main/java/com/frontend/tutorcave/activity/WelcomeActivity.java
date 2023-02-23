@@ -95,8 +95,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
             switch (cardPosition) {
                 case 0:
-                    //intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-                    //startActivity(intent);
+                    intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
                     break;
                 case 1:
                     //intent = new Intent(WelcomeActivity.this, RegisterActivity.class);

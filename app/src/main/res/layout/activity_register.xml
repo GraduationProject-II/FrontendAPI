@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RegisterActivity"
+    android:background="@color/welcomeShading2"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <!-- TODO: wrap all content into a ScrollView -->
+    <RelativeLayout
+        android:id="@+id/lytRltRegister"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_margin="3dp"
+        android:layout_marginTop="30dp"
+        android:padding="2dp"
+        android:gravity="center"
+        android:background="@color/welcomeShading2">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewRegister"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_centerInParent="true"
+            android:layout_marginVertical="3dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/welcomeShading2"
+            app:cardCornerRadius="23dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp">
+
+                <ImageView
+                    android:id="@+id/imgVwRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="2dp"
+                    android:padding="3dp"
+                    android:src="@drawable/register"
+                    android:contentDescription="@string/content_desc_register" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/imgVwRegister"
+                    android:layout_margin="3dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="2" />
+
+                    <EditText
+                        android:id="@+id/editTextUsernameRegister"
+                        android:layout_width="280dp"
+                        android:layout_height="33dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_register"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/ic_username_24"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="4dp"
+                        android:inputType="text"
+                        android:hint="@string/register_username"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="13sp"
+                        android:textAlignment="center"
+                        android:autofillHints="username" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/editTextPasswordRegister"
+                        android:layout_width="280dp"
+                        android:layout_height="33dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_register"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/ic_password_24"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="4dp"
+                        android:inputType="textPassword"
+                        android:hint="@string/register_password"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="13sp"
+                        android:textAlignment="center"
+                        android:autofillHints="password" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/editTextEmailRegister"
+                        android:layout_width="280dp"
+                        android:layout_height="33dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_register"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/ic_email_24"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="4dp"
+                        android:inputType="textEmailAddress"
+                        android:hint="@string/register_email"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="13sp"
+                        android:textAlignment="center"
+                        android:autofillHints="emailAddress" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/editTextNameRegister"
+                        android:layout_width="280dp"
+                        android:layout_height="33dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_register"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/ic_name_24"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="4dp"
+                        android:inputType="text"
+                        android:hint="@string/register_name"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="13sp"
+                        android:textAlignment="center"
+                        android:autofillHints="name" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <EditText
+                        android:id="@+id/editTextSurnameRegister"
+                        android:layout_width="280dp"
+                        android:layout_height="33dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/round_register"
+                        android:gravity="center"
+                        android:drawableStart="@drawable/ic_surname_24"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="4dp"
+                        android:inputType="text"
+                        android:hint="@string/register_surname"
+                        android:textColorHint="@color/white"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="13sp"
+                        android:textAlignment="center"
+                        android:autofillHints="name" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="2" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lytLnrRegister"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/lytRltRegister"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="3dp"
+        android:padding="3dp">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="2" />
+
+        <EditText
+            android:id="@+id/btnRegister"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginVertical="3dp"
+            android:layout_marginHorizontal="8dp"
+            android:padding="1dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_purple"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:text="@string/forward"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:contentDescription="@string/content_desc_register"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:editable="false"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+
+</RelativeLayout>

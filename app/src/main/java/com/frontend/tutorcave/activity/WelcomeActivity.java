@@ -99,10 +99,11 @@ public class WelcomeActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case 1:
-                    //intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
-                    //startActivity(intent);
+                    intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
+                    startActivity(intent);
                     break;
                 case 2:
+                    // TODO: complete below task
                     //intent = new Intent(WelcomeActivity.this, GuestMenuActivity.class);
                     //startActivity(intent);
                     break;

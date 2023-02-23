@@ -19,7 +19,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="21">?attr/colorPrimaryVariant</item>
 
-        <!-- Customize your theme here. -->
+        <!-- Customization -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

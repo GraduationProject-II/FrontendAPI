@@ -60,9 +60,9 @@ public class WelcomeActivity extends AppCompatActivity {
         viewPager.setPadding(130,0,130,0);
 
         Integer[] colors = {
-                getResources().getColor(R.color.welcomeShading1),
-                getResources().getColor(R.color.welcomeShading2),
-                getResources().getColor(R.color.welcomeShading3)
+                getResources().getColor(R.color.welcome_shading1),
+                getResources().getColor(R.color.welcome_shading2),
+                getResources().getColor(R.color.welcome_shading3)
         };
 
         // TODO: replace with addOnPageListener()
@@ -103,6 +103,10 @@ public class WelcomeActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case 2:
+                    // test
+                    intent = new Intent(WelcomeActivity.this, UserMenuActivity.class);
+                    startActivity(intent);
+
                     // TODO: complete below task
                     //intent = new Intent(WelcomeActivity.this, GuestMenuActivity.class);
                     //startActivity(intent);

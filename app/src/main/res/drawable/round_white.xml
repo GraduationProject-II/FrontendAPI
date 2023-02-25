@@ -8,7 +8,7 @@
     android:padding="5dp">
 
     <!-- rounded button color -->
-    <solid android:color="@color/welcomeBtnWhite" />
+    <solid android:color="@color/welcome_btn_white" />
     <corners
         android:bottomRightRadius="50dp"
         android:bottomLeftRadius="50dp"

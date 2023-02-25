@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- home -->
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_24" />
+
+    <!-- discussions -->
+    <item
+        android:id="@+id/nav_discussion"
+        android:title="@string/discussion"
+        android:icon="@drawable/ic_discussion_24" />
+
+    <!-- find tutor -->
+    <item
+        android:id="@+id/nav_search_tutor"
+        android:title="@string/search_tutor"
+        android:icon="@drawable/ic_tutor_search_24" />
+
+    <!-- messages -->
+    <item
+        android:id="@+id/nav_message"
+        android:title="@string/message"
+        android:icon="@drawable/ic_message_24" />
+</menu>

@@ -15,15 +15,22 @@
 
     <!-- custom colors -->
     <color name="grey">#424549</color>
-    <color name="darkPink">#7E455E</color>
-    <color name="paleYellow">#796E25</color>
-    <color name="paleSkyBlue">#59717C</color>
-    <color name="splashMainTheme">#05A167</color>
-    <color name="tabIndicator">#C0C0C0</color>
+    <color name="dark_pink">#7E455E</color>
+    <color name="pale_yellow">#796E25</color>
+    <color name="pale_sky_blue">#59717C</color>
+    <color name="splash_main_theme">#05A167</color>
+    <color name="tab_indicator">#C0C0C0</color>
 
     <!-- welcome screen -->
-    <color name="welcomeShading1">#7E455E</color>
-    <color name="welcomeShading2">#796E25</color>
-    <color name="welcomeShading3">#59717C</color>
-    <color name="welcomeBtnWhite">#E5E5E5</color>
+    <color name="welcome_shading1">#7E455E</color>
+    <color name="welcome_shading2">#796E25</color>
+    <color name="welcome_shading3">#59717C</color>
+    <color name="welcome_btn_white">#E5E5E5</color>
+
+    <!-- user menu screen -->
+    <color name="user_menu_light_white">#D2D2D2</color>
+    <color name="user_menu_card1">#A3E4D7</color>
+    <color name="user_menu_card2">#F9E79F</color>
+    <color name="user_menu_card3">#D7BDE2</color>
+    <color name="user_menu_card4">#D2C3D8</color>
 </resources>

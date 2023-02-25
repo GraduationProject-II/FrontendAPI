@@ -40,4 +40,11 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="invalid_credentials">Username and/or password cannot be empty</string>
+
+    <!-- USER MENU -->
+    <string name="home">Home</string>
+    <string name="discussion">Discussions</string>
+    <string name="search_tutor">Find A Tutor</string>
+    <string name="message">Messages</string>
+    <string name="invalid_selection">Invalid selection!</string>
 </resources>

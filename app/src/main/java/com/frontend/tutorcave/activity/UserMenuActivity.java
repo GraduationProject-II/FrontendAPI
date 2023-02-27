@@ -37,20 +37,23 @@ public class UserMenuActivity extends AppCompatActivity {
         navBottom.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                final int navHomeID = R.id.nav_home;
+                final int navDiscussionID = R.id.nav_discussion;
+                final int navFindTutorID = R.id.nav_search_tutor;
+                final int navMessagID = R.id.nav_message;
                 Fragment fragment = null;
 
-                // TODO: replace case param ids
                 switch (item.getItemId()) {
-                    case R.id.nav_home:
+                    case navHomeID:
                         fragment = new MenuHomeFragment();
                         break;
-                    case R.id.nav_discussion:
+                    case navDiscussionID:
                         fragment = new MenuDiscussionFragment();
                         break;
-                    case R.id.nav_search_tutor:
+                    case navFindTutorID:
                         fragment = new MenuSearchTutorFragment();
                         break;
-                    case R.id.nav_message:
+                    case navMessagID:
                         fragment = new MenuMessageFragment();
                         break;
                     default:

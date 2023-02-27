@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardBackgroundColor="@color/home_fragment_dashboard_item1"
+        app:cardCornerRadius="@dimen/_14sdp">
+
+        <!-- TODO: replace image, retrieve from backend -->
+        <!-- TODO: let image fully covers its layout -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_8sdp"
+            android:src="@drawable/test_image" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/_16sdp"
+        app:cardBackgroundColor="@color/home_fragment_card_background"
+        app:cardCornerRadius="@dimen/_14sdp"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_40sdp"
+            android:paddingEnd="@dimen/_16sdp"
+            android:paddingTop="@dimen/_16sdp"
+            android:paddingBottom="@dimen/_16sdp">
+
+            <!-- TODO: update with users' rep -->
+            <TextView
+                android:id="@+id/txtVwDashboardItemRep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/placeholder_num"
+                android:textColor="@color/home_fragment_primary"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold" />
+
+            <!-- TODO: update with users' full name -->
+            <TextView
+                android:id="@+id/txtVwDashboardItemName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/txtVwDashboardItemRep"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@string/placeholder"
+                android:textColor="@color/home_fragment_primary_text"
+                android:textSize="@dimen/_14ssp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgDashboardSubItemUsername"
+                android:layout_width="@dimen/_12sdp"
+                android:layout_height="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="@id/txtVwDashboardItemName"
+                app:layout_constraintTop_toBottomOf="@id/txtVwDashboardItemName"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:src="@drawable/ic_username_24"
+                android:tint="@color/home_fragment_secondary_text" />
+
+            <!-- TODO: update with users' username -->
+            <TextView
+                android:id="@+id/txVwDashboardItemUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/imgDashboardSubItemUsername"
+                app:layout_constraintStart_toEndOf="@id/imgDashboardSubItemUsername"
+                app:layout_constraintBottom_toBottomOf="@id/imgDashboardSubItemUsername"
+                android:text="@string/placeholder"
+                android:textColor="@color/home_fragment_secondary_text"
+                android:textSize="@dimen/_10ssp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,8 @@
 <resources>
     <!-- GLOBAL -->
     <string name="app_name">TutorCave</string>
+    <string name="placeholder">place_holder</string>
+    <string name="placeholder_num">1234</string>
 
     <!-- CONTENT DESCRIPTION -->
     <string name="content_desc_login">login</string>
@@ -47,4 +49,11 @@
     <string name="search_tutor">Find A Tutor</string>
     <string name="message">Messages</string>
     <string name="invalid_selection">Invalid selection!</string>
+
+    <!-- HOME FRAGMENT -->
+    <string name="home_stats">Personal Stats</string>
+    <string name="home_view_all_stats">View all stats</string>
+    <string name="accolades">Accolades</string>
+    <string name="reputation">Reputation</string>
+    <string name="feedbacks">Feedbacks</string>
 </resources>

@@ -33,4 +33,15 @@
     <color name="user_menu_card2">#F9E79F</color>
     <color name="user_menu_card3">#D7BDE2</color>
     <color name="user_menu_card4">#D2C3D8</color>
+
+    <!-- home fragment -->
+    <color name="home_fragment_primary">#6A7CFF</color>
+    <color name="home_fragment_background">#F7F7FA</color>
+    <color name="home_fragment_card_background">#FFFFFF</color>
+    <color name="home_fragment_primary_text">#565B65</color>
+    <color name="home_fragment_secondary_text">#9B9A9D</color>
+    <color name="home_fragment_dashboard_item1">#2CC2EA</color>
+    <color name="home_fragment_dashboard_item2">#4DE9C9</color>
+    <color name="home_fragment_dashboard_item3">#72A4FF</color>
+    <color name="home_fragment_dashboard_item4">#8B72FF</color>
 </resources>

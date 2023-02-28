@@ -56,4 +56,10 @@
     <string name="accolades">Accolades</string>
     <string name="reputation">Reputation</string>
     <string name="feedbacks">Feedbacks</string>
+
+    <!-- DISCUSSIONS FRAGMENT -->
+    <string name="search_discussion">Search a discussion</string>
+    <string name="total_votes">Votes casted</string>
+    <string name="discussions_involved">Dis. involved</string>
+    <string name="up_votes">Up votes received</string>
 </resources>

@@ -23,9 +23,11 @@ public class MenuHomeFragment extends Fragment {
     private TextView viewStats;
     private AppCompatImageView btnProfile;
 
+    // TODO: set anim
+
+    // TODO: check usage of below variables, safe-delete
     private static final String ARG_PARAM1 = "param1"; // rename
     private static final String ARG_PARAM2 = "param2"; // rename
-
     private String mParam1; // rename
     private String mParam2; // rename
 
@@ -33,6 +35,7 @@ public class MenuHomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    // TODO: check usage and safe-delete
     /**
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.

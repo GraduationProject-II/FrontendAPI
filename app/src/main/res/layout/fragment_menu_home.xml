@@ -15,14 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- TODO: change the color of the view and bg drawable -->
         <View
             android:id="@+id/frgHomeCrdVwHdrBg"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_145sdp"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/round_home_dashboard"
-            app:cardBackgroundColor="@color/welcome_shading1" />
+            android:background="@drawable/round_menu_home"
+            app:cardBackgroundColor="@color/user_menu_card2" />
 
         <TextView
             android:id="@+id/frgHomeTxtVwTitle"

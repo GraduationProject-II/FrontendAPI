@@ -5,8 +5,13 @@
 <resources>
     <!-- GLOBAL -->
     <string name="app_name">TutorCave</string>
+
+    <!-- ILLUSTRATION PURPOSES -->
     <string name="placeholder">place_holder</string>
     <string name="placeholder_num">1234</string>
+    <string name="test1">test_1</string>
+    <string name="test2">test_2</string>
+    <string name="test3">test_3</string>
 
     <!-- CONTENT DESCRIPTION -->
     <string name="content_desc_login">login</string>
@@ -62,4 +67,11 @@
     <string name="total_votes">Votes casted</string>
     <string name="discussions_involved">Dis. involved</string>
     <string name="up_votes">Up votes received</string>
+
+    <!-- FIND TUTOR FRAGMENT -->
+    <string name="top_rated">Top rated</string>
+    <string name="trending">Trending</string>
+    <string name="newcomer">Newcomers</string>
+    <string name="filter">Choose any filter</string>
+    <string name="search_a_tutor">Search by name/username</string>
 </resources>

@@ -7,7 +7,7 @@
     android:shape="rectangle"
     android:padding="5dp">
 
-    <solid android:color="@color/welcome_shading1" />
+    <solid android:color="@color/user_menu_card2" />
     <corners
         android:topLeftRadius="0dp"
         android:topRightRadius="0dp"

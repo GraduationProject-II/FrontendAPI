@@ -15,14 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- TODO: change the color of the view and bg drawable -->
         <View
             android:id="@+id/frgDiscussionCrdVwHdrBg"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_145sdp"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/round_home_dashboard"
-            app:cardBackgroundColor="@color/welcome_shading1" />
+            android:background="@drawable/round_menu_discussion"
+            app:cardBackgroundColor="@color/user_menu_card3" />
 
         <TextView
             android:id="@+id/frgDiscussionTxtVwTitle"
@@ -56,7 +55,7 @@
 
                 <!-- id can be omitted -->
                 <TextView
-                    android:id="@+id/frgDiscussionTxtVwStatsHdr"
+                    android:id="@+id/frgSearchTutorTxtVwFilterHdr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
@@ -67,12 +66,12 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/frgDiscussionLytTotalVote"
+                    android:id="@+id/frgSearchTutorLytTopRated"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/frgDiscussionTxtVwStatsHdr"
-                    app:layout_constraintEnd_toStartOf="@id/frgDiscussionLytDiscussionsInvolved"
+                    app:layout_constraintTop_toBottomOf="@id/frgSearchTutorTxtVwFilterHdr"
+                    app:layout_constraintEnd_toStartOf="@id/frgSearchTutorLytTrending"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -102,12 +101,12 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/frgDiscussionLytDiscussionsInvolved"
+                    android:id="@+id/frgSearchTutorLytTrending"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@id/frgDiscussionLytTotalVote"
-                    app:layout_constraintTop_toBottomOf="@id/frgDiscussionTxtVwStatsHdr"
-                    app:layout_constraintEnd_toStartOf="@id/frgDiscussionLytUpVote"
+                    app:layout_constraintStart_toEndOf="@id/frgSearchTutorLytTopRated"
+                    app:layout_constraintTop_toBottomOf="@id/frgSearchTutorTxtVwFilterHdr"
+                    app:layout_constraintEnd_toStartOf="@id/frgSearchTutorLytNewcomer"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -137,11 +136,11 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/frgDiscussionLytUpVote"
+                    android:id="@+id/frgSearchTutorLytNewcomer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@id/frgDiscussionLytDiscussionsInvolved"
-                    app:layout_constraintTop_toBottomOf="@id/frgDiscussionTxtVwStatsHdr"
+                    app:layout_constraintStart_toEndOf="@id/frgSearchTutorLytTrending"
+                    app:layout_constraintTop_toBottomOf="@id/frgSearchTutorTxtVwFilterHdr"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:gravity="center"

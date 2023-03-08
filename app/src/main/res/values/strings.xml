@@ -9,6 +9,9 @@
     <!-- ILLUSTRATION PURPOSES -->
     <string name="placeholder">place_holder</string>
     <string name="placeholder_num">1234</string>
+    <string name="placeholder_name">Test Name</string>
+    <string name="placeholder_username">test_username</string>
+    <string name="placeholder_account_type">Type</string>
     <string name="test1">test_1</string>
     <string name="test2">test_2</string>
     <string name="test3">test_3</string>
@@ -17,6 +20,7 @@
     <string name="content_desc_login">login</string>
     <string name="content_desc_register">register</string>
     <string name="content_desc_guest">guest</string>
+    <string name="content_desc_profile_picture">profile picture</string>
 
     <!-- SPLASH SCREEN -->
     <string name="act_splash_intro">Make your own way</string>
@@ -74,4 +78,11 @@
     <string name="newcomer">Newcomers</string>
     <string name="filter">Choose any filter</string>
     <string name="search_a_tutor">Search by name/username</string>
+
+    <!-- PROFILE SCREEN -->
+    <string name="account_type">Account Type</string>
+    <string name="privilege">Privileges</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

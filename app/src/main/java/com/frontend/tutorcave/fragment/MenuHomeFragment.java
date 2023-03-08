@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.ProfileActivity;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
@@ -69,10 +70,9 @@ public class MenuHomeFragment extends Fragment {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: complete below task
                 Intent intent;
-                //intent = new Intent(MenuHomeFragment.this, ProfileActivity.class);
-                //startActivity(intent);
+                intent = new Intent(MenuHomeFragment.this.getContext(), ProfileActivity.class);
+                startActivity(intent);
             }
         });
     }

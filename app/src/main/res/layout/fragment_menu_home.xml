@@ -33,7 +33,7 @@
             android:layout_marginTop="@dimen/_46sdp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:text="@string/home"
-            android:textColor="@color/white"
+            android:textColor="@color/home_fragment_primary_text"
             android:textSize="@dimen/_20ssp"
             android:textStyle="bold" />
 
@@ -44,9 +44,9 @@
             app:layout_constraintTop_toTopOf="@id/frgHomeTxtVwTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/frgHomeTxtVwTitle"
-            android:src="@drawable/ic_name_24"
+            android:src="@drawable/ic_name_black_24"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:tint="@color/white"
+            android:tint="@color/home_fragment_primary_text"
             android:clickable="true" />
 
         <com.google.android.material.card.MaterialCardView

@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_fragment_background"
+    android:background="@color/test_1"
     tools:context=".activity.ProfileActivity">
 
     <RelativeLayout
@@ -35,7 +35,7 @@
             android:padding="@dimen/_4sdp"
             app:cardElevation="0dp"
             app:cardPreventCornerOverlap="true"
-            app:cardBackgroundColor="@color/user_menu_card1"
+            app:cardBackgroundColor="@color/test_6"
             app:cardCornerRadius="@dimen/_20sdp">
             
             <LinearLayout
@@ -47,7 +47,7 @@
                 android:layout_marginEnd="@dimen/_4sdp"
                 android:layout_marginBottom="@dimen/_2sdp"
                 android:padding="@dimen/_1sdp"
-                android:background="@color/user_menu_card1">
+                android:background="@color/test_6">
                 
                 <androidx.cardview.widget.CardView
                     android:layout_width="@dimen/_80sdp"
@@ -266,7 +266,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/user_menu_card1"
+                app:cardBackgroundColor="@color/test_6"
                 android:elevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
@@ -275,7 +275,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="@dimen/_3sdp"
-                    android:background="@color/user_menu_card1">
+                    android:background="@color/test_6">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/profileImgObjDiscussion"
@@ -318,7 +318,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/user_menu_card1"
+                app:cardBackgroundColor="@color/test_6"
                 android:elevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
@@ -327,7 +327,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="@dimen/_3sdp"
-                    android:background="@color/user_menu_card1">
+                    android:background="@color/test_6">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/profileImgObjPrivilege"
@@ -370,7 +370,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/user_menu_card1"
+                app:cardBackgroundColor="@color/test_6"
                 android:elevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
@@ -379,7 +379,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="@dimen/_3sdp"
-                    android:background="@color/user_menu_card1">
+                    android:background="@color/test_6">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/profileImgObjAccolades"
@@ -422,7 +422,7 @@
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
-                app:cardBackgroundColor="@color/user_menu_card1"
+                app:cardBackgroundColor="@color/test_6"
                 android:elevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
@@ -431,7 +431,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="@dimen/_3sdp"
-                    android:background="@color/user_menu_card1">
+                    android:background="@color/test_6">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/profileImgObjFeedback"

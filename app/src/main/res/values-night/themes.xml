@@ -4,7 +4,7 @@
 -->
 
     <!-- Base application theme. -->
-    <style name="Theme.TutorCave" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.TutorCave" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/def_purple_200</item>
@@ -22,5 +22,32 @@
         <!-- Customization -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Settings screen no title bar -->
+    <style name="Theme.NoTitleBar" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Setting screen night mode option's switch theme -->
+    <style name="settingsNightModeSwitch" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/settings_night_mode</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99FFFFFF</item>
+    </style>
+
+    <!-- Setting screen notification option's switch theme -->
+    <style name="settingsNotification" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/settings_notifications</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99FFFFFF</item>
+    </style>
+
+    <!-- Setting screen private account option's switch theme -->
+    <style name="settingsPrivateAcc" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/settings_private_acc</item>
+        <item name="colorSwitchThumbNormal">@color/white</item>
+        <item name="android:colorForeground">#99FFFFFF</item>
     </style>
 </resources>

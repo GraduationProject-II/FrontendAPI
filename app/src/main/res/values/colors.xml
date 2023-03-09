@@ -44,4 +44,63 @@
     <color name="home_fragment_dashboard_item2">#4DE9C9</color>
     <color name="home_fragment_dashboard_item3">#72A4FF</color>
     <color name="home_fragment_dashboard_item4">#8B72FF</color>
+
+    <!-- settings screen -->
+    <color name="setting_primary">#1B023B</color>
+    <color name="setting_secondary">#FF03DAC5</color>
+    <color name="settings_secondary_text">#CCFFFFFF</color>
+    <color name="settings_night_mode">#6124B1</color>
+    <color name="settings_notifications">#13B2C3</color>
+    <color name="settings_private_acc">#E6A326</color>
+    <color name="settings_sec">#D95F69</color>
+
+    <!-- test -->
+    <color name="test_1">#EEFFBB</color>
+    <color name="test_2">#BBFFCC</color>
+    <color name="test_3">#D3FFCE</color>
+    <color name="test_4">#F2C1C1</color>
+    <color name="test_5">#99FFE5</color>
+    <color name="test_6">#C6E2FF</color>
+
+    <!-- test palette-1 -->
+    <color name="test_palette_1.1">#FFB3BA</color>
+    <color name="test_palette_1.2">#FFDFBA</color>
+    <color name="test_palette_1.3">#FFFFBA</color>
+    <color name="test_palette_1.4">#BAFFC9</color>
+    <color name="test_palette_1.5">#BAE1FF</color>
+
+    <!-- test palette-2 -->
+    <color name="test_palette_2.1">#A8E6CF</color>
+    <color name="test_palette_2.2">#DCEDC1</color>
+    <color name="test_palette_2.3">#FFD3B6</color>
+    <color name="test_palette_2.4">#FFAAA5</color>
+    <color name="test_palette_2.5">#FF8B94</color>
+
+    <!-- test palette-3 -->
+    <color name="test_palette_3.1">#FFD4E5</color>
+    <color name="test_palette_3.2">#D4FFEA</color>
+    <color name="test_palette_3.3">#EECBFF</color>
+    <color name="test_palette_3.4">#FEFFA3</color>
+    <color name="test_palette_3.5">#DBDCFF</color>
+
+    <!-- test palette-4 -->
+    <color name="test_palette_4.1">#B7DED2</color>
+    <color name="test_palette_4.2">#F6A6B2</color>
+    <color name="test_palette_4.3">#F7C297</color>
+    <color name="test_palette_4.4">#FFECB8</color>
+    <color name="test_palette_4.5">#90D2D8</color>
+
+    <!-- test palette-5 -->
+    <color name="test_palette_5.1">#FF598F</color>
+    <color name="test_palette_5.2">#FD8A5E</color>
+    <color name="test_palette_5.3">#E0E300</color>
+    <color name="test_palette_5.4">#01DDDD</color>
+    <color name="test_palette_5.5">#00BFAF</color>
+
+    <!-- test palette night theme -->
+    <color name="test_palette_night.1">#363B74</color>
+    <color name="test_palette_night.2">#673888</color>
+    <color name="test_palette_night.3">#EF4F91</color>
+    <color name="test_palette_night.4">#C79DD7</color>
+    <color name="test_palette_night.5">#4D1B7B</color>
 </resources>

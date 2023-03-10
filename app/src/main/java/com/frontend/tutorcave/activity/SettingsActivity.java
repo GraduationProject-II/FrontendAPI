@@ -5,26 +5,26 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
-
-import java.util.Objects;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
 public class SettingsActivity extends AppCompatActivity {
 
+    // declarations
     private AppCompatImageView btnBackspace;
     private AppCompatButton btnEditPP, btnSaveSettings;
     private SwitchCompat swNightTheme, swNotification, swAccPrivacy;
     private RelativeLayout btnNavToSecurity, btnNavToStats, btnNavToAboutUs, btnLogout;
+    private Dialog dlgSecPriv, dlgStats; // TODO: design dialog about us and logout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         // TODO: set anim
 
+        // assignments
         btnBackspace = (AppCompatImageView) findViewById(R.id.settingsImgVwBackspace);
         btnEditPP = (AppCompatButton) findViewById(R.id.settingsBtnEditPP);
         btnSaveSettings = (AppCompatButton) findViewById(R.id.settingsBtnSave);
@@ -43,6 +44,8 @@ public class SettingsActivity extends AppCompatActivity {
         btnNavToStats = (RelativeLayout) findViewById(R.id.settingsOptionRltLytNavStats);
         btnNavToAboutUs = (RelativeLayout) findViewById(R.id.settingsOptionRltLytNavAboutUs);
         btnLogout = (RelativeLayout) findViewById(R.id.settingsOptionRltLytLogout);
+        dlgSecPriv = new Dialog(this);
+        dlgStats = new Dialog(this);
 
         btnBackspace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,20 +59,14 @@ public class SettingsActivity extends AppCompatActivity {
         btnNavToSecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: implement logic
-
-                // TODO: below task is for test purposes, delete afterwards
-                Toast.makeText(SettingsActivity.this, "Navigate to Security", Toast.LENGTH_SHORT).show();
+                launchPopUpSecAndPriv();
             }
         });
 
         btnNavToStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: impl logic
-
-                // TODO: below task is for test purposes, delete afterwards
-                Toast.makeText(SettingsActivity.this, "Navigate to Stats", Toast.LENGTH_SHORT).show();
+                launchPopUpStats();
             }
         });
 
@@ -109,7 +106,9 @@ public class SettingsActivity extends AppCompatActivity {
                 // TODO: implement logic
 
                 // TODO: below task till end of the method is for test purposes, delete afterwards
-                boolean isNightTheme, isNotification, isAccPrivacy;
+                boolean isNightTheme;
+                boolean isNotification;
+                boolean isAccPrivacy;
                 isNightTheme = swNightTheme.isChecked();
                 isNotification = swNotification.isChecked();
                 isAccPrivacy = swAccPrivacy.isChecked();
@@ -143,6 +142,59 @@ public class SettingsActivity extends AppCompatActivity {
                 timer.start();
                 Toast.makeText(SettingsActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
                 // delete till here
+            }
+        });
+    }
+
+    private void initPopUp(final Dialog dialog, final int componentId) {
+        dialog.setContentView(componentId);
+    }
+
+    private void launchPopUpSecAndPriv() {
+        initPopUp(dlgSecPriv, R.layout.popup_settings_sec_and_privacy);
+        dlgSecPriv.show();
+
+        RelativeLayout blocklist, changeMail, changePassword;
+
+        blocklist = (RelativeLayout) dlgSecPriv.findViewById(R.id.setOptRltLytSecPrivBlocklist);
+        changeMail = (RelativeLayout) dlgSecPriv.findViewById(R.id.setOptRltLytSecPrivChangeMail);
+        changePassword = (RelativeLayout) dlgSecPriv.findViewById(R.id.setOptRltLytSecPrivChangePassword);
+
+        dialogOnClick(blocklist, "Blocklist");
+        dialogOnClick(changeMail, "Change mail");
+        dialogOnClick(changePassword, "Change password");
+    }
+
+    private void launchPopUpStats() {
+        initPopUp(dlgStats, R.layout.popup_settings_stats);
+        dlgStats.show();
+
+        RelativeLayout rep, accolade, privilege, discussionInvolved, tutoringServices, feedback;
+
+        rep = (RelativeLayout) dlgStats.findViewById(R.id.setOptRltLytStatsRep);
+        accolade = (RelativeLayout) dlgStats.findViewById(R.id.setOptRltLytStatsAccolade);
+        privilege = (RelativeLayout) dlgStats.findViewById(R.id.setOptRltLytStatsPrivilege);
+        discussionInvolved = (RelativeLayout) dlgStats.findViewById(R.id.setOptRltLytStatsDisInv);
+        tutoringServices = (RelativeLayout) dlgStats.findViewById(R.id.setOptRltLytStatsTutSrv);
+        feedback = (RelativeLayout) dlgStats.findViewById(R.id.setOptRltLytStatsFeedback);
+
+        dialogOnClick(rep, "Reputation");
+        dialogOnClick(accolade, "Accolades");
+        dialogOnClick(privilege, "Privileges");
+        dialogOnClick(discussionInvolved, "Discussions involved");
+        dialogOnClick(tutoringServices, "Tutoring services");
+        dialogOnClick(feedback, "Feedbacks");
+    }
+
+    // TODO: replace param testMessage with appropriate param(s) after test
+    private void dialogOnClick(RelativeLayout layout, String testMessage) {
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: impl logic
+
+                // below task is for test purposes, delete afterwards
+                Toast.makeText(SettingsActivity.this, testMessage, Toast.LENGTH_SHORT).show();
             }
         });
     }

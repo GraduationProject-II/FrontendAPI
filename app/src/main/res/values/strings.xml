@@ -12,6 +12,9 @@
     <string name="placeholder_name">Test Name</string>
     <string name="placeholder_username">test_username</string>
     <string name="placeholder_account_type">Type</string>
+    <string name="placeholder_title">This is a placeholder title which will be deleted afterwards</string>
+    <string name="placeholder_date_1">19/09/2022</string>
+    <string name="placeholder_date_2">25/01/2023</string>
     <string name="test1">test_1</string>
     <string name="test2">test_2</string>
     <string name="test3">test_3</string>
@@ -91,6 +94,8 @@
     <!-- PROFILE SCREEN -->
     <string name="account_type">Account Type</string>
     <string name="privilege">Privileges</string>
+    <string name="date_of_creation">Created: </string>
+    <string name="last_update">Last update: </string>
 
     <!-- SETTINGS SCREEN -->
     <string name="settings">Settings</string>
@@ -112,7 +117,4 @@
     <string name="settings_opt_stats_privilege">Privileges</string>
     <string name="settings_opt_stats_tutoring_services">Tutoring services</string>
     <string name="settings_opt_stats_feedback">Feedbacks</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -423,7 +423,7 @@
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
                 app:cardBackgroundColor="@color/test_6"
-                android:elevation="12dp"
+                app:cardElevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
 
@@ -469,11 +469,9 @@
     </HorizontalScrollView>
 
     <!-- TODO: fix size problems -->
-    <RelativeLayout
-        android:id="@+id/profileBottomFragmentOfObj"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
-        android:padding="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_18sdp"
         android:layout_marginEnd="@dimen/_18sdp"
@@ -481,21 +479,36 @@
         app:layout_constraintTop_toBottomOf="@id/profileHorizontalScrollVw"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardPreventCornerOverlap="true"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/test_2">
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_2sdp"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+            android:layout_height="match_parent">
 
-            <!-- TODO: fix size problems -->
-            <include layout="@layout/fragment_test" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_2sdp"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:scrollbars="none">
 
-        </ScrollView>
+                <!-- TODO: convert to fragment -->
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/profileVwPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:clipToPadding="false" />
 
-    </RelativeLayout>
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

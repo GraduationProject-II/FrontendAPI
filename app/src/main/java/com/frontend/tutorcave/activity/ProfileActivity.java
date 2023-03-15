@@ -7,9 +7,9 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.HorizontalScrollView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.fragment.ProfileAccoladeFragment;
 import com.frontend.tutorcave.fragment.ProfileDiscussionFragment;
 import com.frontend.tutorcave.fragment.ProfilePrivilegeFragment;
 
@@ -20,7 +20,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private AppCompatImageView btnSettings;
     private CardView lytDiscussion, lytPrivilege, lytAccolades, lytFeedback;
-    private HorizontalScrollView scrollViewObjects;
+    //private HorizontalScrollView scrollViewObjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
         lytPrivilege = (CardView) findViewById(R.id.profileScrollObjectPrivilege);
         lytAccolades = (CardView) findViewById(R.id.profileScrollObjectAccolades);
         lytFeedback = (CardView) findViewById(R.id.profileScrollObjectFeedbacks);
-        scrollViewObjects = (HorizontalScrollView) findViewById(R.id.profileHorizontalScrollVw);
+        //scrollViewObjects = (HorizontalScrollView) findViewById(R.id.profileHorizontalScrollVw);
 
         // TODO: complete below task
         //scrollViewObjects.setLeftEdgeEffectColor();
@@ -68,7 +68,8 @@ public class ProfileActivity extends AppCompatActivity {
         lytAccolades.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: implement logic, set bg and txt colors
+                // TODO: set bg and txt colors
+                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileAccoladeFragment()).commit();
             }
         });
 

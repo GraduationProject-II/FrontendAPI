@@ -1,12 +1,12 @@
 package com.frontend.tutorcave.model;
 
-//* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
-
 import java.util.Locale;
 
+//* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
 public class PrivilegeListItemModel {
+    // id
     private String name;
     private String desc;
     private STATUS status;

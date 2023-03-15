@@ -19,13 +19,13 @@ import java.util.List;
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
-public class RecyclerViewDiscussionAdapter extends RecyclerView.Adapter<RecyclerViewDiscussionAdapter.ViewHolder> {
+public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<DiscussionListItemModel> models;
     private Context context;
 
-    public RecyclerViewDiscussionAdapter(List<DiscussionListItemModel> models, Context context) {
+    public DiscussionListAdapter(List<DiscussionListItemModel> models, Context context) {
         this.models = models;
         this.context = context;
     }
@@ -34,7 +34,7 @@ public class RecyclerViewDiscussionAdapter extends RecyclerView.Adapter<Recycler
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.profile_vw_pgr_discussion_item, parent, false);
+        View view = inflater.inflate(R.layout.profile_selection_discussion_item, parent, false);
 
         return new ViewHolder(view);
     }
@@ -65,6 +65,7 @@ public class RecyclerViewDiscussionAdapter extends RecyclerView.Adapter<Recycler
         return models.size();
     }
 
+    // maybe static
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;

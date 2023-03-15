@@ -3,6 +3,7 @@
 ~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 -->
 
+<!-- TODO: change color palette -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -19,9 +20,10 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
         android:clickable="true"
         android:focusable="true"
-        app:cardElevation="10dp"
+        app:cardElevation="0dp"
         app:cardPreventCornerOverlap="true"
         app:cardCornerRadius="14dp"
         app:cardBackgroundColor="@color/test_1">

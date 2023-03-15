@@ -3,7 +3,6 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +10,14 @@ import android.view.View;
 import android.widget.HorizontalScrollView;
 
 import com.frontend.tutorcave.R;
-import com.frontend.tutorcave.adapter.DiscussionListItemAdapter;
+import com.frontend.tutorcave.fragment.ProfileDiscussionFragment;
+import com.frontend.tutorcave.fragment.ProfilePrivilegeFragment;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
-    private DiscussionListItemAdapter discussionAdapter;
     private AppCompatImageView btnSettings;
     private CardView lytDiscussion, lytPrivilege, lytAccolades, lytFeedback;
     private HorizontalScrollView scrollViewObjects;
@@ -28,6 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment()).commit();
 
         // TODO: set anim
 
@@ -37,10 +36,6 @@ public class ProfileActivity extends AppCompatActivity {
         lytAccolades = (CardView) findViewById(R.id.profileScrollObjectAccolades);
         lytFeedback = (CardView) findViewById(R.id.profileScrollObjectFeedbacks);
         scrollViewObjects = (HorizontalScrollView) findViewById(R.id.profileHorizontalScrollVw);
-        viewPager = (ViewPager) findViewById(R.id.profileVwPager);
-
-        discussionAdapter = new DiscussionListItemAdapter(this);
-        viewPager.setAdapter(discussionAdapter);
 
         // TODO: complete below task
         //scrollViewObjects.setLeftEdgeEffectColor();
@@ -57,14 +52,16 @@ public class ProfileActivity extends AppCompatActivity {
         lytDiscussion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: implement logic, set bg and txt colors
+                // TODO: set bg and txt colors
+                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment()).commit();
             }
         });
 
         lytPrivilege.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: implement logic, set bg and txt colors
+                // TODO: set bg and txt colors
+                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfilePrivilegeFragment()).commit();
             }
         });
 

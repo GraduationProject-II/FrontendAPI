@@ -40,7 +40,7 @@ public class UserMenuActivity extends AppCompatActivity {
                 final int navHomeID = R.id.nav_home;
                 final int navDiscussionID = R.id.nav_discussion;
                 final int navFindTutorID = R.id.nav_search_tutor;
-                final int navMessagID = R.id.nav_message;
+                final int navMessageID = R.id.nav_message;
                 Fragment fragment = null;
 
                 switch (item.getItemId()) {
@@ -53,7 +53,7 @@ public class UserMenuActivity extends AppCompatActivity {
                     case navFindTutorID:
                         fragment = new MenuSearchTutorFragment();
                         break;
-                    case navMessagID:
+                    case navMessageID:
                         fragment = new MenuMessageFragment();
                         break;
                     default:

@@ -1,16 +1,19 @@
-package com.frontend.tutorcave.adapter;
+package com.frontend.tutorcave.fragment;
 
-import android.content.Context;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.PagerAdapter;
-
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.adapter.DiscussionListAdapter;
 import com.frontend.tutorcave.model.DiscussionListItemModel;
 
 import java.util.ArrayList;
@@ -19,36 +22,19 @@ import java.util.List;
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
-public class DiscussionListItemAdapter extends PagerAdapter {
+public class ProfileDiscussionFragment extends Fragment {
 
-    private LayoutInflater inflater;
-    private Context context;
-
-    public DiscussionListItemAdapter(Context context) {
-        this.context = context;
+    public ProfileDiscussionFragment() {
+        // Required empty public constructor
     }
 
     @Override
-    public int getCount() {
-        return 1;
-    }
-
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view.equals(object);
-    }
-
-    @NonNull
-    @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.profile_vw_pgr_discussion, container, false);
-
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         RecyclerView recyclerView;
-        RecyclerViewDiscussionAdapter listAdapter;
+        DiscussionListAdapter listAdapter;
         List<DiscussionListItemModel> discussionListItemModels;
 
-        recyclerView = view.findViewById(R.id.profileDiscussionListRecyclerVw);
+        recyclerView = view.findViewById(R.id.profileFrgDiscussionListRecyclerVw);
 
         discussionListItemModels = new ArrayList<>();
         // TODO: below model assignment is for test purposes
@@ -94,16 +80,18 @@ public class DiscussionListItemAdapter extends PagerAdapter {
                 "-14"
         ));
 
-        listAdapter = new RecyclerViewDiscussionAdapter(discussionListItemModels, view.getContext());
+        listAdapter = new DiscussionListAdapter(discussionListItemModels, view.getContext());
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
-        container.addView(view, 0);
-        return view;
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View) object);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_profile_discussion, container, false);
     }
 }

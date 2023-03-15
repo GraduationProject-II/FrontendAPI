@@ -262,12 +262,13 @@
                 android:layout_height="@dimen/_60sdp"
                 android:padding="@dimen/_3sdp"
                 android:clickable="true"
-                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_marginBottom="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
                 app:cardBackgroundColor="@color/test_6"
-                android:elevation="12dp"
+                android:backgroundTint="@color/test_6"
+                app:cardElevation="20dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
 
@@ -319,7 +320,7 @@
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
                 app:cardBackgroundColor="@color/test_6"
-                android:elevation="12dp"
+                app:cardElevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
 
@@ -371,7 +372,7 @@
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
                 app:cardBackgroundColor="@color/test_6"
-                android:elevation="12dp"
+                app:cardElevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardCornerRadius="@dimen/_15sdp">
 
@@ -485,29 +486,19 @@
         app:cardElevation="10dp"
         app:cardBackgroundColor="@color/test_2">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
-            <ScrollView
+            <RelativeLayout
+                android:id="@+id/profileBottomSelectionView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/_2sdp"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
-                android:scrollbars="none">
+                android:layout_height="wrap_content" />
 
-                <!-- TODO: convert to fragment -->
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/profileVwPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:overScrollMode="never"
-                    android:clipToPadding="false" />
-
-            </ScrollView>
-
-        </RelativeLayout>
+        </ScrollView>
 
     </androidx.cardview.widget.CardView>
 

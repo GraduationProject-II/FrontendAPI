@@ -100,6 +100,8 @@
     <string name="last_update">Last update: </string>
     <string name="status">Status: </string>
     <string name="prerequisite">Prerequisite privilege: </string>
+    <string name="service_title">Service: </string>
+    <string name="description">Description: </string>
 
     <!-- SETTINGS SCREEN -->
     <string name="settings">Settings</string>

@@ -55,7 +55,7 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
                 //view.getContext().startActivity(intent);
 
                 // TODO: below is for test purposes, delete afterwards
-                Toast.makeText(view.getContext(), "It works for item" + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
             }
         });
     }

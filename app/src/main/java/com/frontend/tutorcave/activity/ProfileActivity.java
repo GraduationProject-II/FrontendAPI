@@ -11,6 +11,7 @@ import android.view.View;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.fragment.ProfileAccoladeFragment;
 import com.frontend.tutorcave.fragment.ProfileDiscussionFragment;
+import com.frontend.tutorcave.fragment.ProfileFeedbackFragment;
 import com.frontend.tutorcave.fragment.ProfilePrivilegeFragment;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
@@ -76,7 +77,8 @@ public class ProfileActivity extends AppCompatActivity {
         lytFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: implement logic, set bg and txt colors
+                // TODO: set bg and txt colors
+                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileFeedbackFragment()).commit();
             }
         });
     }

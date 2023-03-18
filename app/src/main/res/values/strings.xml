@@ -123,6 +123,4 @@
     <string name="settings_opt_stats_privilege">Privileges</string>
     <string name="settings_opt_stats_tutoring_services">Tutoring services</string>
     <string name="settings_opt_stats_feedback">Feedbacks</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

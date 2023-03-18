@@ -193,7 +193,8 @@
         <ScrollView
             android:id="@+id/frgDiscussionScrollVw"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
             app:layout_constraintTop_toBottomOf="@id/frgDiscussionSearchVw"
             app:layout_constraintBottom_toBottomOf="parent"
             android:clipToPadding="false"
@@ -201,26 +202,22 @@
             android:padding="@dimen/_16sdp"
             android:scrollbars="none">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:cardPreventCornerOverlap="true"
+                app:cardElevation="20dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/white">
 
-                <!-- TODO: retrieve users from backend  -->
-                <!-- TODO: list multiple users -->
-                <!-- TODO: make each list clickable -->
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
+                <!-- TODO: fix size issues -->
+                <RelativeLayout
+                    android:id="@+id/frgHomeDiscussionVwLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
 
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </ScrollView>
 

@@ -1,4 +1,4 @@
-package com.frontend.tutorcave;
+package com.frontend.tutorcave.fragment;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.HomeDashboardListAdapter;
 import com.frontend.tutorcave.model.HomeMenuDashboardItemModel;
 

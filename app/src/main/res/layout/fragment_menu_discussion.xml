@@ -190,36 +190,38 @@
             app:iconifiedByDefault="false"
             android:background="@drawable/round_white_search" />
 
-        <ScrollView
-            android:id="@+id/frgDiscussionScrollVw"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            app:layout_constraintTop_toBottomOf="@id/frgDiscussionSearchVw"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:padding="@dimen/_16sdp"
-            android:scrollbars="none">
+            android:layout_height="@dimen/_320sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:paddingHorizontal="@dimen/_3sdp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardBackgroundColor="@color/home_fragment_card_background"
+            app:layout_constraintTop_toBottomOf="@id/frgDiscussionSearchVw">
 
-            <com.google.android.material.card.MaterialCardView
+            <ScrollView
+                android:id="@+id/frgDiscussionScrollVw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardPreventCornerOverlap="true"
-                app:cardElevation="20dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/white">
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:scrollbars="none">
 
-                <!-- TODO: fix size issues -->
                 <RelativeLayout
                     android:id="@+id/frgHomeDiscussionVwLyt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center" />
 
-            </com.google.android.material.card.MaterialCardView>
+            </ScrollView>
 
-        </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

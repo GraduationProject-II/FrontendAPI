@@ -17,6 +17,7 @@
     <string name="placeholder_date_2">25/01/2023</string>
     <string name="placeholder_desc">Placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc</string>
     <string name="placeholder_status">\@status</string>
+    <string name="placeholder_fields">field#1, field#2, field#3, field#4, field#5, field#6</string>
     <string name="test1">test_1</string>
     <string name="test2">test_2</string>
     <string name="test3">test_3</string>
@@ -35,6 +36,7 @@
     <string name="content_desc_stats">account statistic</string>
     <string name="content_desc_about_us">about us</string>
     <string name="content_desc_logout">logout</string>
+    <string name="content_desc_rep">reputation</string>
 
     <!-- SPLASH SCREEN -->
     <string name="act_splash_intro">Make your own way</string>
@@ -92,6 +94,7 @@
     <string name="newcomer">Newcomers</string>
     <string name="filter">Choose any filter</string>
     <string name="search_a_tutor">Search by name/username</string>
+    <string name="fields">Fields: </string>
 
     <!-- PROFILE SCREEN -->
     <string name="account_type">Account Type</string>
@@ -102,6 +105,7 @@
     <string name="prerequisite">Prerequisite privilege: </string>
     <string name="service_title">Service: </string>
     <string name="description">Description: </string>
+    <string name="about_me">About me: </string>
 
     <!-- SETTINGS SCREEN -->
     <string name="settings">Settings</string>
@@ -123,4 +127,6 @@
     <string name="settings_opt_stats_privilege">Privileges</string>
     <string name="settings_opt_stats_tutoring_services">Tutoring services</string>
     <string name="settings_opt_stats_feedback">Feedbacks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

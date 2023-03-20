@@ -35,7 +35,7 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.home_dashboard_item, parent, false);
+        View view = inflater.inflate(R.layout.menu_home_dashboard_item, parent, false);
         return new ViewHolder(view);
     }
 

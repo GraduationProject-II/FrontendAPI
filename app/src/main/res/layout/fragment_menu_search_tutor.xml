@@ -199,39 +199,38 @@
             app:iconifiedByDefault="false"
             android:background="@drawable/round_white_search" />
 
-        <ScrollView
-            android:id="@+id/frgSearchTutorScrollVw"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/frgSearchTutorSearchVw"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:padding="@dimen/_16sdp"
-            android:scrollbars="none">
+            android:layout_height="@dimen/_320sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:paddingHorizontal="@dimen/_3sdp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardBackgroundColor="@color/home_fragment_card_background"
+            app:layout_constraintTop_toBottomOf="@id/frgSearchTutorSearchVw">
 
-            <LinearLayout
+            <ScrollView
+                android:id="@+id/frgSearchTutorScrollVw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:padding="@dimen/_16sdp"
+                android:scrollbars="none">
 
-                <!-- TODO: retrieve users from backend  -->
-                <!-- TODO: list multiple users -->
-                <!-- TODO: make each list clickable -->
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
-                <include layout="@layout/home_dashboard_item" />
+                <RelativeLayout
+                    android:id="@+id/frgSearchTutorListVw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            </LinearLayout>
+            </ScrollView>
 
-        </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

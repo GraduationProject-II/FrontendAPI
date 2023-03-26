@@ -19,9 +19,8 @@ import java.util.List;
 
 public class AccoladeListAdapter extends RecyclerView.Adapter<AccoladeListAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
-    private List<AccoladeListItemModel> models;
-    private Context context;
+    private final List<AccoladeListItemModel> models;
+    private final Context context;
 
     public AccoladeListAdapter(List<AccoladeListItemModel> models, Context context) {
         this.models = models;
@@ -31,9 +30,8 @@ public class AccoladeListAdapter extends RecyclerView.Adapter<AccoladeListAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.profile_selection_accolade_item, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -49,8 +47,7 @@ public class AccoladeListAdapter extends RecyclerView.Adapter<AccoladeListAdapte
         return models.size();
     }
 
-    // maybe static
-    protected class ViewHolder extends RecyclerView.ViewHolder {
+    protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView badge;
         TextView desc;

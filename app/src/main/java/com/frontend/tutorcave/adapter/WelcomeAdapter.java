@@ -20,9 +20,8 @@ import java.util.List;
 
 public class WelcomeAdapter extends PagerAdapter {
 
-    private List<WelcomeModel> models;
-    private LayoutInflater layoutInflater;
-    private Context context;
+    private final List<WelcomeModel> models;
+    private final Context context;
 
     public WelcomeAdapter(List<WelcomeModel> models, Context context) {
         this.models = models;
@@ -42,7 +41,7 @@ public class WelcomeAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = LayoutInflater.from(context);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item, container, false);
 
         ImageView image;

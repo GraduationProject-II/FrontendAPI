@@ -22,9 +22,8 @@ import java.util.List;
 
 public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
-    private List<FeedbackListItemModel> models;
-    private Context context;
+    private final List<FeedbackListItemModel> models;
+    private final Context context;
 
     public FeedbackListAdapter(List<FeedbackListItemModel> models, Context context) {
         this.models = models;
@@ -34,7 +33,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.profile_selection_feedback_item, parent, false);
 
         return new ViewHolder(view);
@@ -48,16 +47,13 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         holder.title.setText(models.get(position).getServiceTitle());
         holder.desc.setText(models.get(position).getServiceDescription());
 
-        holder.itemClickable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: uncomment below code when Tutoring service's screen is created
-                //Intent intent = new Intent(view.getContext(), TutorServiceActivity.class);
-                //view.getContext().startActivity(intent);
+        holder.itemClickable.setOnClickListener(view -> {
+            // TODO: uncomment below code when Tutoring service's screen is created
+            //Intent intent = new Intent(view.getContext(), TutorServiceActivity.class);
+            //view.getContext().startActivity(intent);
 
-                // TODO: below is for test purposes, delete afterwards
-                Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
-            }
+            // TODO: below is for test purposes, delete afterwards
+            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -66,8 +62,7 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         return models.size();
     }
 
-    // maybe static
-    protected class ViewHolder extends RecyclerView.ViewHolder {
+    protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView itemClickable;
         ImageView profilePic;

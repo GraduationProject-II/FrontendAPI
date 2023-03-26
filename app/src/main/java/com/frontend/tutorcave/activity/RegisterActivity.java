@@ -14,18 +14,19 @@ import com.frontend.tutorcave.model.RegisterModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText txtUsername;
-    private EditText txtPassword;
-    private EditText txtEmail;
-    private EditText txtName;
-    private EditText txtSurname;
-    private EditText btnForward;
     private RegisterModel registerPayload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        EditText txtUsername;
+        EditText txtPassword;
+        EditText txtEmail;
+        EditText txtName;
+        EditText txtSurname;
+        EditText btnForward;
 
         // TODO: set anim
 

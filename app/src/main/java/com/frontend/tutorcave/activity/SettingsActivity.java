@@ -5,29 +5,35 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SwitchCompat;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.model.SaveSettingsServiceModel;
+import com.frontend.tutorcave.service.SettingsService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
 public class SettingsActivity extends AppCompatActivity {
 
-    // declarations
-    private AppCompatImageView btnBackspace;
-    private AppCompatButton btnEditPP, btnSaveSettings;
-    private SwitchCompat swNightTheme, swNotification, swAccPrivacy;
-    private RelativeLayout btnNavToSecurity, btnNavToStats, btnNavToAboutUs, btnLogout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        // declarations
+        SettingsService settingsService = new SettingsService();
+        AppCompatImageView btnBackspace;
+        AppCompatButton btnEditPP;
+        AppCompatButton btnSaveSettings;
+        SwitchCompat swNightTheme;
+        SwitchCompat swNotification;
+        SwitchCompat swAccPrivacy;
+        RelativeLayout btnNavToSecurity;
+        RelativeLayout btnNavToStats;
+        RelativeLayout btnNavToAboutUs;
+        RelativeLayout btnLogout;
 
         // TODO: set anim
 
@@ -43,104 +49,18 @@ public class SettingsActivity extends AppCompatActivity {
         btnNavToAboutUs = (RelativeLayout) findViewById(R.id.settingsOptionRltLytNavAboutUs);
         btnLogout = (RelativeLayout) findViewById(R.id.settingsOptionRltLytLogout);
 
-        btnBackspace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: add a pop-up saying discard changes and implement logic
-                Intent intent = new Intent(SettingsActivity.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+        settingsService.redirect(btnBackspace, SettingsActivity.this, ProfileActivity.class); // TODO: add a pop-up saying discard changes and implement logic
+        settingsService.redirect(btnNavToSecurity, SettingsActivity.this, SettingsSecPrivActivity.class);
+        settingsService.redirect(btnNavToStats, SettingsActivity.this, SettingsStatsActivity.class);
+        settingsService.redirect(btnNavToAboutUs, SettingsActivity.this, "Navigate to About Us");
+        settingsService.redirect(btnLogout, SettingsActivity.this, "Logout");
+        settingsService.redirect(btnEditPP, SettingsActivity.this, "Edit PP");
 
-        btnNavToSecurity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this, SettingsSecPrivActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnNavToStats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this, SettingsStatsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btnNavToAboutUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: impl logic
-
-                // TODO: below task is for test purposes, delete afterwards
-                Toast.makeText(SettingsActivity.this, "Navigate to About Us", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: impl logic
-
-                // TODO: below task is for test purposes, delete afterwards
-                Toast.makeText(SettingsActivity.this, "Logout", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnEditPP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: implement logic
-
-                // TODO: below task is for test purposes, delete afterwards
-                Toast.makeText(SettingsActivity.this, "Edit PP", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnSaveSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: implement logic
-
-                // TODO: below task till end of the method is for test purposes, delete afterwards
-                boolean isNightTheme;
-                boolean isNotification;
-                boolean isAccPrivacy;
-                isNightTheme = swNightTheme.isChecked();
-                isNotification = swNotification.isChecked();
-                isAccPrivacy = swAccPrivacy.isChecked();
-
-                if (isNightTheme)
-                    Toast.makeText(SettingsActivity.this, "Night Theme Checked", Toast.LENGTH_SHORT).show();
-                else Toast.makeText(SettingsActivity.this, "Night Theme Not Checked", Toast.LENGTH_SHORT).show();
-
-                if (isNotification)
-                    Toast.makeText(SettingsActivity.this, "Notifications Checked", Toast.LENGTH_SHORT).show();
-                else Toast.makeText(SettingsActivity.this, "Notifications Not Checked", Toast.LENGTH_SHORT).show();
-
-                if (isAccPrivacy)
-                    Toast.makeText(SettingsActivity.this, "Acc Privacy Checked", Toast.LENGTH_SHORT).show();
-                else Toast.makeText(SettingsActivity.this, "Acc Privacy Not Checked", Toast.LENGTH_SHORT).show();
-
-                Thread timer = new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-                            sleep(8000);
-                        }
-                        catch (InterruptedException exception) {
-                            exception.printStackTrace();
-                        }
-                        finally {
-                            finish();
-                        }
-                    }
-                };
-                timer.start();
-                Toast.makeText(SettingsActivity.this, "Saved changes", Toast.LENGTH_SHORT).show();
-                // delete till here
-            }
-        });
+        SaveSettingsServiceModel saveModel = new SaveSettingsServiceModel();
+        saveModel.setContext(SettingsActivity.this);
+        saveModel.setNightTheme(swNightTheme);
+        saveModel.setNotifications(swNotification);
+        saveModel.setAccountPrivacy(swAccPrivacy);
+        settingsService.saveSettings(btnSaveSettings, saveModel);
     }
 }

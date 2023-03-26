@@ -20,7 +20,6 @@ import com.google.android.material.chip.Chip;
 public class MenuSearchTutorFragment extends Fragment {
 
     // TODO: searchView.clearFocus(), onQueryTextListener()
-    private Chip chipTopRated, chipTrending, chipNewcomer;
 
     // TODO: set anim
 
@@ -32,6 +31,10 @@ public class MenuSearchTutorFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         getParentFragmentManager().beginTransaction().replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment()).commit();
+
+        Chip chipTopRated;
+        Chip chipTrending;
+        Chip chipNewcomer;
 
         chipTopRated = (Chip) requireView().findViewById(R.id.frgSearchTutorChipTopRated);
         chipTrending = (Chip) requireView().findViewById(R.id.frgSearchTutorChipTrending);

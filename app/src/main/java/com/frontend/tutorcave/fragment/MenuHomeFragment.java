@@ -22,9 +22,6 @@ import com.frontend.tutorcave.activity.SettingsStatsActivity;
 
 public class MenuHomeFragment extends Fragment {
 
-    private TextView viewStats;
-    private AppCompatImageView btnProfile;
-
     // TODO: set anim
 
     public MenuHomeFragment() {
@@ -33,27 +30,23 @@ public class MenuHomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
         getParentFragmentManager().beginTransaction().replace(R.id.frgHomeDashVwLyt, new MenuHomeDashboardFragment()).commit();
+
+        AppCompatImageView btnProfile;
+        TextView viewStats;
 
         viewStats = (TextView) requireView().findViewById(R.id.frgHomeBtnViewAllStats);
         btnProfile = (AppCompatImageView) requireView().findViewById(R.id.frgHomeBtnProfile);
 
-        viewStats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MenuHomeFragment.this.getContext(), SettingsStatsActivity.class);
-                startActivity(intent);
-            }
+        viewStats.setOnClickListener(view1 -> {
+            Intent intent = new Intent(MenuHomeFragment.this.getContext(), SettingsStatsActivity.class);
+            startActivity(intent);
         });
 
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent;
-                intent = new Intent(MenuHomeFragment.this.getContext(), ProfileActivity.class);
-                startActivity(intent);
-            }
+        btnProfile.setOnClickListener(view12 -> {
+            Intent intent;
+            intent = new Intent(MenuHomeFragment.this.getContext(), ProfileActivity.class);
+            startActivity(intent);
         });
     }
 

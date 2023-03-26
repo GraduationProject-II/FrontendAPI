@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import com.frontend.tutorcave.R;
 
-import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
-/**@author Samet Vural Üstün
- */
+/** @author Samet Vural Üstün */
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreen extends AppCompatActivity { // TODO: check the warning
 
     private LinearLayout layout;
     private TextView appName;
@@ -34,6 +34,7 @@ public class SplashScreen extends AppCompatActivity {
 
         Animation splashAnim = AnimationUtils.loadAnimation(this, R.anim.transition);
         Animation textAnim = AnimationUtils.loadAnimation(this, R.anim.to_left);
+
         // TODO: load text anim first
         appName.startAnimation(textAnim);
         appName.startAnimation(splashAnim);
@@ -47,7 +48,8 @@ public class SplashScreen extends AppCompatActivity {
                 try {
                     sleep(5000);
                 } catch (InterruptedException exception) {
-                    Objects.requireNonNull(exception.getCause()).getMessage();
+                    Logger.getLogger(SplashScreen.class.getName()).log(Level.WARNING, "Interrupted!: ", exception);
+                    Thread.currentThread().interrupt();
                 } finally {
                     startActivity(intent);
                     finish();

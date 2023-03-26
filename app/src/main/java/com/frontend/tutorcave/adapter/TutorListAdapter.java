@@ -20,11 +20,10 @@ import java.util.List;
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
-public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.VievHolder> {
+public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
-    private List<TutorListItemModel> models;
-    private Context context;
+    private final List<TutorListItemModel> models;
+    private final Context context;
 
     public TutorListAdapter(List<TutorListItemModel> models, Context context) {
         this.models = models;
@@ -33,14 +32,14 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.Viev
 
     @NonNull
     @Override
-    public VievHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        inflater = LayoutInflater.from(context);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.menu_tutor_item, parent, false);
-        return new VievHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VievHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tutorName.setText(models.get(position).getFullName());
         holder.username.setText(models.get(position).getUsername());
         holder.fields.setText(models.get(position).getFieldOfSpecialization());
@@ -48,16 +47,13 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.Viev
         holder.rep.setText(models.get(position).getReputation());
         holder.pp.setImageResource(models.get(position).getProfilePicture());
 
-        holder.cardItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: uncomment below code when profile (tutor) for view is created
-                //Intent intent = new Intent(view.getContext(), SomeActivity.class);
-                //view.getContext().startActivity(intent);
+        holder.cardItem.setOnClickListener(view -> {
+            // TODO: uncomment below code when profile (tutor) for view is created
+            //Intent intent = new Intent(view.getContext(), SomeActivity.class);
+            //view.getContext().startActivity(intent);
 
-                // TODO: below is for test purposes, delete afterwards
-                Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
-            }
+            // TODO: below is for test purposes, delete afterwards
+            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -66,8 +62,7 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.Viev
         return models.size();
     }
 
-    // maybe static
-    protected class VievHolder extends RecyclerView.ViewHolder {
+    protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tutorName;
         TextView username;
@@ -77,7 +72,7 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.Viev
         ImageView pp;
         MaterialCardView cardItem;
 
-        public VievHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tutorName = itemView.findViewById(R.id.frgTutorListItemName);

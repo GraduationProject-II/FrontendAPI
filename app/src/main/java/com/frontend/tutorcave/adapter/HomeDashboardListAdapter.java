@@ -22,9 +22,8 @@ import java.util.List;
 
 public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboardListAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
-    private List<HomeMenuDashboardItemModel> models;
-    private Context context;
+    private final List<HomeMenuDashboardItemModel> models;
+    private final Context context;
 
     public HomeDashboardListAdapter(List<HomeMenuDashboardItemModel> models, Context context) {
         this.models = models;
@@ -34,7 +33,7 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.menu_home_dashboard_item, parent, false);
         return new ViewHolder(view);
     }
@@ -46,16 +45,13 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
         holder.rep.setText(models.get(position).getReputation());
         holder.pp.setImageResource(models.get(position).getProfilePicture());
 
-        holder.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: uncomment below code when profile for view is created
-                //Intent intent = new Intent(view.getContext(), SomeActivity.class);
-                //view.getContext().startActivity(intent);
+        holder.item.setOnClickListener(view -> {
+            // TODO: uncomment below code when profile for view is created
+            //Intent intent = new Intent(view.getContext(), SomeActivity.class);
+            //view.getContext().startActivity(intent);
 
-                // TODO: below is for test purposes, delete afterwards
-                Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
-            }
+            // TODO: below is for test purposes, delete afterwards
+            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -64,8 +60,7 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
         return models.size();
     }
 
-    // maybe static
-    protected class ViewHolder extends RecyclerView.ViewHolder {
+    protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         MaterialCardView item;
         AppCompatImageView pp;

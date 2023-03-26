@@ -23,15 +23,19 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private WelcomeAdapter adapter;
-    private Button button;
-    private List<WelcomeModel> models;
-    private ArgbEvaluator evaluator = new ArgbEvaluator();
+    private final ArgbEvaluator evaluator = new ArgbEvaluator();
     private int cardPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        Button button;
+        List<WelcomeModel> models;
+
+        viewPager = findViewById(R.id.vwPgrWelcome);
+        button = findViewById(R.id.btnWelcome);
 
         models = new ArrayList<>();
         // login
@@ -54,8 +58,6 @@ public class WelcomeActivity extends AppCompatActivity {
         ));
 
         adapter = new WelcomeAdapter(models, this);
-
-        viewPager = findViewById(R.id.vwPgrWelcome);
         viewPager.setAdapter(adapter);
         viewPager.setPadding(130,0,130,0);
 
@@ -89,7 +91,6 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        button = findViewById(R.id.btnWelcome);
         button.setOnClickListener(view -> {
             Intent intent;
 

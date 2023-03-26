@@ -1,7 +1,5 @@
 package com.frontend.tutorcave.model;
 
-import android.widget.ImageView;
-
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 

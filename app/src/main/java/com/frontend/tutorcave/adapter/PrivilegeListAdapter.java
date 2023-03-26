@@ -19,9 +19,8 @@ import java.util.List;
 
 public class PrivilegeListAdapter extends RecyclerView.Adapter<PrivilegeListAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
-    private List<PrivilegeListItemModel> models;
-    private Context context;
+    private final List<PrivilegeListItemModel> models;
+    private final Context context;
 
     public PrivilegeListAdapter(List<PrivilegeListItemModel> models, Context context) {
         this.models = models;
@@ -31,9 +30,8 @@ public class PrivilegeListAdapter extends RecyclerView.Adapter<PrivilegeListAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.profile_selection_privilege_item, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -49,8 +47,7 @@ public class PrivilegeListAdapter extends RecyclerView.Adapter<PrivilegeListAdap
         return models.size();
     }
 
-    // maybe static
-    protected class ViewHolder extends RecyclerView.ViewHolder {
+    protected static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView description;
         TextView status;

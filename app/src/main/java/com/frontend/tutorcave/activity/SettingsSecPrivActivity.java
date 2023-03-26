@@ -5,7 +5,6 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -35,24 +34,18 @@ public class SettingsSecPrivActivity extends AppCompatActivity {
         setOptionOnClick(changeMail, "Change mail");
         setOptionOnClick(changePassword, "Change password");
 
-        btnBackspace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SettingsSecPrivActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
+        btnBackspace.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsSecPrivActivity.this, SettingsActivity.class);
+            startActivity(intent);
         });
     }
 
     // TODO: replace param testMessage with appropriate param(s) after test
     private void setOptionOnClick(RelativeLayout layout, String testMessage) {
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: impl logic
-                // below task is for test purposes, delete afterwards
-                Toast.makeText(view.getContext(), testMessage, Toast.LENGTH_SHORT).show();
-            }
+        layout.setOnClickListener(view -> {
+            // TODO: impl logic
+            // below task is for test purposes, delete afterwards
+            Toast.makeText(view.getContext(), testMessage, Toast.LENGTH_SHORT).show();
         });
     }
 }

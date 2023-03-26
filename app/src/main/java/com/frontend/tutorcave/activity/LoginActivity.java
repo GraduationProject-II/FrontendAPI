@@ -14,15 +14,16 @@ import com.frontend.tutorcave.model.LoginModel;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText editTextUsername;
-    private EditText editTextPassword;
-    private EditText btnLogin;
     private LoginModel loginPayload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        EditText editTextUsername;
+        EditText editTextPassword;
+        EditText btnLogin;
 
         // TODO: set anim
         editTextUsername = findViewById(R.id.editTextUsernameLogin);

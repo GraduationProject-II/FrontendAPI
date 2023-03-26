@@ -21,9 +21,8 @@ import java.util.List;
 
 public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
-    private List<DiscussionListItemModel> models;
-    private Context context;
+    private final List<DiscussionListItemModel> models;
+    private final Context context;
 
     public DiscussionListAdapter(List<DiscussionListItemModel> models, Context context) {
         this.models = models;
@@ -33,7 +32,7 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.profile_selection_discussion_item, parent, false);
 
         return new ViewHolder(view);
@@ -47,16 +46,13 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         holder.lastUpdated.setText(models.get(position).getLastUpdated());
         holder.vote.setText(models.get(position).getVote());
 
-        holder.listItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: uncomment below code when DiscussionActivity is created
-                //Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
-                //view.getContext().startActivity(intent);
+        holder.listItem.setOnClickListener(view -> {
+            // TODO: uncomment below code when DiscussionActivity is created
+            //Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
+            //view.getContext().startActivity(intent);
 
-                // TODO: below is for test purposes, delete afterwards
-                Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
-            }
+            // TODO: below is for test purposes, delete afterwards
+            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -65,8 +61,7 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         return models.size();
     }
 
-    // maybe static
-    protected class ViewHolder extends RecyclerView.ViewHolder {
+    protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView title;
         TextView username;

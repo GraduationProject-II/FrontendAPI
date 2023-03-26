@@ -6,7 +6,6 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.fragment.ProfileAccoladeFragment;
@@ -19,8 +18,6 @@ import com.frontend.tutorcave.fragment.ProfilePrivilegeFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private AppCompatImageView btnSettings;
-    private CardView lytDiscussion, lytPrivilege, lytAccolades, lytFeedback;
     //private HorizontalScrollView scrollViewObjects;
 
     @Override
@@ -28,6 +25,12 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment()).commit();
+
+        AppCompatImageView btnSettings;
+        CardView lytDiscussion;
+        CardView lytPrivilege;
+        CardView lytAccolades;
+        CardView lytFeedback;
 
         // TODO: set anim
 
@@ -42,44 +45,29 @@ public class ProfileActivity extends AppCompatActivity {
         //scrollViewObjects.setLeftEdgeEffectColor();
         //scrollViewObjects.setRightEdgeEffectColor();
 
-        btnSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
+        btnSettings.setOnClickListener(view -> {
+            Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
+            startActivity(intent);
         });
 
-        lytDiscussion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: set bg and txt colors
-                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment()).commit();
-            }
+        lytDiscussion.setOnClickListener(view -> {
+            // TODO: set bg and txt colors
+            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment()).commit();
         });
 
-        lytPrivilege.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: set bg and txt colors
-                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfilePrivilegeFragment()).commit();
-            }
+        lytPrivilege.setOnClickListener(view -> {
+            // TODO: set bg and txt colors
+            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfilePrivilegeFragment()).commit();
         });
 
-        lytAccolades.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: set bg and txt colors
-                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileAccoladeFragment()).commit();
-            }
+        lytAccolades.setOnClickListener(view -> {
+            // TODO: set bg and txt colors
+            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileAccoladeFragment()).commit();
         });
 
-        lytFeedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: set bg and txt colors
-                getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileFeedbackFragment()).commit();
-            }
+        lytFeedback.setOnClickListener(view -> {
+            // TODO: set bg and txt colors
+            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileFeedbackFragment()).commit();
         });
     }
 }

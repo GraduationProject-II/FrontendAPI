@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.activity.ProfileActivity;
+import com.frontend.tutorcave.activity.SettingsStatsActivity;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
@@ -41,10 +42,8 @@ public class MenuHomeFragment extends Fragment {
         viewStats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: complete below task
-                Intent intent;
-                //intent = new Intent(MenuHomeFragment.this, AccoladeActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MenuHomeFragment.this.getContext(), SettingsStatsActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -3,30 +3,58 @@
 ~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 -->
 
-<!-- TODO: change color palette according to settings screen -->
-<!-- TODO: fix blank section on top -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".activity.SettingsSecPrivActivity"
     android:background="@color/setting_primary">
+
+    <RelativeLayout
+        android:id="@+id/setSecPrivLytHdr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/setSecPrivHeaderBackspace"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:padding="@dimen/_12sdp"
+            app:srcCompat="@drawable/ic_backspace_24"
+            app:tint="@color/white"
+            android:clickable="true"
+            android:contentDescription="@string/content_desc_backspace" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/settings"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_below="@id/setSecPrivLytHdr"
         android:background="@drawable/settings_options_bg"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_18sdp"
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_18sdp"
         android:padding="@dimen/_8sdp">
 
         <RelativeLayout
             android:id="@+id/setOptRltLytSecPrivBlocklist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
             android:clickable="true"
             android:focusable="true">
 
@@ -87,6 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
             android:clickable="true"
             android:focusable="true">
 
@@ -114,4 +143,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

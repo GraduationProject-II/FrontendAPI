@@ -3,12 +3,11 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.service.SettingsService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
@@ -20,6 +19,7 @@ public class SettingsStatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_stats);
 
+        SettingsService settingsService = new SettingsService();
         RelativeLayout viewRep;
         RelativeLayout viewAccolades;
         RelativeLayout viewPrivileges;
@@ -36,26 +36,12 @@ public class SettingsStatsActivity extends AppCompatActivity {
         viewFeedbacks = findViewById(R.id.setOptRltLytStatsFeedback);
         btnBackspace = findViewById(R.id.setStatsHeaderBackspace);
 
-        setOptionOnClick(viewRep, "Reputation");
-        setOptionOnClick(viewAccolades, "Accolades");
-        setOptionOnClick(viewPrivileges, "Privileges");
-        setOptionOnClick(viewDiscussionsInvolved, "Discussions involved");
-        setOptionOnClick(viewTutoringSrv, "Tutoring services");
-        setOptionOnClick(viewFeedbacks, "Feedbacks");
-
-        btnBackspace.setOnClickListener(view -> {
-
-            Intent intent = new Intent(SettingsStatsActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    // TODO: replace param testMessage with appropriate param(s) after test
-    private void setOptionOnClick(RelativeLayout layout, String testMessage) {
-        layout.setOnClickListener(view -> {
-            // TODO: impl logic
-            // below task is for test purposes, delete afterwards
-            Toast.makeText(view.getContext(), testMessage, Toast.LENGTH_SHORT).show();
-        });
+        settingsService.redirect(viewRep, SettingsStatsActivity.this, "Reputation");
+        settingsService.redirect(viewAccolades, SettingsStatsActivity.this, "Accolades");
+        settingsService.redirect(viewPrivileges, SettingsStatsActivity.this, "Privileges");
+        settingsService.redirect(viewDiscussionsInvolved, SettingsStatsActivity.this, "Discussions involved");
+        settingsService.redirect(viewTutoringSrv, SettingsStatsActivity.this, "Tutoring services");
+        settingsService.redirect(viewFeedbacks, SettingsStatsActivity.this, "Feedbacks");
+        settingsService.redirect(btnBackspace, SettingsStatsActivity.this, SettingsActivity.class);
     }
 }

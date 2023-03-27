@@ -3,12 +3,11 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.service.SettingsService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
@@ -20,6 +19,7 @@ public class SettingsSecPrivActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_sec_priv);
 
+        SettingsService settingsService = new SettingsService();
         RelativeLayout blocklist;
         RelativeLayout changeMail;
         RelativeLayout changePassword;
@@ -30,22 +30,9 @@ public class SettingsSecPrivActivity extends AppCompatActivity {
         changePassword = findViewById(R.id.setOptRltLytSecPrivChangePassword);
         btnBackspace = findViewById(R.id.setSecPrivHeaderBackspace);
 
-        setOptionOnClick(blocklist, "Blocklist");
-        setOptionOnClick(changeMail, "Change mail");
-        setOptionOnClick(changePassword, "Change password");
-
-        btnBackspace.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsSecPrivActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    // TODO: replace param testMessage with appropriate param(s) after test
-    private void setOptionOnClick(RelativeLayout layout, String testMessage) {
-        layout.setOnClickListener(view -> {
-            // TODO: impl logic
-            // below task is for test purposes, delete afterwards
-            Toast.makeText(view.getContext(), testMessage, Toast.LENGTH_SHORT).show();
-        });
+        settingsService.redirect(blocklist, SettingsSecPrivActivity.this, "Blocklist");
+        settingsService.redirect(changeMail, SettingsSecPrivActivity.this, "Change mail");
+        settingsService.redirect(changePassword, SettingsSecPrivActivity.this, "Change password");
+        settingsService.redirect(btnBackspace, SettingsSecPrivActivity.this, SettingsActivity.class);
     }
 }

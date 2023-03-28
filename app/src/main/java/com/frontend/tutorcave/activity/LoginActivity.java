@@ -26,21 +26,31 @@ public class LoginActivity extends AppCompatActivity {
         EditText btnLogin;
 
         // TODO: set anim
+
         editTextUsername = findViewById(R.id.editTextUsernameLogin);
         editTextPassword = findViewById(R.id.editTextPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(view -> {
-            if (editTextUsername.getText().toString().isEmpty() ||
-                    editTextPassword.getText().toString().isEmpty())
+            if (isCredentials(
+                    editTextUsername.getText().toString(),
+                    editTextPassword.getText().toString()
+            ))
                 Toast.makeText(LoginActivity.this, R.string.invalid_credentials, Toast.LENGTH_SHORT).show();
             else {
-                loginPayload.setUsername(editTextUsername.getText().toString());
-                loginPayload.setPassword(editTextPassword.getText().toString());
-
+                setPayload(editTextUsername.getText().toString(), editTextPassword.getText().toString());
                 //TODO: send payload to backend api
                 //TODO: new intent for main menu
             }
         });
+    }
+
+    private boolean isCredentials(String username, String password) {
+        return username.isEmpty() || password.isEmpty();
+    }
+
+    private void setPayload(String username, String password) {
+        loginPayload.setUsername(username);
+        loginPayload.setPassword(password);
     }
 }

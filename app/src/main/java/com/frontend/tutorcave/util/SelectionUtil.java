@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.model.MenuSelectionModel;
 
 import java.util.List;
 
@@ -18,10 +21,10 @@ public final class SelectionUtil {
     }
 
     /**
-     * @param context context of the current view
-     * @param position position of the selection
-     * @param options options for user selection
-     * @return new Intent of the selected class
+     * @param context Context of the current view
+     * @param position Position of the selection
+     * @param options Options for user selection
+     * @return New Intent of the selected class
      * @apiNote Redirects to new screen regarding the selection
      */
     public static Intent cardSelection(
@@ -50,5 +53,31 @@ public final class SelectionUtil {
                 intent = new Intent(context, context.getClass());
         }
         return intent;
+    }
+
+    /**
+     * @param model The model which contains selected item's ID, list of items and their IDs
+     * @return Returns a fragment of choice
+     * @apiNote Redirects to the selected fragment's screen
+     */
+    public static Fragment menuSelection(MenuSelectionModel model) {
+        Fragment fragment = model.getItemList().get(0);
+
+        if (isID(model.getMenuItem().getItemId(), model.getHomeId())) fragment = model.getItemList().get(0);
+        if (isID(model.getMenuItem().getItemId(), model.getDiscussionId())) fragment = model.getItemList().get(1);
+        if (isID(model.getMenuItem().getItemId(), model.getFindTutorId())) fragment = model.getItemList().get(2);
+        if (isID(model.getMenuItem().getItemId(), model.getMessagesId())) fragment = model.getItemList().get(3);
+
+        return fragment;
+    }
+
+    /**
+     * @param itemSelectedId Selected item's ID
+     * @param itemId ID of the option
+     * @return True if IDs match or false otherwise
+     * @apiNote Comparison of two IDs
+     */
+    private static boolean isID(int itemSelectedId, int itemId) {
+        return itemSelectedId == itemId;
     }
 }

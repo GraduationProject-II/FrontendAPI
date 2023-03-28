@@ -3,6 +3,7 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,22 +53,26 @@ public class ProfileActivity extends AppCompatActivity {
 
         lytDiscussion.setOnClickListener(view -> {
             // TODO: set bg and txt colors
-            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment()).commit();
+            redirect(R.id.profileBottomSelectionView, new ProfileDiscussionFragment());
         });
 
         lytPrivilege.setOnClickListener(view -> {
             // TODO: set bg and txt colors
-            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfilePrivilegeFragment()).commit();
+            redirect(R.id.profileBottomSelectionView, new ProfilePrivilegeFragment());
         });
 
         lytAccolades.setOnClickListener(view -> {
             // TODO: set bg and txt colors
-            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileAccoladeFragment()).commit();
+            redirect(R.id.profileBottomSelectionView, new ProfileAccoladeFragment());
         });
 
         lytFeedback.setOnClickListener(view -> {
             // TODO: set bg and txt colors
-            getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileFeedbackFragment()).commit();
+            redirect(R.id.profileBottomSelectionView, new ProfileFeedbackFragment());
         });
+    }
+
+    private void redirect(int viewId, Fragment fragment) {
+        getSupportFragmentManager().beginTransaction().replace(viewId, fragment).commit();
     }
 }

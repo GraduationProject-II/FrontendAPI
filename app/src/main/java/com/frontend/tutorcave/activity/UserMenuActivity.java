@@ -1,16 +1,12 @@
 package com.frontend.tutorcave.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
-import com.frontend.tutorcave.fragment.MenuDiscussionFragment;
 import com.frontend.tutorcave.fragment.MenuHomeFragment;
-import com.frontend.tutorcave.fragment.MenuMessageFragment;
-import com.frontend.tutorcave.fragment.MenuSearchTutorFragment;
+import com.frontend.tutorcave.service.UserMenuService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
@@ -24,6 +20,7 @@ public class UserMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_menu);
         getSupportFragmentManager().beginTransaction().replace(R.id.lytRelativeParent, new MenuHomeFragment()).commit();
 
+        UserMenuService menuService = new UserMenuService();
         BottomNavigationView navBottom;
 
         navBottom = (BottomNavigationView) findViewById(R.id.navVwUserMenu);
@@ -32,32 +29,10 @@ public class UserMenuActivity extends AppCompatActivity {
 
         navBottom.setSelectedItemId(R.id.nav_home);
         navBottom.setOnItemSelectedListener(item -> {
-
-            final int navHomeID = R.id.nav_home;
-            final int navDiscussionID = R.id.nav_discussion;
-            final int navFindTutorID = R.id.nav_search_tutor;
-            final int navMessageID = R.id.nav_message;
-            Fragment fragment = null;
-
-            switch (item.getItemId()) {
-                case navHomeID:
-                    fragment = new MenuHomeFragment();
-                    break;
-                case navDiscussionID:
-                    fragment = new MenuDiscussionFragment();
-                    break;
-                case navFindTutorID:
-                    fragment = new MenuSearchTutorFragment();
-                    break;
-                case navMessageID:
-                    fragment = new MenuMessageFragment();
-                    break;
-                default:
-                    Toast.makeText(UserMenuActivity.this, R.string.invalid_selection, Toast.LENGTH_SHORT).show();
-                    fragment = new MenuHomeFragment();
-                    break;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.lytRelativeParent, fragment).commit();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.lytRelativeParent, menuService.setFragment(item))
+                    .commit();
             return true;
         });
     }

@@ -38,17 +38,19 @@ public class RegisterActivity extends AppCompatActivity {
         btnForward = findViewById(R.id.btnRegister);
 
         btnForward.setOnClickListener(view -> {
-            if (txtUsername.getText().toString().isEmpty())
-                Toast.makeText(RegisterActivity.this, R.string.invalid_username, Toast.LENGTH_SHORT).show();
-            if (txtPassword.getText().toString().isEmpty())
-                Toast.makeText(RegisterActivity.this, R.string.invalid_password, Toast.LENGTH_SHORT).show();
-            if (txtEmail.getText().toString().isEmpty())
-                Toast.makeText(RegisterActivity.this, R.string.invalid_email, Toast.LENGTH_SHORT).show();
+            if (isTextEmpty(txtUsername.getText().toString()))
+                invalidInput(R.string.invalid_username);
+            if (isTextEmpty(txtPassword.getText().toString()))
+                invalidInput(R.string.invalid_password);
+            if (isTextEmpty(txtEmail.getText().toString()))
+                invalidInput(R.string.invalid_email);
 
-            if (!txtUsername.getText().toString().isEmpty()
-                    && !txtPassword.getText().toString().isEmpty()
-                    && !txtEmail.getText().toString().isEmpty()) {
-
+            if (isCredentials(
+                    txtUsername.getText().toString(),
+                    txtPassword.getText().toString(),
+                    txtEmail.getText().toString()
+                )
+            ) {
                 registerPayload = assignPayloadAttr(
                         txtUsername,
                         txtPassword,
@@ -56,7 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
                         txtName,
                         txtSurname
                 );
-
                 // TODO: redirect payload to backend api
                 // TODO: new intent for main menu
             }
@@ -74,16 +75,32 @@ public class RegisterActivity extends AppCompatActivity {
         payload.setUsername(username.getText().toString());
         payload.setEmail(email.getText().toString());
 
-        if (password.getText().toString().length() >= 6
-                && password.getText().toString().length() <= 22)
+        if (isPasswordLength(password.getText().toString()))
             payload.setPassword(password.getText().toString());
-        else Toast.makeText(RegisterActivity.this, R.string.invalid_password_length, Toast.LENGTH_SHORT).show();
+        else invalidInput(R.string.invalid_password_length);
 
-        if (!name.getText().toString().isEmpty())
+        if (!isTextEmpty(name.getText().toString()))
             payload.setFirstName(name.getText().toString());
-        if (!surname.getText().toString().isEmpty())
+
+        if (!isTextEmpty(surname.getText().toString()))
             payload.setLastName(surname.getText().toString());
 
         return payload;
+    }
+
+    private boolean isTextEmpty(String text) {
+        return text.isEmpty();
+    }
+
+    private void invalidInput(int warning) {
+        Toast.makeText(RegisterActivity.this, warning, Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isCredentials(String username, String password, String email) {
+        return !username.isEmpty() && !password.isEmpty() && !email.isEmpty();
+    }
+
+    private boolean isPasswordLength(String password) {
+        return password.length() >= 6 && password.length() <= 22;
     }
 }

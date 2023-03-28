@@ -61,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         saveModel.setNightTheme(swNightTheme);
         saveModel.setNotifications(swNotification);
         saveModel.setAccountPrivacy(swAccPrivacy);
+        saveModel.setClassName(SettingsActivity.class.getName());
         settingsService.saveSettings(btnSaveSettings, saveModel);
     }
 }

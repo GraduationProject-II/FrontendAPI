@@ -3,15 +3,13 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.animation.ArgbEvaluator;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.WelcomeAdapter;
 import com.frontend.tutorcave.model.WelcomeModel;
+import com.frontend.tutorcave.service.WelcomeService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private WelcomeAdapter adapter;
-    private final ArgbEvaluator evaluator = new ArgbEvaluator();
     private int cardPosition;
 
     @Override
@@ -31,11 +28,23 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Button button;
+        WelcomeService service = new WelcomeService();
+        Button btnGoTo;
         List<WelcomeModel> models;
+        List<Class<?>> classList;
+        Integer[] colors = {
+                getResources().getColor(R.color.welcome_shading1),
+                getResources().getColor(R.color.welcome_shading2),
+                getResources().getColor(R.color.welcome_shading3)
+        };
 
         viewPager = findViewById(R.id.vwPgrWelcome);
-        button = findViewById(R.id.btnWelcome);
+        btnGoTo = findViewById(R.id.btnWelcome);
+
+        classList = new ArrayList<>();
+        classList.add(LoginActivity.class);
+        classList.add(RegisterActivity.class);
+        classList.add(UserMenuActivity.class);
 
         models = new ArrayList<>();
         // login
@@ -61,23 +70,17 @@ public class WelcomeActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         viewPager.setPadding(130,0,130,0);
 
-        Integer[] colors = {
-                getResources().getColor(R.color.welcome_shading1),
-                getResources().getColor(R.color.welcome_shading2),
-                getResources().getColor(R.color.welcome_shading3)
-        };
-
         // TODO: replace with addOnPageListener()
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position < (adapter.getCount()-1)
-                        && position < (colors.length-1)) {
-                    viewPager.setBackgroundColor(
-                            (Integer) evaluator.evaluate(positionOffset, colors[position], colors[position +1])
-                    );
-                } else
-                    viewPager.setBackgroundColor(colors[colors.length-1]);
+                service.setCardBackground(
+                        viewPager,
+                        adapter,
+                        position,
+                        positionOffset,
+                        colors
+                );
             }
 
             @Override
@@ -91,30 +94,10 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        button.setOnClickListener(view -> {
-            Intent intent;
-
-            switch (cardPosition) {
-                case 0:
-                    intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    break;
-                case 1:
-                    intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
-                    startActivity(intent);
-                    break;
-                case 2:
-                    // test
-                    intent = new Intent(WelcomeActivity.this, UserMenuActivity.class);
-                    startActivity(intent);
-
-                    // TODO: complete below task
-                    //intent = new Intent(WelcomeActivity.this, GuestMenuActivity.class);
-                    //startActivity(intent);
-                    break;
-                default:
-                    Toast.makeText(WelcomeActivity.this, R.string.selection_invalid, Toast.LENGTH_SHORT).show();
-            }
-        });
+        btnGoTo.setOnClickListener(view -> service.redirect(
+                WelcomeActivity.this,
+                cardPosition,
+                classList
+        ));
     }
 }

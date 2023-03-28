@@ -12,6 +12,7 @@ public class SaveSettingsServiceModel {
     private SwitchCompat nightTheme;
     private SwitchCompat notifications;
     private SwitchCompat accountPrivacy;
+    private String className;
 
     public SaveSettingsServiceModel() {
         // required empty constructor
@@ -71,5 +72,13 @@ public class SaveSettingsServiceModel {
 
     public String getAccountPrivacyOff() {
         return "Acc Privacy Not Checked";
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

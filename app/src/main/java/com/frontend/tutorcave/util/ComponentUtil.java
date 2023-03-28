@@ -8,11 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.frontend.tutorcave.activity.SettingsActivity;
 import com.frontend.tutorcave.model.SaveSettingsServiceModel;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
@@ -21,6 +17,19 @@ public final class ComponentUtil {
 
     private ComponentUtil() {
         // no instance for utils
+    }
+
+    /**
+     * @param context context of the current view
+     * @param goToClass class to be initiated
+     * @param name name of the relevant class
+     * @apiNote Go to new screen after 8000 milliseconds
+     */
+    public static void redirectAfterSleep(Context context, Class<?> goToClass, String name) {
+        Intent intent = new Intent(context, goToClass);
+        TimerUtil.sleep(name);
+        context.startActivity(intent);
+
     }
 
     /**
@@ -116,7 +125,7 @@ public final class ComponentUtil {
                     serviceModel.getAccountPrivacyOff()
             );
 
-            sleep();
+            TimerUtil.sleep(serviceModel.getClassName());
             Toast.makeText(serviceModel.getContext(), "Saved changes", Toast.LENGTH_SHORT).show();
             // delete till here
         });
@@ -132,24 +141,5 @@ public final class ComponentUtil {
         if (isChecked)
             Toast.makeText(context, messageOn, Toast.LENGTH_SHORT).show();
         else Toast.makeText(context, messageOff, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
-     * @apiNote A timer to wait for 8000 milliseconds
-     */
-    private static void sleep() {
-        Thread timer = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(8000);
-                }
-                catch (InterruptedException exception) {
-                    Logger.getLogger(SettingsActivity.class.getName()).log(Level.WARNING, "Interrupted!: " , exception);
-                    Thread.currentThread().interrupt();
-                }
-            }
-        };
-        timer.start();
     }
 }

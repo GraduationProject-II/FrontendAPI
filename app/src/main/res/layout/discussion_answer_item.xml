@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="@dimen/_16sdp"
+        app:cardPreventCornerOverlap="true"
+        app:cardBackgroundColor="@color/user_menu_card2">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_3sdp"
+            app:cardPreventCornerOverlap="true"
+            app:cardCornerRadius="@dimen/_16sdp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/home_fragment_card_background">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/dscAnswItmImgVwVote"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/dscAnswItmTxtVote"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentLeft="true"
+                            app:srcCompat="@drawable/ic_vote_24" />
+
+                        <TextView
+                            android:id="@+id/dscAnswItmTxtVote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="@id/dscAnswItmImgVwVote"
+                            app:layout_constraintStart_toEndOf="@id/dscAnswItmImgVwVote"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="@id/dscAnswItmImgVwVote"
+                            android:text="@string/placeholder_num"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_14ssp"
+                            android:textColor="@color/home_fragment_primary_text" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/dscAnswItmTxtTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/placeholder_title"
+                        android:textStyle="bold"
+                        android:textColor="@color/home_fragment_primary_text"
+                        android:textSize="@dimen/_13ssp"
+                        android:maxLines="3" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginVertical="@dimen/_6sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="16dp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardBackgroundColor="@color/user_menu_card2"
+                        app:cardElevation="0dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_3sdp"
+                            app:cardPreventCornerOverlap="true"
+                            app:cardElevation="0dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardBackgroundColor="@color/home_fragment_card_background">
+
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/_6sdp"
+                                android:scrollbars="none"
+                                android:overScrollMode="never"
+                                android:clipToPadding="false">
+
+                                <TextView
+                                    android:id="@+id/dscAnswItmTxtDesc"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:text="@string/placeholder_desc"
+                                    android:textColor="@color/home_fragment_secondary_text"
+                                    android:textStyle="normal"
+                                    android:textSize="@dimen/_12ssp" />
+
+                            </ScrollView>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="@dimen/_4sdp"
+                    android:layout_marginHorizontal="@dimen/_16sdp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/answer_date"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="bold"
+                            android:textColor="@color/home_fragment_secondary_text" />
+
+                        <TextView
+                            android:id="@+id/dscAnswItmTxtDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/placeholder_date_1"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="italic"
+                            android:textColor="@color/home_fragment_secondary_text" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            app:cardCornerRadius="40dp"
+                            app:cardElevation="0dp"
+                            app:cardPreventCornerOverlap="true"
+                            app:cardBackgroundColor="@color/user_menu_card2">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/_3sdp"
+                                app:cardPreventCornerOverlap="true"
+                                app:cardElevation="0dp"
+                                app:cardCornerRadius="40dp">
+
+                                <ImageView
+                                    android:id="@+id/dscAnswItmImgVwPP"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/test_profile_pic_4"
+                                    android:scaleType="centerCrop"
+                                    android:contentDescription="@string/content_desc_profile_picture" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/dscAnswItemTxtUsername"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:text="@string/username"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="italic"
+                            android:textColor="@color/home_fragment_primary_text" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

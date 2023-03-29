@@ -1,17 +1,18 @@
 package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.DiscussionActivity;
 import com.frontend.tutorcave.model.DiscussionListItemModel;
 
 import java.util.List;
@@ -34,7 +35,6 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.profile_selection_discussion_item, parent, false);
-
         return new ViewHolder(view);
     }
 
@@ -47,12 +47,13 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         holder.vote.setText(models.get(position).getVote());
 
         holder.listItem.setOnClickListener(view -> {
-            // TODO: uncomment below code when DiscussionActivity is created
-            //Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
-            //view.getContext().startActivity(intent);
-
-            // TODO: below is for test purposes, delete afterwards
-            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
+            // TODO: pass only id when backend api con. established
+            Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
+            intent.putExtra("vote", holder.vote.getText());
+            intent.putExtra("title", holder.title.getText());
+            intent.putExtra("username", holder.username.getText());
+            intent.putExtra("date", holder.dateOfCreation.getText());
+            view.getContext().startActivity(intent);
         });
     }
 

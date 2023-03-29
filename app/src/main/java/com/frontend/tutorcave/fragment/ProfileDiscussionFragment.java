@@ -30,6 +30,7 @@ public class ProfileDiscussionFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         RecyclerView recyclerView;
         DiscussionListAdapter listAdapter;
         List<DiscussionListItemModel> discussionListItemModels;

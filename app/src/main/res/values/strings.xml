@@ -131,4 +131,8 @@
     <string name="settings_opt_stats_discussion">Discussions involved</string>
     <string name="settings_opt_stats_tutoring_services">Tutoring services</string>
     <string name="settings_opt_stats_feedback">Feedbacks</string>
+
+    <!-- DISCUSSION SCREEN -->
+    <string name="answers">Answers</string>
+    <string name="answer_date">Answered: </string>
 </resources>

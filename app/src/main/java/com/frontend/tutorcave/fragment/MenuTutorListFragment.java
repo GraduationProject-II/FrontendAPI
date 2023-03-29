@@ -30,6 +30,7 @@ public class MenuTutorListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         RecyclerView recyclerView;
         TutorListAdapter listAdapter;
         List<TutorListItemModel> tutorListItemModels;

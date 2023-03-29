@@ -42,28 +42,22 @@ public class MenuSearchTutorFragment extends Fragment {
 
         // 1st Chip
         chipTopRated.setOnCheckedChangeListener((cmpButtonView, isChecked) -> {
-            if (isChecked) {
-                // TODO: test purposes, delete later
-                Toast.makeText(MenuSearchTutorFragment.this.getContext(), R.string.test1, Toast.LENGTH_SHORT).show();
-            }
+            // TODO: test purposes, delete later
+            testToast(isChecked, R.string.test1);
             // TODO: add else statement
         });
 
         // 2nd Chip
         chipTrending.setOnCheckedChangeListener((cmpButtonView, isChecked) -> {
-            if (isChecked) {
-                // TODO: test purposes, delete later
-                Toast.makeText(MenuSearchTutorFragment.this.getContext(), R.string.test2, Toast.LENGTH_SHORT).show();
-            }
+            // TODO: test purposes, delete later
+            testToast(isChecked, R.string.test2);
             // TODO: add else statement
         });
 
         //3rd Chip
         chipNewcomer.setOnCheckedChangeListener((cmpButtonView, isChecked) -> {
-            if (isChecked) {
-                // TODO: test purposes, delete later
-                Toast.makeText(MenuSearchTutorFragment.this.getContext(), R.string.test3, Toast.LENGTH_SHORT).show();
-            }
+            // TODO: test purposes, delete later
+            testToast(isChecked, R.string.test3);
             // TODO: add else statement
         });
     }
@@ -76,5 +70,10 @@ public class MenuSearchTutorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_menu_search_tutor, container, false);
+    }
+
+    private void testToast(boolean isChecked, int messageId) {
+        if (isChecked)
+            Toast.makeText(MenuSearchTutorFragment.this.getContext(), messageId, Toast.LENGTH_SHORT).show();
     }
 }

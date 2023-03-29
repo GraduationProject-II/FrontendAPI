@@ -35,7 +35,6 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.profile_selection_feedback_item, parent, false);
-
         return new ViewHolder(view);
     }
 

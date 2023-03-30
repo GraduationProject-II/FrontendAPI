@@ -65,6 +65,8 @@
                             android:id="@+id/profileObjFeedbackPP"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:clickable="true"
+                            android:focusable="true"
                             android:scaleType="centerCrop"
                             android:src="@drawable/test_profile_pic_1"
                             android:contentDescription="@string/content_desc_profile_picture" />

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Discussions involved -->
+    <item
+        android:id="@+id/vwPrfDiscNav"
+        android:title="@string/discussion"
+        android:icon="@drawable/ic_discussion_24" />
+
+    <!-- Feedbacks -->
+    <item
+        android:id="@+id/vwPrfFdbNav"
+        android:title="@string/feedbacks"
+        android:icon="@drawable/ic_feedback_24" />
+
+    <!-- Services involved / given -->
+    <item
+        android:id="@+id/vwPrfSrvNav"
+        android:title="@string/services"
+        android:icon="@drawable/ic_services_24" />
+
+</menu>

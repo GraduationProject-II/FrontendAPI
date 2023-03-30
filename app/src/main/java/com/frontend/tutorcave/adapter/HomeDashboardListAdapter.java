@@ -1,17 +1,18 @@
 package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.HomeMenuDashboardItemModel;
 import com.google.android.material.card.MaterialCardView;
 
@@ -46,12 +47,13 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
         holder.pp.setImageResource(models.get(position).getProfilePicture());
 
         holder.item.setOnClickListener(view -> {
-            // TODO: uncomment below code when profile for view is created
-            //Intent intent = new Intent(view.getContext(), SomeActivity.class);
-            //view.getContext().startActivity(intent);
-
-            // TODO: below is for test purposes, delete afterwards
-            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
+            // TODO: delete when backend api con. established
+            intent.putExtra("name", holder.name.getText());
+            intent.putExtra("username", holder.username.getText());
+            intent.putExtra("rep", holder.rep.getText());
+            intent.putExtra("image", models.get(position).getProfilePicture());
+            view.getContext().startActivity(intent);
         });
     }
 

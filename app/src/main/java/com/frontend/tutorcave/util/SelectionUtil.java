@@ -2,8 +2,10 @@ package com.frontend.tutorcave.util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.frontend.tutorcave.R;
@@ -67,6 +69,31 @@ public final class SelectionUtil {
         if (isID(model.getMenuItem().getItemId(), model.getDiscussionId())) fragment = model.getItemList().get(1);
         if (isID(model.getMenuItem().getItemId(), model.getFindTutorId())) fragment = model.getItemList().get(2);
         if (isID(model.getMenuItem().getItemId(), model.getMessagesId())) fragment = model.getItemList().get(3);
+
+        return fragment;
+    }
+
+    /**
+     * @param menuItem Menu item within the component of bottom navigation
+     * @param itemId1 ID of the 1st item
+     * @param itemId2 ID of the 2nd item
+     * @param itemId3 ID of the 3rd item
+     * @param itemList List of items for selection
+     * @return Fragment of choice
+     * @apiNote Replace the view with the selected navigation item
+     */
+    public static Fragment bottomNavSelection(
+            @NonNull MenuItem menuItem,
+            int itemId1,
+            int itemId2,
+            int itemId3,
+            List<Fragment> itemList
+    ) {
+        Fragment fragment = itemList.get(0);
+
+        if (isID(menuItem.getItemId(), itemId1)) fragment = itemList.get(0);
+        if (isID(menuItem.getItemId(), itemId2)) fragment = itemList.get(1);
+        if (isID(menuItem.getItemId(), itemId3)) fragment = itemList.get(2);
 
         return fragment;
     }

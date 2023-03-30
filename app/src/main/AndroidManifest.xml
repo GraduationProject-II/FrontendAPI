@@ -12,6 +12,9 @@
         android:theme="@style/Theme.TutorCave"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ViewProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.DiscussionActivity"
             android:exported="false"
             android:theme="@style/Theme.NoTitleBar" />
@@ -52,4 +55,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

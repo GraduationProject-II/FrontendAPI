@@ -107,6 +107,10 @@
     <string name="description">Description: </string>
     <string name="about_me">About me: </string>
 
+    <!-- VIEW PROFILE SCREEN -->
+    <string name="services">Services</string>
+    <string name="service_name">Service name: </string>
+
     <!-- SETTINGS SCREEN -->
     <string name="settings">Settings</string>
     <string name="settings_change_pp">Edit profile picture</string>

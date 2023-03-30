@@ -1,17 +1,18 @@
 package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.TutorListItemModel;
 import com.google.android.material.card.MaterialCardView;
 
@@ -48,12 +49,14 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.View
         holder.pp.setImageResource(models.get(position).getProfilePicture());
 
         holder.cardItem.setOnClickListener(view -> {
-            // TODO: uncomment below code when profile (tutor) for view is created
-            //Intent intent = new Intent(view.getContext(), SomeActivity.class);
-            //view.getContext().startActivity(intent);
-
-            // TODO: below is for test purposes, delete afterwards
-            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
+            // TODO: delete when backend api con. established
+            intent.putExtra("name", holder.tutorName.getText());
+            intent.putExtra("username", holder.username.getText());
+            intent.putExtra("image", models.get(position).getProfilePicture());
+            intent.putExtra("rep", holder.rep.getText());
+            intent.putExtra("bio", holder.desc.getText());
+            view.getContext().startActivity(intent);
         });
     }
 

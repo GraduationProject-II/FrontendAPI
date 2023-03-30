@@ -1,6 +1,7 @@
 package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.FeedbackListItemModel;
 
 import java.util.List;
@@ -53,6 +55,16 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
 
             // TODO: below is for test purposes, delete afterwards
             Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
+        });
+
+        holder.profilePic.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
+            // TODO: delete when backend api con. established
+            intent.putExtra("username", holder.username.getText());
+            intent.putExtra("rep", holder.reputation.getText());
+            intent.putExtra("image", models.get(position).getTutorPP());
+            intent.putExtra("bio", holder.desc.getText());
+            view.getContext().startActivity(intent);
         });
     }
 

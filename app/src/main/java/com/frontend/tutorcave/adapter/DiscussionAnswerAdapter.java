@@ -1,17 +1,18 @@
 package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.DiscussionAnswerModel;
 
 import java.util.List;
@@ -47,9 +48,11 @@ public class DiscussionAnswerAdapter extends RecyclerView.Adapter<DiscussionAnsw
         holder.profilePic.setImageResource(models.get(position).getOwnerPP());
 
         holder.username.setOnClickListener(view -> {
-            // TODO: below code is for test purposes, delete afterwards
-            // and start a new intent for profile (others/view) screen
-            Toast.makeText(view.getContext(), "Username #" + (holder.getAdapterPosition()+1), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
+            // TODO: delete when backend api con. established
+            intent.putExtra("username", holder.username.getText());
+            intent.putExtra("image", models.get(position).getOwnerPP());
+            view.getContext().startActivity(intent);
         });
     }
 

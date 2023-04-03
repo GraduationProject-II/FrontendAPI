@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+~ Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
+-->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_8sdp"
+    android:background="@drawable/chat_left_tail">
+
+    <TextView
+        android:id="@+id/msgOtherItmContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="@dimen/_3sdp"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingLeft="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_4sdp"
+        android:paddingRight="@dimen/_4sdp"
+        android:text="@string/placeholder_message_1"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/home_fragment_primary_text"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/msgOtherItmDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/msgOtherItmContent"
+        app:layout_constraintEnd_toEndOf="@id/msgOtherItmContent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingStart="@dimen/_4sdp"
+        android:paddingLeft="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_4sdp"
+        android:paddingRight="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:text="@string/placeholder_message_date"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/home_fragment_secondary_text"
+        android:textStyle="bold" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

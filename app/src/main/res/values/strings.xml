@@ -18,25 +18,29 @@
     <string name="placeholder_desc">Placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc placeholder desc</string>
     <string name="placeholder_status">\@status</string>
     <string name="placeholder_fields">field#1, field#2, field#3, field#4, field#5, field#6</string>
+    <string name="placeholder_message_1">Hi Leon! What\'s up?</string>
+    <string name="placeholder_message_2">All fine, Freya. After all the hassle from last week, things got better. What about you?</string>
+    <string name="placeholder_message_date">23/04/2001 12:59</string>
     <string name="test1">test_1</string>
     <string name="test2">test_2</string>
     <string name="test3">test_3</string>
 
     <!-- CONTENT DESCRIPTION -->
-    <string name="content_desc_login">login</string>
-    <string name="content_desc_register">register</string>
-    <string name="content_desc_guest">guest</string>
-    <string name="content_desc_profile_picture">profile picture</string>
-    <string name="content_desc_backspace">backspace</string>
-    <string name="content_desc_night_theme">night theme</string>
-    <string name="content_desc_notification">notifications</string>
-    <string name="content_desc_private_acc">account privacy</string>
-    <string name="content_desc_acc_security">account security</string>
-    <string name="content_desc_nav_next">navigate next</string>
-    <string name="content_desc_stats">account statistic</string>
-    <string name="content_desc_about_us">about us</string>
-    <string name="content_desc_logout">logout</string>
-    <string name="content_desc_rep">reputation</string>
+    <string name="content_desc_login">Login</string>
+    <string name="content_desc_register">Register</string>
+    <string name="content_desc_guest">Guest</string>
+    <string name="content_desc_profile_picture">Profile picture</string>
+    <string name="content_desc_backspace">Backspace</string>
+    <string name="content_desc_night_theme">Night theme</string>
+    <string name="content_desc_notification">Notifications</string>
+    <string name="content_desc_private_acc">Account privacy</string>
+    <string name="content_desc_acc_security">Account security</string>
+    <string name="content_desc_nav_next">Navigate next</string>
+    <string name="content_desc_stats">Account statistic</string>
+    <string name="content_desc_about_us">About us</string>
+    <string name="content_desc_logout">Logout</string>
+    <string name="content_desc_rep">Reputation</string>
+    <string name="content_desc_send">Send</string>
 
     <!-- SPLASH SCREEN -->
     <string name="act_splash_intro">Make your own way</string>
@@ -95,6 +99,10 @@
     <string name="filter">Choose any filter</string>
     <string name="search_a_tutor">Search by name/username</string>
     <string name="fields">Fields: </string>
+
+    <!-- MESSAGES FRAGMENT -->
+    <string name="message_type">Type…</string>
+    <string name="search_message">Search a message</string>
 
     <!-- PROFILE SCREEN -->
     <string name="account_type">Account Type</string>

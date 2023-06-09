@@ -30,6 +30,10 @@ public class DiscussionAnswerModel {
         this.vote = vote;
     }
 
+    public DiscussionAnswerModel() {
+        // Empty constructor
+    }
+
     public int getId() {
         return id;
     }

@@ -2,6 +2,8 @@ package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.HomeMenuDashboardItemModel;
+import com.frontend.tutorcave.service.ApiService;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
@@ -41,18 +44,26 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(
+                models.get(position).getProfilePicture(),
+                0,
+                models.get(position).getProfilePicture().length
+        );
         holder.username.setText(models.get(position).getUsername());
         holder.name.setText(models.get(position).getFullName());
         holder.rep.setText(models.get(position).getReputation());
-        holder.pp.setImageResource(models.get(position).getProfilePicture());
+        holder.pp.setImageBitmap(bitmap);
 
         holder.item.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
-            // TODO: delete when backend api con. established
+            ApiService apiService = new ApiService();
+            String id = apiService.getUserId(holder.username.getText().toString());
+
             intent.putExtra("name", holder.name.getText());
             intent.putExtra("username", holder.username.getText());
             intent.putExtra("rep", holder.rep.getText());
             intent.putExtra("image", models.get(position).getProfilePicture());
+            intent.putExtra("accountType", apiService.getUserInfo(id).getAccType());
             view.getContext().startActivity(intent);
         });
     }

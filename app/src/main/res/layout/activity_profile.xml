@@ -70,6 +70,7 @@
                         app:cardCornerRadius="@dimen/_40sdp">
 
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/profileImageVw"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
@@ -92,6 +93,7 @@
                     android:background="@drawable/profile_header_text_bg">
 
                     <TextView
+                        android:id="@+id/profileTxtFullName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_4sdp"
@@ -102,6 +104,7 @@
                         android:textColor="@color/home_fragment_primary_text" />
 
                     <TextView
+                        android:id="@+id/profileTxtUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_4sdp"
@@ -153,6 +156,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/profileTxtReputation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/placeholder_num"
@@ -193,6 +197,7 @@
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/profileTxtAccType"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/placeholder_account_type"
@@ -222,6 +227,8 @@
                         android:clickable="true"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintVertical_bias="0.8" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

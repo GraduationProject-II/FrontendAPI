@@ -9,9 +9,9 @@ public class HomeMenuDashboardItemModel {
     // may change to int/Integer after backend establishment
     private String reputation;
     // may change from int after backend establishment
-    private int profilePicture;
+    private byte[] profilePicture;
 
-    public HomeMenuDashboardItemModel(String fullName, String username, String reputation, int profilePicture) {
+    public HomeMenuDashboardItemModel(String fullName, String username, String reputation, byte[] profilePicture) {
         this.fullName = fullName;
         this.username = username;
         this.reputation = reputation;
@@ -42,11 +42,11 @@ public class HomeMenuDashboardItemModel {
         this.reputation = reputation;
     }
 
-    public int getProfilePicture() {
+    public byte[] getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(int profilePicture) {
+    public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
     }
 }

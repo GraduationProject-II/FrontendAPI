@@ -42,7 +42,7 @@
                 android:layout_marginStart="@dimen/_3sdp"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:text="@string/placeholder_title"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_17ssp"
                 android:textColor="@color/home_fragment_primary_text"
                 android:textStyle="bold"
                 android:maxLines="1" />
@@ -55,7 +55,7 @@
                 android:layout_marginStart="@dimen/_3sdp"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:text="@string/placeholder_desc"
-                android:textSize="@dimen/_9ssp"
+                android:textSize="@dimen/_13ssp"
                 android:textColor="@color/home_fragment_secondary_text"
                 android:textStyle="normal" />
 
@@ -67,25 +67,6 @@
                 android:layout_marginStart="@dimen/_3sdp"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/status"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold"
-                    android:textColor="@color/home_fragment_secondary_text" />
-
-                <TextView
-                    android:id="@+id/profileObjPrivStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
-                    android:text="@string/placeholder_status"
-                    android:textSize="@dimen/_10ssp"
-                    android:textColor="@color/home_fragment_secondary_text"
-                    android:textStyle="italic" />
 
             </LinearLayout>
 

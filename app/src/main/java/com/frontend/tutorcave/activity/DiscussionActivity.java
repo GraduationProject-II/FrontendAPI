@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.DiscussionAnswerAdapter;
 import com.frontend.tutorcave.model.DiscussionAnswerModel;
+import com.frontend.tutorcave.model.DiscussionListItemModel;
+import com.frontend.tutorcave.model.DiscussionWithAnswersModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,8 @@ import java.util.List;
 /** @author Samet Vural Üstün */
 
 public class DiscussionActivity extends AppCompatActivity {
+
+    private ApiService apiService = new ApiService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,6 @@ public class DiscussionActivity extends AppCompatActivity {
         ImageView profilePic;
         RecyclerView recyclerVwAnswers;
         DiscussionAnswerAdapter listAdapter;
-        List<DiscussionAnswerModel> discussionModels;
         Intent currentIntent = getIntent();
 
         votes = findViewById(R.id.dscTxtVote);
@@ -48,64 +52,27 @@ public class DiscussionActivity extends AppCompatActivity {
         profilePic = findViewById(R.id.dscImgVwPP);
         recyclerVwAnswers = findViewById(R.id.dscRcyVwAnswers);
 
-        // TODO: retrieve actual data from backend api, delete below test assignments afterwards
-        votes.setText(currentIntent.getStringExtra("vote"));
-        title.setText(currentIntent.getStringExtra("title"));
-        date.setText(currentIntent.getStringExtra("date"));
-        username.setText(currentIntent.getStringExtra("username"));
-        desc.setText(R.string.placeholder_desc);
+        DiscussionWithAnswersModel responseModel =
+                apiService.viewDiscussionWithAnswers(currentIntent.getStringExtra("id"));
+        List<DiscussionAnswerModel> answers = new ArrayList<>(responseModel.getAnswerList());
+        DiscussionListItemModel discussionModel = new DiscussionListItemModel(
+                responseModel.getDiscussion().getId(),
+                responseModel.getDiscussion().getTitle(),
+                responseModel.getDiscussion().getDesc(),
+                responseModel.getDiscussion().getUsername(),
+                responseModel.getDiscussion().getDateOfCreation(),
+                responseModel.getDiscussion().getLastUpdated(),
+                responseModel.getDiscussion().getVote()
+        );
+
+        votes.setText(discussionModel.getVote());
+        title.setText(discussionModel.getTitle());
+        date.setText(discussionModel.getDateOfCreation());
+        username.setText(discussionModel.getUsername());
+        desc.setText(discussionModel.getDesc());
         profilePic.setImageResource(R.drawable.test_profile_pic_1);
 
-        // TODO: below model assignments are for test purposes
-        // retrieve actual data from backend api and delete below piece of code
-        discussionModels = new ArrayList<>();
-        discussionModels.add(new DiscussionAnswerModel(
-                1,
-                "Title #1",
-                "henvrıllısıhhılserılsnvılsrvılrvırhsılglıgıgnls",
-                "username #1",
-                R.drawable.test_profile_pic_1,
-                "29/10/1923",
-                "29"
-        ));
-        discussionModels.add(new DiscussionAnswerModel(
-                2,
-                "Title #2",
-                "hensfgsdgsggsdgsgsgsgsgsdgsgsdgsgsgthgtdgdsfgfdvrıllısıhhılserılsnvılsrvılrvırhsılglıgıgnls",
-                "username #2",
-                R.drawable.test_profile_pic_2,
-                "29/10/1933",
-                "4872"
-        ));
-        discussionModels.add(new DiscussionAnswerModel(
-                3,
-                "Title #3",
-                "henvrıllıllsvılrvırhsılglıgıgnls",
-                "username #3",
-                R.drawable.test_profile_pic_3,
-                "29/10/1943",
-                "7"
-        ));
-        discussionModels.add(new DiscussionAnswerModel(
-                4,
-                "Title #4",
-                "henvrhyjfgfbdfşogogşfgşodfgjşodfjgoşdfhjdşofhjşdofhjşdofhşodfhjşodhşofdhjdoşhjoşdfhşodfhşdhdıllısıhhılserılsnvılsrvılrvırhsılglıgıgnls",
-                "username #4",
-                R.drawable.test_profile_pic_4,
-                "29/10/1953",
-                "29890"
-        ));
-        discussionModels.add(new DiscussionAnswerModel(
-                5,
-                "Title #5",
-                "henvrıllısıhhılsrererılsnvılsrvılrvırhsılglıgıgnls",
-                "username #5",
-                R.drawable.test_profile_pic_1,
-                "29/10/1963",
-                "102"
-        ));
-
-        listAdapter = new DiscussionAnswerAdapter(discussionModels, DiscussionActivity.this);
+        listAdapter = new DiscussionAnswerAdapter(answers, DiscussionActivity.this);
         recyclerVwAnswers.setAdapter(listAdapter);
         recyclerVwAnswers.setLayoutManager(new LinearLayoutManager(DiscussionActivity.this));
 

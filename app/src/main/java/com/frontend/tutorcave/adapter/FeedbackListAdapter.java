@@ -2,6 +2,8 @@ package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +44,12 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.profilePic.setImageResource(models.get(position).getTutorPP());
+        Bitmap bitmap = BitmapFactory.decodeByteArray(
+                models.get(position).getTutorPP(),
+                0,
+                models.get(position).getTutorPP().length
+        );
+        holder.profilePic.setImageBitmap(bitmap);
         holder.username.setText(models.get(position).getTutorUsername());
         holder.reputation.setText(models.get(position).getTutorReputation());
         holder.title.setText(models.get(position).getServiceTitle());

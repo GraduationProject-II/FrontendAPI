@@ -47,12 +47,8 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         holder.vote.setText(models.get(position).getVote());
 
         holder.listItem.setOnClickListener(view -> {
-            // TODO: pass only id when backend api con. established
             Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
-            intent.putExtra("vote", holder.vote.getText());
-            intent.putExtra("title", holder.title.getText());
-            intent.putExtra("username", holder.username.getText());
-            intent.putExtra("date", holder.dateOfCreation.getText());
+            intent.putExtra("id", models.get(position).getId());
             view.getContext().startActivity(intent);
         });
     }

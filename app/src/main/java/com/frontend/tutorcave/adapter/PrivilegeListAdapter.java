@@ -39,7 +39,6 @@ public class PrivilegeListAdapter extends RecyclerView.Adapter<PrivilegeListAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(models.get(position).getName());
         holder.description.setText(models.get(position).getDesc());
-        holder.status.setText(models.get(position).getStatus());
     }
 
     @Override
@@ -50,14 +49,12 @@ public class PrivilegeListAdapter extends RecyclerView.Adapter<PrivilegeListAdap
     protected static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView description;
-        TextView status;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.profileObjPrivName);
             description = itemView.findViewById(R.id.profileObjPrivDesc);
-            status = itemView.findViewById(R.id.profileObjPrivStatus);
         }
     }
 }

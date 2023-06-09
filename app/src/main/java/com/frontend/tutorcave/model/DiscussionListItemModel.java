@@ -4,15 +4,16 @@ package com.frontend.tutorcave.model;
 /** @author Samet Vural Üstün */
 
 public class DiscussionListItemModel {
-    private int id;
+    private String id;
     private String title;
+    private String desc;
     private String username;
     private String dateOfCreation;
     private String lastUpdated;
     private String vote;
 
     public DiscussionListItemModel(
-            int id,
+            String id,
             String title,
             String username,
             String dateOfCreation,
@@ -27,11 +28,29 @@ public class DiscussionListItemModel {
         this.vote = vote;
     }
 
-    public int getId() {
+    public DiscussionListItemModel(
+            String id,
+            String title,
+            String desc,
+            String username,
+            String dateOfCreation,
+            String lastUpdated,
+            String vote)
+    {
+        this.id = id;
+        this.title = title;
+        this.desc = desc;
+        this.username = username;
+        this.dateOfCreation = dateOfCreation;
+        this.lastUpdated = lastUpdated;
+        this.vote = vote;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,6 +60,14 @@ public class DiscussionListItemModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getUsername() {

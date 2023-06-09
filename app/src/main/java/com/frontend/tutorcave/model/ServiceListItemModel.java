@@ -5,11 +5,11 @@ package com.frontend.tutorcave.model;
 
 public class ServiceListItemModel {
     private String serviceName;
-    private String serviceDesc;
+    private String servicePrice;
 
-    public ServiceListItemModel(String serviceName, String serviceDesc) {
+    public ServiceListItemModel(String serviceName, String servicePrice) {
         this.serviceName = serviceName;
-        this.serviceDesc = serviceDesc;
+        this.servicePrice = servicePrice;
     }
 
     public String getServiceName() {
@@ -20,11 +20,11 @@ public class ServiceListItemModel {
         this.serviceName = serviceName;
     }
 
-    public String getServiceDesc() {
-        return serviceDesc;
+    public String getServicePrice() {
+        return servicePrice;
     }
 
-    public void setServiceDesc(String serviceDesc) {
-        this.serviceDesc = serviceDesc;
+    public void setServicePrice(String servicePrice) {
+        this.servicePrice = servicePrice;
     }
 }

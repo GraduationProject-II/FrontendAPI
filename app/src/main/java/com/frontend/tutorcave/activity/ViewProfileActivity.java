@@ -3,6 +3,8 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,7 +38,6 @@ public class ViewProfileActivity extends AppCompatActivity {
         TextView username;
         TextView rep;
         TextView accType;
-        TextView aboutMe;
         BottomNavigationView bottomNav;
 
         profilePic = findViewById(R.id.vwPrfImgPP);
@@ -44,20 +45,16 @@ public class ViewProfileActivity extends AppCompatActivity {
         username = findViewById(R.id.vwPrfTxtUsername);
         rep = findViewById(R.id.vwPrfTxtRep);
         accType = findViewById(R.id.vwPrfTxtAccType);
-        aboutMe = findViewById(R.id.vwPrfTxtAboutMe);
         bottomNav = findViewById(R.id.VwPrfBottomNav);
 
+
+        byte[] imageData = currentIntent.getByteArrayExtra("image");
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+        profilePic.setImageBitmap(bitmap);
         username.setText(currentIntent.getStringExtra("username"));
-        profilePic.setImageResource(currentIntent.getIntExtra("image", 0)); // TODO: check runtime behavior
-
-        if (isExtra(currentIntent.getStringExtra("rep")))
-            rep.setText(currentIntent.getStringExtra("rep"));
-
-        if (isExtra(currentIntent.getStringExtra("name")))
-            name.setText(currentIntent.getStringExtra("name"));
-
-        if (isExtra(currentIntent.getStringExtra("bio")))
-            aboutMe.setText(currentIntent.getStringExtra("bio"));
+        rep.setText(currentIntent.getStringExtra("rep"));
+        name.setText(currentIntent.getStringExtra("name"));
+        accType.setText(currentIntent.getStringExtra("accountType"));
 
         bottomNav.setSelectedItemId(R.id.vwPrfDiscNav);
         bottomNav.setOnItemSelectedListener(item -> {
@@ -67,9 +64,5 @@ public class ViewProfileActivity extends AppCompatActivity {
                     .commit();
             return true;
         });
-    }
-
-    private boolean isExtra(String res) {
-        return res != null;
     }
 }

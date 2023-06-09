@@ -7,13 +7,10 @@ public class AccoladeListItemModel {
     // id - payload
     private String badge;
     private String description;
-    // prerequisitePrivilegeId - payload
-    private String prerequisitePrivilege;
 
-    public AccoladeListItemModel(String badge, String description, String prerequisitePrivilege) {
+    public AccoladeListItemModel(String badge, String description) {
         this.badge = badge;
         this.description = description;
-        this.prerequisitePrivilege = prerequisitePrivilege;
     }
 
     public String getBadge() {
@@ -30,13 +27,5 @@ public class AccoladeListItemModel {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getPrerequisitePrivilege() {
-        return prerequisitePrivilege;
-    }
-
-    public void setPrerequisitePrivilege(String prerequisitePrivilege) {
-        this.prerequisitePrivilege = prerequisitePrivilege;
     }
 }

@@ -15,14 +15,18 @@ import android.view.ViewGroup;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.ServiceListAdapter;
 import com.frontend.tutorcave.model.ServiceListItemModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
 public class ServicesFragment extends Fragment {
+
+    private ApiService apiService = new ApiService();
 
     public ServicesFragment() {
         // Required empty public constructor
@@ -33,21 +37,12 @@ public class ServicesFragment extends Fragment {
 
         RecyclerView recyclerView;
         ServiceListAdapter listAdapter;
-        List<ServiceListItemModel> modelList;
 
         recyclerView = view.findViewById(R.id.frgServicesRecyclerVw);
 
-        // TODO: below model assignment is for test purposes
-        // retrieve actual data from backend api
-        // delete below afterwards
-        modelList = new ArrayList<>();
-        modelList.add(new ServiceListItemModel("Service name #1", "dflhgdıfhlfhghdlındlndlınhbldnlhdhgjhfjf"));
-        modelList.add(new ServiceListItemModel("Service name #2", "hdfhdfhdfhdfhdfhdfh"));
-        modelList.add(new ServiceListItemModel("Service name #3", "dfghsoşsoglısgsşldgnşsdgsşdgşsodgsodgmjsgnjsoıgşosdmgşdsgsoşdgşosdgoşsgsdgsdgsgsdgs"));
-        modelList.add(new ServiceListItemModel("Service name #4", "sgesegsrherhrehrhrehrhehrehrherherhe"));
-        modelList.add(new ServiceListItemModel("Service name #5", "eıhperjhpreegrogpe5pehjrgjergjerghjpergrejgpergjpıjgperıjgıperjgpıerjpgıerjgerjpgerjpgıejrpıgjepırgjeprıogjpeırjgperjgıpejrıgerıgjpegregeg"));
-        modelList.add(new ServiceListItemModel("Service name #6", "ergrehgrepıgpreıjfgpıerjgpıerjgıpejrpgjerpgerjgerpg"));
 
+        Map<String, String> services = apiService.getServiceList("104");
+        List<ServiceListItemModel> modelList = new ArrayList<>(validateList(services));
         listAdapter = new ServiceListAdapter(modelList, view.getContext());
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -61,5 +56,13 @@ public class ServicesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_services, container, false);
+    }
+
+    private List<ServiceListItemModel> validateList(Map<String, String> rawList) {
+        List<ServiceListItemModel> returnList = new ArrayList<>();
+        rawList.forEach((k, v) -> {
+            returnList.add(new ServiceListItemModel(k, v));
+        });
+        return returnList;
     }
 }

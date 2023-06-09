@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.HomeDashboardListAdapter;
 import com.frontend.tutorcave.model.HomeMenuDashboardItemModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ import java.util.List;
 
 public class MenuHomeDashboardFragment extends Fragment {
 
+    private ApiService apiService = new ApiService();
+
     public MenuHomeDashboardFragment() {
         // Required empty public constructor
     }
@@ -32,38 +35,10 @@ public class MenuHomeDashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         RecyclerView recyclerView;
         HomeDashboardListAdapter listAdapter;
-        List<HomeMenuDashboardItemModel> dashboardItemModels;
 
         recyclerView = view.findViewById(R.id.frgHomeDashRecyclerVw);
 
-        dashboardItemModels = new ArrayList<>();
-        // TODO: below model assignment is for test purposes
-        // retrieve actual data from backend api and delete below assignments
-        dashboardItemModels.add(new HomeMenuDashboardItemModel(
-                "Alex Robert",
-                "username#1",
-                "32",
-                R.drawable.test_profile_pic_1
-        ));
-        dashboardItemModels.add(new HomeMenuDashboardItemModel(
-                "Leidolf Sommer",
-                "username#2",
-                "5463",
-                R.drawable.test_profile_pic_2
-        ));
-        dashboardItemModels.add(new HomeMenuDashboardItemModel(
-                "Ipanea Ivy",
-                "username#3",
-                "8",
-                R.drawable.test_profile_pic_3
-        ));
-        dashboardItemModels.add(new HomeMenuDashboardItemModel(
-                "Portul Lammers",
-                "username#4",
-                "56",
-                R.drawable.test_profile_pic_4
-        ));
-
+        List<HomeMenuDashboardItemModel> dashboardItemModels = new ArrayList<>(apiService.listHighRepUsers());
         listAdapter = new HomeDashboardListAdapter(dashboardItemModels, view.getContext());
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

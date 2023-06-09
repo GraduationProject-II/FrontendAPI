@@ -32,13 +32,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/service_name"
+                    android:text="@string/service_price"
                     android:textSize="@dimen/_12ssp"
                     android:textColor="@color/home_fragment_primary_text"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/srvItemSrvName"
+                    android:id="@+id/srvItemPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/placeholder_name"
@@ -57,13 +57,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/description"
+                    android:text="@string/service_name"
                     android:textStyle="bold"
                     android:textColor="@color/home_fragment_primary_text"
                     android:textSize="@dimen/_12ssp" />
 
                 <TextView
-                    android:id="@+id/srvItemDesc"
+                    android:id="@+id/srvItemSrvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_4sdp"

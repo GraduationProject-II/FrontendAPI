@@ -39,7 +39,6 @@ public class AccoladeListAdapter extends RecyclerView.Adapter<AccoladeListAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.badge.setText(models.get(position).getBadge());
         holder.desc.setText(models.get(position).getDescription());
-        holder.prerequisite.setText(models.get(position).getPrerequisitePrivilege());
     }
 
     @Override
@@ -51,14 +50,12 @@ public class AccoladeListAdapter extends RecyclerView.Adapter<AccoladeListAdapte
 
         TextView badge;
         TextView desc;
-        TextView prerequisite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             badge = itemView.findViewById(R.id.profileObjAccoladeBadge);
             desc = itemView.findViewById(R.id.profileObjAccoladeDesc);
-            prerequisite = itemView.findViewById(R.id.profileObjAccoladePrerequisite);
         }
     }
 }

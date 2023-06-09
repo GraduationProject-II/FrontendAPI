@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.FeedbackListAdapter;
 import com.frontend.tutorcave.model.FeedbackListItemModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,8 @@ import java.util.List;
 /** @author Samet Vural Üstün */
 
 public class ProfileFeedbackFragment extends Fragment {
+
+    private ApiService apiService = new ApiService();
 
     public ProfileFeedbackFragment() {
         // Required empty public constructor
@@ -33,42 +37,13 @@ public class ProfileFeedbackFragment extends Fragment {
 
         RecyclerView recyclerView;
         FeedbackListAdapter listAdapter;
-        List<FeedbackListItemModel> feedbackListItemModels;
 
         recyclerView = view.findViewById(R.id.profileFrgFeedbackListRecyclerVw);
 
-        feedbackListItemModels = new ArrayList<>();
-        // TODO: below model assignment is for test purposes
-        // retrieve actual data from backend api and delete below assignments
-        feedbackListItemModels.add(new FeedbackListItemModel(
-                R.drawable.test_profile_pic_1,
-                "username1",
-                "23",
-                "Title #1",
-                "Dfafsfasffcdeffdscfdusghckashushdksubsfjabfbasjsldla"
-        ));
-        feedbackListItemModels.add(new FeedbackListItemModel(
-                R.drawable.test_profile_pic_2,
-                "username2",
-                "415",
-                "Title #2",
-                "jhlhsıhefofwefhowefhgwegfsahfhwofhwgfldfhoefghowfgoıewhfofgowgwlglıwglıwgw"
-        ));
-        feedbackListItemModels.add(new FeedbackListItemModel(
-                R.drawable.test_profile_pic_3,
-                "username3",
-                "1934",
-                "Title #3",
-                "pjdfshılhlsıdhhnglsıhgıghpsşgskdg"
-        ));
-        feedbackListItemModels.add(new FeedbackListItemModel(
-                R.drawable.test_profile_pic_4,
-                "username4",
-                "8",
-                "Title #4",
-                "jfwfjflıjwılfhwhljsldhfsdhllgknolghsdngösdngkbwsölndlgkbslbgdlöbg"
-        ));
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
+        List<FeedbackListItemModel> feedbackListItemModels = new ArrayList<>(apiService.listUserFeedbacks("999"));
         listAdapter = new FeedbackListAdapter(feedbackListItemModels, view.getContext());
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

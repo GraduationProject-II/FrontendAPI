@@ -28,10 +28,15 @@ import java.util.Map;
 
 public class ProfilePrivilegeFragment extends Fragment {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private String userId;
 
     public ProfilePrivilegeFragment() {
         // Required empty public constructor
+    }
+
+    public ProfilePrivilegeFragment(String userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -61,7 +66,7 @@ public class ProfilePrivilegeFragment extends Fragment {
     }
 
     private List<PrivilegeListItemModel> listPrivileges() {
-        Map<String, String> privilegeList = new HashMap<>(apiService.listPrivileges("999"));
+        Map<String, String> privilegeList = new HashMap<>(apiService.listPrivileges(userId));
         List<PrivilegeListItemModel> itemModels = new ArrayList<>();
         privilegeList.forEach((k,v) -> {
             itemModels.add(new PrivilegeListItemModel(k, v));

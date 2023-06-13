@@ -8,5 +8,5 @@ import androidx.fragment.app.Fragment;
 /** @author Samet Vural Üstün */
 
 public interface UserMenuRepository {
-    Fragment setFragment(MenuItem item);
+    Fragment setFragment(MenuItem item, String userId);
 }

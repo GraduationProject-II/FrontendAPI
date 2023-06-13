@@ -4,14 +4,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.service.ApiService;
 import com.google.android.material.chip.Chip;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
@@ -19,46 +20,91 @@ import com.google.android.material.chip.Chip;
 
 public class MenuSearchTutorFragment extends Fragment {
 
-    // TODO: searchView.clearFocus(), onQueryTextListener()
-
-    // TODO: set anim
+    private final ApiService apiService = new ApiService();
+    private String userId;
 
     public MenuSearchTutorFragment() {
         // Required empty public constructor
     }
 
+    public MenuSearchTutorFragment(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        getParentFragmentManager().beginTransaction().replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment()).commit();
+        getParentFragmentManager().beginTransaction().replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment(userId)).commit();
 
         Chip chipTopRated;
         Chip chipTrending;
         Chip chipNewcomer;
+        SearchView searchView;
 
-        chipTopRated = (Chip) requireView().findViewById(R.id.frgSearchTutorChipTopRated);
-        chipTrending = (Chip) requireView().findViewById(R.id.frgSearchTutorChipTrending);
-        chipNewcomer = (Chip) requireView().findViewById(R.id.frgSearchTutorChipNewcomers);
+        chipTopRated = requireView().findViewById(R.id.frgSearchTutorChipTopRated);
+        chipTrending = requireView().findViewById(R.id.frgSearchTutorChipTrending);
+        chipNewcomer = requireView().findViewById(R.id.frgSearchTutorChipNewcomers);
+        searchView = view.findViewById(R.id.frgSearchTutorSearchVw);
 
         // 1st Chip
         chipTopRated.setOnCheckedChangeListener((cmpButtonView, isChecked) -> {
-            // TODO: test purposes, delete later
-            testToast(isChecked, R.string.test1);
-            // TODO: add else statement
+            if (isChecked) {
+                chipTrending.setChecked(false);
+                chipNewcomer.setChecked(false);
+            }
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment(apiService.listTutorWithHighRep(), userId))
+                    .commit();
         });
 
         // 2nd Chip
         chipTrending.setOnCheckedChangeListener((cmpButtonView, isChecked) -> {
-            // TODO: test purposes, delete later
-            testToast(isChecked, R.string.test2);
-            // TODO: add else statement
+            if (isChecked) {
+                chipTopRated.setChecked(false);
+                chipNewcomer.setChecked(false);
+            }
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment(apiService.listTutorTrending(), userId))
+                    .commit();
         });
 
         //3rd Chip
         chipNewcomer.setOnCheckedChangeListener((cmpButtonView, isChecked) -> {
-            // TODO: test purposes, delete later
-            testToast(isChecked, R.string.test3);
-            // TODO: add else statement
+            if (isChecked) {
+                chipTopRated.setChecked(false);
+                chipTrending.setChecked(false);
+            }
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment(apiService.listTutorNewcomer(), userId))
+                    .commit();
+        });
+
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment(
+                                apiService.searchTutor(query),
+                                userId))
+                        .commit();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                getParentFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment(
+                                apiService.searchTutor(newText),
+                                userId))
+                        .commit();
+                return false;
+            }
         });
     }
 
@@ -70,10 +116,5 @@ public class MenuSearchTutorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_menu_search_tutor, container, false);
-    }
-
-    private void testToast(boolean isChecked, int messageId) {
-        if (isChecked)
-            Toast.makeText(MenuSearchTutorFragment.this.getContext(), messageId, Toast.LENGTH_SHORT).show();
     }
 }

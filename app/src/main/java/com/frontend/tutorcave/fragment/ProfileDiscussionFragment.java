@@ -26,10 +26,27 @@ import java.util.List;
 
 public class ProfileDiscussionFragment extends Fragment {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private List<DiscussionListItemModel> passedList = new ArrayList<>();
+    private String userId;
+    private String userIdOther;
 
     public ProfileDiscussionFragment() {
         // Required empty public constructor
+    }
+
+    public ProfileDiscussionFragment(String userId) {
+        this.userId = userId;
+    }
+
+    public ProfileDiscussionFragment(String userId, String userIdOther) {
+        this.userId = userId;
+        this.userIdOther = userIdOther;
+    }
+
+    public ProfileDiscussionFragment(List<DiscussionListItemModel> passedList, String userId) {
+        this.passedList = passedList;
+        this.userId = userId;
     }
 
     @Override
@@ -43,8 +60,18 @@ public class ProfileDiscussionFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        List<DiscussionListItemModel> discussionListItemModels = new ArrayList<>(apiService.listDiscussions("999"));
-        listAdapter = new DiscussionListAdapter(discussionListItemModels, view.getContext());
+        if (!passedList.isEmpty())
+            listAdapter = new DiscussionListAdapter(passedList, view.getContext());
+        else {
+            if (userIdOther == null) {
+                List<DiscussionListItemModel> discussionListItemModels = new ArrayList<>(apiService.listDiscussions(userId));
+                listAdapter = new DiscussionListAdapter(discussionListItemModels, view.getContext());
+            }
+            else {
+                List<DiscussionListItemModel> discussionListItemModels = new ArrayList<>(apiService.listDiscussions(userIdOther));
+                listAdapter = new DiscussionListAdapter(discussionListItemModels, view.getContext());
+            }
+        }
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }

@@ -2,6 +2,8 @@ package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.DiscussionAnswerModel;
+import com.frontend.tutorcave.model.UserInfoModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.List;
 
@@ -24,10 +29,13 @@ public class DiscussionAnswerAdapter extends RecyclerView.Adapter<DiscussionAnsw
 
     private final List<DiscussionAnswerModel> models;
     private final Context context;
+    private final ApiService apiService = new ApiService();
+    private String actualUserId;
 
-    public DiscussionAnswerAdapter(List<DiscussionAnswerModel> models, Context context) {
+    public DiscussionAnswerAdapter(List<DiscussionAnswerModel> models, Context context, String actualUserId) {
         this.models = models;
         this.context = context;
+        this.actualUserId = actualUserId;
     }
 
     @NonNull
@@ -40,18 +48,40 @@ public class DiscussionAnswerAdapter extends RecyclerView.Adapter<DiscussionAnsw
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        byte[] imageData = models.get(position).getOwnerPP();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+
+        holder.profilePic.setImageBitmap(bitmap);
         holder.votes.setText(models.get(position).getVote());
         holder.title.setText(models.get(position).getTitle());
         holder.desc.setText(models.get(position).getDescription());
-        holder.date.setText(models.get(position).getDateOfCreation());
         holder.username.setText(models.get(position).getOwnerUsername());
-        holder.profilePic.setImageResource(models.get(position).getOwnerPP());
 
         holder.username.setOnClickListener(view -> {
+            String userId = apiService.getUserId(models.get(position).getOwnerUsername());
+            UserInfoModel userModel = apiService.getUserInfo(userId);
             Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
-            // TODO: delete when backend api con. established
-            intent.putExtra("username", holder.username.getText());
-            intent.putExtra("image", models.get(position).getOwnerPP());
+            intent.putExtra("image", userModel.getImage());
+            intent.putExtra("username", userModel.getUsername());
+            intent.putExtra("accountType", userModel.getAccType());
+            intent.putExtra("rep", userModel.getReputation());
+            intent.putExtra("name", userModel.getFullName());
+            intent.putExtra("userIdOther", userId);
+            intent.putExtra("userId", actualUserId);
+            view.getContext().startActivity(intent);
+        });
+
+        holder.cardImage.setOnClickListener(view -> {
+            String userId = apiService.getUserId(models.get(position).getOwnerUsername());
+            UserInfoModel userModel = apiService.getUserInfo(userId);
+            Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
+            intent.putExtra("image", userModel.getImage());
+            intent.putExtra("username", userModel.getUsername());
+            intent.putExtra("accountType", userModel.getAccType());
+            intent.putExtra("rep", userModel.getAccType());
+            intent.putExtra("name", userModel.getFullName());
+            intent.putExtra("userIdOther", userId);
+            intent.putExtra("userId", actualUserId);
             view.getContext().startActivity(intent);
         });
     }
@@ -66,18 +96,18 @@ public class DiscussionAnswerAdapter extends RecyclerView.Adapter<DiscussionAnsw
         TextView votes;
         TextView title;
         TextView desc;
-        TextView date;
         TextView username;
         ImageView profilePic;
+        CardView cardImage;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             votes = itemView.findViewById(R.id.dscAnswItmTxtVote);
             title = itemView.findViewById(R.id.dscAnswItmTxtTitle);
             desc = itemView.findViewById(R.id.dscAnswItmTxtDesc);
-            date = itemView.findViewById(R.id.dscAnswItmTxtDate);
             username = itemView.findViewById(R.id.dscAnswItemTxtUsername);
             profilePic = itemView.findViewById(R.id.dscAnswItmImgVwPP);
+            cardImage = itemView.findViewById(R.id.discAnswVwCrdUser);
         }
     }
 }

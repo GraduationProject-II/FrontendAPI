@@ -28,10 +28,15 @@ import java.util.Map;
 
 public class ProfileAccoladeFragment extends Fragment {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private String userId;
 
     public ProfileAccoladeFragment() {
         // Required empty public constructor
+    }
+
+    public ProfileAccoladeFragment(String userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -62,7 +67,7 @@ public class ProfileAccoladeFragment extends Fragment {
     }
 
     private List<AccoladeListItemModel> listAccolades() {
-        Map<String, String> accoladeList = new HashMap<>(apiService.listAccolades("999"));
+        Map<String, String> accoladeList = new HashMap<>(apiService.listAccolades(userId));
         List<AccoladeListItemModel> itemModels = new ArrayList<>();
         accoladeList.forEach((k,v) -> {
             itemModels.add(new AccoladeListItemModel(k, v));

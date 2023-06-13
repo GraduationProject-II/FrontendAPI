@@ -19,6 +19,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ViewProfileActivity extends AppCompatActivity {
 
+    private final Intent currentIntent = getIntent();
+    private final String userId = currentIntent.getStringExtra("userId");
+    private final String userIdOther = currentIntent.getStringExtra("userIdOther");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +30,10 @@ public class ViewProfileActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.vwPrfLytViewSel, new ProfileDiscussionFragment())
+                .replace(R.id.vwPrfLytViewSel, new ProfileDiscussionFragment(userId, userIdOther))
                 .commit();
 
-        // TODO: set anim
-
         ViewProfileService service = new ViewProfileService();
-        Intent currentIntent = getIntent();
         ImageView profilePic;
         TextView name;
         TextView username;
@@ -47,7 +48,6 @@ public class ViewProfileActivity extends AppCompatActivity {
         accType = findViewById(R.id.vwPrfTxtAccType);
         bottomNav = findViewById(R.id.VwPrfBottomNav);
 
-
         byte[] imageData = currentIntent.getByteArrayExtra("image");
         Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
         profilePic.setImageBitmap(bitmap);
@@ -60,7 +60,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.vwPrfLytViewSel, service.setFragment(item))
+                    .replace(R.id.vwPrfLytViewSel, service.setFragment(item, userId, userIdOther))
                     .commit();
             return true;
         });

@@ -8,7 +8,7 @@ public class DiscussionAnswerModel {
     private String title;
     private String description;
     private String ownerUsername;
-    private int ownerPP;
+    private byte[] ownerPP;
     private String dateOfCreation;
     private String vote;
 
@@ -17,7 +17,7 @@ public class DiscussionAnswerModel {
             String title,
             String description,
             String ownerUsername,
-            int ownerPP,
+            byte[] ownerPP,
             String dateOfCreation,
             String vote
     ) {
@@ -66,11 +66,11 @@ public class DiscussionAnswerModel {
         this.ownerUsername = ownerUsername;
     }
 
-    public int getOwnerPP() {
+    public byte[] getOwnerPP() {
         return ownerPP;
     }
 
-    public void setOwnerPP(int ownerPP) {
+    public void setOwnerPP(byte[] ownerPP) {
         this.ownerPP = ownerPP;
     }
 

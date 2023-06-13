@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -18,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.FeedbackListItemModel;
+import com.frontend.tutorcave.model.UserInfoModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.List;
 
@@ -28,10 +29,13 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
 
     private final List<FeedbackListItemModel> models;
     private final Context context;
+    private final ApiService apiService = new ApiService();
+    private String actualUserId;
 
-    public FeedbackListAdapter(List<FeedbackListItemModel> models, Context context) {
+    public FeedbackListAdapter(List<FeedbackListItemModel> models, Context context, String actualUserId) {
         this.models = models;
         this.context = context;
+        this.actualUserId = actualUserId;
     }
 
     @NonNull
@@ -52,25 +56,23 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         holder.profilePic.setImageBitmap(bitmap);
         holder.username.setText(models.get(position).getTutorUsername());
         holder.reputation.setText(models.get(position).getTutorReputation());
-        holder.title.setText(models.get(position).getServiceTitle());
+        holder.price.setText(models.get(position).getServiceTitle());
         holder.desc.setText(models.get(position).getServiceDescription());
-
-        holder.itemClickable.setOnClickListener(view -> {
-            // TODO: uncomment below code when Tutoring service's screen is created
-            //Intent intent = new Intent(view.getContext(), TutorServiceActivity.class);
-            //view.getContext().startActivity(intent);
-
-            // TODO: below is for test purposes, delete afterwards
-            Toast.makeText(view.getContext(), "It works for item " + (holder.getAdapterPosition()+1) + "!!!", Toast.LENGTH_SHORT).show();
-        });
+        holder.content.setText(models.get(position).getContent());
+        holder.flag.setText(setFeedbackFlag(models.get(position).getFlag()));
 
         holder.profilePic.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
-            // TODO: delete when backend api con. established
-            intent.putExtra("username", holder.username.getText());
-            intent.putExtra("rep", holder.reputation.getText());
-            intent.putExtra("image", models.get(position).getTutorPP());
-            intent.putExtra("bio", holder.desc.getText());
+            String id = apiService.getUserId(models.get(position).getTutorUsername());
+            UserInfoModel userModel = apiService.getUserInfo(id);
+
+            intent.putExtra("username", userModel.getUsername());
+            intent.putExtra("rep", userModel.getReputation());
+            intent.putExtra("image", userModel.getImage());
+            intent.putExtra("name", userModel.getFullName());
+            intent.putExtra("accountType", userModel.getAccType());
+            intent.putExtra("userIdOther", id);
+            intent.putExtra("userId", actualUserId);
             view.getContext().startActivity(intent);
         });
     }
@@ -80,14 +82,26 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
         return models.size();
     }
 
+    private String setFeedbackFlag(String flag) {
+        final String POSITIVE = "Positive";
+        final String NEGATIVE = "Negative";
+        String result = "";
+        if (flag.equals("+"))
+            result = POSITIVE;
+        else result = NEGATIVE;
+        return result;
+    }
+
     protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView itemClickable;
         ImageView profilePic;
         TextView username;
         TextView reputation;
-        TextView title;
+        TextView price;
         TextView desc;
+        TextView content;
+        TextView flag;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,8 +110,10 @@ public class FeedbackListAdapter extends RecyclerView.Adapter<FeedbackListAdapte
             profilePic = itemView.findViewById(R.id.profileObjFeedbackPP);
             username = itemView.findViewById(R.id.profileObjFeedbackUsername);
             reputation = itemView.findViewById(R.id.profileObjFeedbackRep);
-            title = itemView.findViewById(R.id.profileObjFeedbackServiceTitle);
+            price = itemView.findViewById(R.id.profileObjFeedbackServicePrice);
             desc = itemView.findViewById(R.id.profileObjFeedbackServiceDesc);
+            content = itemView.findViewById(R.id.prfSelFdbItmContent);
+            flag = itemView.findViewById(R.id.prfSelFdbItmFlag);
         }
     }
 }

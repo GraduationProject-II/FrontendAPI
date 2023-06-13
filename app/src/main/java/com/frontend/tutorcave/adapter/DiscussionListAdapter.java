@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.activity.DiscussionActivity;
 import com.frontend.tutorcave.model.DiscussionListItemModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
 
     private final List<DiscussionListItemModel> models;
     private final Context context;
+    private final ApiService apiService = new ApiService();
 
     public DiscussionListAdapter(List<DiscussionListItemModel> models, Context context) {
         this.models = models;
@@ -47,8 +49,10 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         holder.vote.setText(models.get(position).getVote());
 
         holder.listItem.setOnClickListener(view -> {
+            String userId = apiService.getUserId(models.get(position).getUsername());
             Intent intent = new Intent(view.getContext(), DiscussionActivity.class);
             intent.putExtra("id", models.get(position).getId());
+            intent.putExtra("userId", userId);
             view.getContext().startActivity(intent);
         });
     }

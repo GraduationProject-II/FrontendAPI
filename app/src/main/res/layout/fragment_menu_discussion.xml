@@ -86,12 +86,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:text="@string/total_votes"
+                        android:text="@string/total_votes_count"
                         android:textColor="@color/home_fragment_secondary_text"
                         android:textSize="@dimen/_10ssp" />
 
-                    <!-- TODO: retrieve actual number from backend, replace text -->
                     <TextView
+                        android:id="@+id/menuDiscTxtDiscCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/placeholder_num"
@@ -125,8 +125,8 @@
                         android:textColor="@color/home_fragment_secondary_text"
                         android:textSize="@dimen/_10ssp" />
 
-                    <!-- TODO: retrieve actual number from backend, replace text -->
                     <TextView
+                        android:id="@+id/menuDiscTxtDInv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/placeholder_num"
@@ -160,8 +160,8 @@
                         android:textColor="@color/home_fragment_secondary_text"
                         android:textSize="@dimen/_10ssp" />
 
-                    <!-- TODO: retrieve actual number from backend, replace text -->
                     <TextView
+                        android:id="@+id/menuDiscTxtUpV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/placeholder_num"

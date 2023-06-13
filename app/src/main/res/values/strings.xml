@@ -85,10 +85,12 @@
     <string name="accolades">Accolades</string>
     <string name="reputation">Reputation</string>
     <string name="feedbacks">Feedbacks</string>
+    <string name="feedback">Feedback: </string>
+    <string name="feedback_flag">Flag: </string>
 
     <!-- DISCUSSIONS FRAGMENT -->
     <string name="search_discussion">Search a discussion</string>
-    <string name="total_votes">Votes casted</string>
+    <string name="total_votes_count">Votes count</string>
     <string name="discussions_involved">Dis. involved</string>
     <string name="up_votes">Up votes received</string>
 
@@ -98,7 +100,6 @@
     <string name="newcomer">Newcomers</string>
     <string name="filter">Choose any filter</string>
     <string name="search_a_tutor">Search by name/username</string>
-    <string name="fields">Fields: </string>
 
     <!-- MESSAGES FRAGMENT -->
     <string name="message_type">Type…</string>
@@ -106,6 +107,7 @@
 
     <!-- PROFILE SCREEN -->
     <string name="account_type">Account Type</string>
+    <string name="acc_type">Account: </string>
     <string name="privilege">Privileges</string>
     <string name="date_of_creation">Created: </string>
     <string name="last_update">Last update: </string>
@@ -113,7 +115,6 @@
     <string name="prerequisite">Prerequisite privilege: </string>
     <string name="service_title">Service: </string>
     <string name="description">Description: </string>
-    <string name="about_me">About me: </string>
 
     <!-- VIEW PROFILE SCREEN -->
     <string name="services">Services</string>
@@ -128,7 +129,7 @@
     <string name="settings_private_acc">Private account</string>
     <string name="settings_acc_security">Security &amp; Privacy</string>
     <string name="settings_stats">Stats</string>
-    <string name="settings_about_us">About us</string>
+    <string name="settings_apply_tutor">Apply to become a tutor</string>
     <string name="settings_save">Save changes</string>
     <string name="settings_logout">Logout</string>
 

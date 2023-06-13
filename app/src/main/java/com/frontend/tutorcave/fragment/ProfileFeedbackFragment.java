@@ -26,10 +26,21 @@ import java.util.List;
 
 public class ProfileFeedbackFragment extends Fragment {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private String userId;
+    private String userIdOther;
 
     public ProfileFeedbackFragment() {
         // Required empty public constructor
+    }
+
+    public ProfileFeedbackFragment(String userId) {
+        this.userId = userId;
+    }
+
+    public ProfileFeedbackFragment(String userId, String userIdOther) {
+        this.userId = userId;
+        this.userIdOther = userIdOther;
     }
 
     @Override
@@ -43,8 +54,14 @@ public class ProfileFeedbackFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        List<FeedbackListItemModel> feedbackListItemModels = new ArrayList<>(apiService.listUserFeedbacks("999"));
-        listAdapter = new FeedbackListAdapter(feedbackListItemModels, view.getContext());
+        if (userIdOther == null) {
+            List<FeedbackListItemModel> feedbackListItemModels = new ArrayList<>(apiService.listUserFeedbacks(userId));
+            listAdapter = new FeedbackListAdapter(feedbackListItemModels, view.getContext(), userId);
+        }
+        else {
+            List<FeedbackListItemModel> feedbackListItemModels = new ArrayList<>(apiService.listUserFeedbacks(userIdOther));
+            listAdapter = new FeedbackListAdapter(feedbackListItemModels, view.getContext(), userId);
+        }
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }

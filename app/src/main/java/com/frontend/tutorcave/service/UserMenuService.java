@@ -26,14 +26,14 @@ public class UserMenuService implements UserMenuRepository {
     }
 
     @Override
-    public Fragment setFragment(MenuItem menuItem) {
+    public Fragment setFragment(MenuItem menuItem, String userId) {
 
         MenuSelectionModel selectionModel = new MenuSelectionModel();
         List<Fragment> fragmentList = new ArrayList<>();
 
-        fragmentList.add(new MenuHomeFragment());
-        fragmentList.add(new MenuDiscussionFragment());
-        fragmentList.add(new MenuSearchTutorFragment());
+        fragmentList.add(new MenuHomeFragment(userId));
+        fragmentList.add(new MenuDiscussionFragment(userId));
+        fragmentList.add(new MenuSearchTutorFragment(userId));
         fragmentList.add(new MenuMessageFragment());
 
         selectionModel.setItemList(fragmentList);

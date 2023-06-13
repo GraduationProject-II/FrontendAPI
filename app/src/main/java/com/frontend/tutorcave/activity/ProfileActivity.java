@@ -25,34 +25,33 @@ import com.frontend.tutorcave.service.ApiService;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private final Intent currentIntent = getIntent();
+    private final String userId = currentIntent.getStringExtra("userId");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment(userId)).commit();
 
-        AppCompatImageView btnSettings;
         AppCompatImageView profileImage;
         CardView lytDiscussion;
         CardView lytPrivilege;
         CardView lytAccolades;
         CardView lytFeedback;
+        CardView lytSettings;
         TextView txtFullName;
         TextView txtUsername;
         TextView txtReputation;
         TextView txtAccType;
 
-        // TODO: set anim
-
-        btnSettings = (AppCompatImageView) findViewById(R.id.profileSettings);
         profileImage = findViewById(R.id.profileImageVw);
-        lytDiscussion = (CardView) findViewById(R.id.profileScrollObjectDiscussion);
-        lytPrivilege = (CardView) findViewById(R.id.profileScrollObjectPrivilege);
-        lytAccolades = (CardView) findViewById(R.id.profileScrollObjectAccolades);
-        lytFeedback = (CardView) findViewById(R.id.profileScrollObjectFeedbacks);
-        //scrollViewObjects = (HorizontalScrollView) findViewById(R.id.profileHorizontalScrollVw);
+        lytDiscussion = findViewById(R.id.profileScrollObjectDiscussion);
+        lytPrivilege = findViewById(R.id.profileScrollObjectPrivilege);
+        lytAccolades = findViewById(R.id.profileScrollObjectAccolades);
+        lytFeedback = findViewById(R.id.profileScrollObjectFeedbacks);
+        lytSettings = findViewById(R.id.profileCrdVwSettings);
         txtFullName = findViewById(R.id.profileTxtFullName);
         txtUsername = findViewById(R.id.profileTxtUsername);
         txtReputation = findViewById(R.id.profileTxtReputation);
@@ -61,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        UserInfoModel userInfo = apiService.getUserInfo("999");
+        UserInfoModel userInfo = apiService.getUserInfo(userId);
         Bitmap bitmap = BitmapFactory.decodeByteArray(userInfo.getImage(), 0, userInfo.getImage().length);
         profileImage.setImageBitmap(bitmap);
         txtFullName.setText(userInfo.getFullName());
@@ -69,33 +68,26 @@ public class ProfileActivity extends AppCompatActivity {
         txtAccType.setText(userInfo.getAccType());
         txtReputation.setText(userInfo.getReputation());
 
-        // TODO: complete below task
-        //scrollViewObjects.setLeftEdgeEffectColor();
-        //scrollViewObjects.setRightEdgeEffectColor();
-
-        btnSettings.setOnClickListener(view -> {
+        lytSettings.setOnClickListener(view -> {
             Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
+            intent.putExtra("userId", userId);
             startActivity(intent);
         });
 
         lytDiscussion.setOnClickListener(view -> {
-            // TODO: set bg and txt colors
-            redirect(R.id.profileBottomSelectionView, new ProfileDiscussionFragment());
+            redirect(R.id.profileBottomSelectionView, new ProfileDiscussionFragment(userId));
         });
 
         lytPrivilege.setOnClickListener(view -> {
-            // TODO: set bg and txt colors
-            redirect(R.id.profileBottomSelectionView, new ProfilePrivilegeFragment());
+            redirect(R.id.profileBottomSelectionView, new ProfilePrivilegeFragment(userId));
         });
 
         lytAccolades.setOnClickListener(view -> {
-            // TODO: set bg and txt colors
-            redirect(R.id.profileBottomSelectionView, new ProfileAccoladeFragment());
+            redirect(R.id.profileBottomSelectionView, new ProfileAccoladeFragment(userId));
         });
 
         lytFeedback.setOnClickListener(view -> {
-            // TODO: set bg and txt colors
-            redirect(R.id.profileBottomSelectionView, new ProfileFeedbackFragment());
+            redirect(R.id.profileBottomSelectionView, new ProfileFeedbackFragment(userId));
         });
     }
 

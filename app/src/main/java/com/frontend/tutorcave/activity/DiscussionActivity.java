@@ -5,16 +5,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.DiscussionAnswerAdapter;
 import com.frontend.tutorcave.model.DiscussionAnswerModel;
 import com.frontend.tutorcave.model.DiscussionListItemModel;
 import com.frontend.tutorcave.model.DiscussionWithAnswersModel;
+import com.frontend.tutorcave.model.UserInfoModel;
 import com.frontend.tutorcave.service.ApiService;
 
 import java.util.ArrayList;
@@ -25,14 +28,14 @@ import java.util.List;
 
 public class DiscussionActivity extends AppCompatActivity {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private final Intent currentIntent = getIntent();
+    private final String userId = currentIntent.getStringExtra("userId");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discussion);
-
-        // TODO: set anim
 
         TextView votes;
         TextView title;
@@ -40,9 +43,9 @@ public class DiscussionActivity extends AppCompatActivity {
         TextView date;
         TextView username;
         ImageView profilePic;
+        LinearLayout lytGoToUser;
         RecyclerView recyclerVwAnswers;
         DiscussionAnswerAdapter listAdapter;
-        Intent currentIntent = getIntent();
 
         votes = findViewById(R.id.dscTxtVote);
         title = findViewById(R.id.dscTxtTitle);
@@ -50,6 +53,7 @@ public class DiscussionActivity extends AppCompatActivity {
         date = findViewById(R.id.dscTxtDate);
         username = findViewById(R.id.dscTxtUsername);
         profilePic = findViewById(R.id.dscImgVwPP);
+        lytGoToUser = findViewById(R.id.discussionLytUser);
         recyclerVwAnswers = findViewById(R.id.dscRcyVwAnswers);
 
         DiscussionWithAnswersModel responseModel =
@@ -65,21 +69,31 @@ public class DiscussionActivity extends AppCompatActivity {
                 responseModel.getDiscussion().getVote()
         );
 
+        byte[] imageData = apiService.getUserInfo(userId).getImage();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+
+        profilePic.setImageBitmap(bitmap);
         votes.setText(discussionModel.getVote());
         title.setText(discussionModel.getTitle());
         date.setText(discussionModel.getDateOfCreation());
         username.setText(discussionModel.getUsername());
         desc.setText(discussionModel.getDesc());
-        profilePic.setImageResource(R.drawable.test_profile_pic_1);
 
-        listAdapter = new DiscussionAnswerAdapter(answers, DiscussionActivity.this);
+        listAdapter = new DiscussionAnswerAdapter(answers, DiscussionActivity.this, userId);
         recyclerVwAnswers.setAdapter(listAdapter);
         recyclerVwAnswers.setLayoutManager(new LinearLayoutManager(DiscussionActivity.this));
 
-        username.setOnClickListener(view -> {
-            // TODO: test purposes, delete afterwards and impl logic
-            Toast.makeText(this, R.string.username, Toast.LENGTH_SHORT).show();
+        lytGoToUser.setOnClickListener(view -> {
+            String userId = apiService.getUserId(discussionModel.getUsername());
+            UserInfoModel userModel = apiService.getUserInfo(userId);
+            Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
+            intent.putExtra("image", userModel.getImage());
+            intent.putExtra("username", userModel.getUsername());
+            intent.putExtra("accountType", userModel.getAccType());
+            intent.putExtra("rep", userModel.getAccType());
+            intent.putExtra("name", userModel.getFullName());
+            intent.putExtra("userId", userId);
+            startActivity(intent);
         });
-
     }
 }

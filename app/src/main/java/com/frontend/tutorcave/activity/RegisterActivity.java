@@ -28,8 +28,6 @@ public class RegisterActivity extends AppCompatActivity {
         EditText txtSurname;
         EditText btnForward;
 
-        // TODO: set anim
-
         txtUsername = findViewById(R.id.editTextUsernameRegister);
         txtPassword = findViewById(R.id.editTextPasswordRegister);
         txtEmail = findViewById(R.id.editTextEmailRegister);

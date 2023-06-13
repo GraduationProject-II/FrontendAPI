@@ -3,6 +3,7 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
@@ -13,6 +14,9 @@ import com.frontend.tutorcave.service.SettingsService;
 /** @author Samet Vural Üstün */
 
 public class SettingsStatsActivity extends AppCompatActivity {
+
+    private final Intent currentIntent = getIntent();
+    private final String userId = currentIntent.getStringExtra("userId");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,6 @@ public class SettingsStatsActivity extends AppCompatActivity {
         settingsService.redirect(viewDiscussionsInvolved, SettingsStatsActivity.this, "Discussions involved");
         settingsService.redirect(viewTutoringSrv, SettingsStatsActivity.this, "Tutoring services");
         settingsService.redirect(viewFeedbacks, SettingsStatsActivity.this, "Feedbacks");
-        settingsService.redirect(btnBackspace, SettingsStatsActivity.this, SettingsActivity.class);
+        settingsService.redirect(btnBackspace, SettingsStatsActivity.this, SettingsActivity.class, userId);
     }
 }

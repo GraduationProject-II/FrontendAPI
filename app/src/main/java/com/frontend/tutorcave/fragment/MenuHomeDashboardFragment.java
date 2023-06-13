@@ -25,10 +25,15 @@ import java.util.List;
 
 public class MenuHomeDashboardFragment extends Fragment {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private String userId;
 
     public MenuHomeDashboardFragment() {
         // Required empty public constructor
+    }
+
+    public MenuHomeDashboardFragment(String userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -39,7 +44,7 @@ public class MenuHomeDashboardFragment extends Fragment {
         recyclerView = view.findViewById(R.id.frgHomeDashRecyclerVw);
 
         List<HomeMenuDashboardItemModel> dashboardItemModels = new ArrayList<>(apiService.listHighRepUsers());
-        listAdapter = new HomeDashboardListAdapter(dashboardItemModels, view.getContext());
+        listAdapter = new HomeDashboardListAdapter(dashboardItemModels, view.getContext(), userId);
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }

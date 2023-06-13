@@ -2,6 +2,8 @@ package com.frontend.tutorcave.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.TutorListItemModel;
+import com.frontend.tutorcave.service.ApiService;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.List;
@@ -25,10 +28,13 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.View
 
     private final List<TutorListItemModel> models;
     private final Context context;
+    private final ApiService apiService = new ApiService();
+    private String actualUserId;
 
-    public TutorListAdapter(List<TutorListItemModel> models, Context context) {
+    public TutorListAdapter(List<TutorListItemModel> models, Context context, String actualUserId) {
         this.models = models;
         this.context = context;
+        this.actualUserId = actualUserId;
     }
 
     @NonNull
@@ -41,21 +47,27 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(
+                models.get(position).getProfilePicture(),
+                0,
+                models.get(position).getProfilePicture().length
+        );
+        holder.pp.setImageBitmap(bitmap);
         holder.tutorName.setText(models.get(position).getFullName());
         holder.username.setText(models.get(position).getUsername());
-        holder.fields.setText(models.get(position).getFieldOfSpecialization());
-        holder.desc.setText(models.get(position).getAboutMe());
         holder.rep.setText(models.get(position).getReputation());
-        holder.pp.setImageResource(models.get(position).getProfilePicture());
 
         holder.cardItem.setOnClickListener(view -> {
+            String userId = apiService.getUserId(models.get(position).getUsername());
+
             Intent intent = new Intent(view.getContext(), ViewProfileActivity.class);
-            // TODO: delete when backend api con. established
             intent.putExtra("name", holder.tutorName.getText());
             intent.putExtra("username", holder.username.getText());
             intent.putExtra("image", models.get(position).getProfilePicture());
             intent.putExtra("rep", holder.rep.getText());
-            intent.putExtra("bio", holder.desc.getText());
+            intent.putExtra("accountType", models.get(position).getAccType());
+            intent.putExtra("userIdOther", userId);
+            intent.putExtra("userId", actualUserId);
             view.getContext().startActivity(intent);
         });
     }
@@ -69,8 +81,6 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.View
 
         TextView tutorName;
         TextView username;
-        TextView fields;
-        TextView desc;
         TextView rep;
         ImageView pp;
         MaterialCardView cardItem;
@@ -80,8 +90,6 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.View
 
             tutorName = itemView.findViewById(R.id.frgTutorListItemName);
             username = itemView.findViewById(R.id.frgTutorListItemUsername);
-            fields = itemView.findViewById(R.id.frgTutorListItemFields);
-            desc = itemView.findViewById(R.id.frgTutorListItemDesc);
             rep = itemView.findViewById(R.id.frgTutorListItemRep);
             pp = itemView.findViewById(R.id.frgTutorListItemPP);
             cardItem = itemView.findViewById(R.id.frgTutorListItemCard);

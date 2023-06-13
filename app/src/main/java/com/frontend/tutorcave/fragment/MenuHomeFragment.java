@@ -24,17 +24,21 @@ import com.frontend.tutorcave.service.ApiService;
 
 public class MenuHomeFragment extends Fragment {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
 
-    // TODO: set anim
+    private String userId;
 
     public MenuHomeFragment() {
         // Required empty public constructor
     }
 
+    public MenuHomeFragment(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        getParentFragmentManager().beginTransaction().replace(R.id.frgHomeDashVwLyt, new MenuHomeDashboardFragment()).commit();
+        getParentFragmentManager().beginTransaction().replace(R.id.frgHomeDashVwLyt, new MenuHomeDashboardFragment(userId)).commit();
 
         AppCompatImageView btnProfile;
         TextView viewStats;
@@ -42,8 +46,8 @@ public class MenuHomeFragment extends Fragment {
         TextView repCount;
         TextView feedbackCount;
 
-        viewStats = (TextView) requireView().findViewById(R.id.frgHomeBtnViewAllStats);
-        btnProfile = (AppCompatImageView) requireView().findViewById(R.id.frgHomeBtnProfile);
+        viewStats = requireView().findViewById(R.id.frgHomeBtnViewAllStats);
+        btnProfile = requireView().findViewById(R.id.frgHomeBtnProfile);
         accoladeCount = view.findViewById(R.id.homeAccoladeCount);
         repCount = view.findViewById(R.id.homeRepCount);
         feedbackCount = view.findViewById(R.id.homeFeedbackCount);
@@ -51,18 +55,20 @@ public class MenuHomeFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        accoladeCount.setText(apiService.getAccoladeCount("999"));
-        repCount.setText(apiService.getReputation("admin"));
-        feedbackCount.setText(apiService.getFeedbackCount("999"));
+        accoladeCount.setText(apiService.getAccoladeCount(userId));
+        repCount.setText(apiService.getReputation(apiService.getUserInfo(userId).getUsername()));
+        feedbackCount.setText(apiService.getFeedbackCount(userId));
 
         viewStats.setOnClickListener(view1 -> {
             Intent intent = new Intent(MenuHomeFragment.this.getContext(), SettingsStatsActivity.class);
+            intent.putExtra("userId", userId);
             startActivity(intent);
         });
 
         btnProfile.setOnClickListener(view12 -> {
             Intent intent;
             intent = new Intent(MenuHomeFragment.this.getContext(), ProfileActivity.class);
+            intent.putExtra("userId", userId);
             startActivity(intent);
         });
     }

@@ -26,10 +26,17 @@ import java.util.Map;
 
 public class ServicesFragment extends Fragment {
 
-    private ApiService apiService = new ApiService();
+    private final ApiService apiService = new ApiService();
+    private String userId;
+    private String userIdOther;
 
     public ServicesFragment() {
         // Required empty public constructor
+    }
+
+    public ServicesFragment(String userId, String userIdOther) {
+        this.userId = userId;
+        this.userIdOther = userIdOther;
     }
 
     @Override
@@ -41,7 +48,7 @@ public class ServicesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.frgServicesRecyclerVw);
 
 
-        Map<String, String> services = apiService.getServiceList("104");
+        Map<String, String> services = apiService.getServiceList(userIdOther);
         List<ServiceListItemModel> modelList = new ArrayList<>(validateList(services));
         listAdapter = new ServiceListAdapter(modelList, view.getContext());
         recyclerView.setAdapter(listAdapter);

@@ -4,26 +4,30 @@ package com.frontend.tutorcave.model;
 /** @author Samet Vural Üstün */
 
 public class FeedbackListItemModel {
-    // test purposes, change to ImageView afterwards
     private byte[] tutorPP;
     private String tutorUsername;
-    // might change type with int after backend establishment
     private String tutorReputation;
     private String serviceTitle;
     private String serviceDescription;
+    private String content;
+    private String flag;
 
     public FeedbackListItemModel(
             byte[] tutorPP,
             String tutorUsername,
             String tutorReputation,
             String serviceTitle,
-            String serviceDescription
+            String serviceDescription,
+            String content,
+            String flag
     ) {
         this.tutorPP = tutorPP;
         this.tutorUsername = tutorUsername;
         this.tutorReputation = tutorReputation;
         this.serviceTitle = serviceTitle;
         this.serviceDescription = serviceDescription;
+        this.content = content;
+        this.flag = flag;
     }
 
     public byte[] getTutorPP() {
@@ -64,5 +68,21 @@ public class FeedbackListItemModel {
 
     public void setServiceDescription(String serviceDescription) {
         this.serviceDescription = serviceDescription;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }

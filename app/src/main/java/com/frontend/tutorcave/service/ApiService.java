@@ -1,13 +1,11 @@
 package com.frontend.tutorcave.service;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import com.frontend.tutorcave.model.DiscussionAnswerModel;
 import com.frontend.tutorcave.model.DiscussionListItemModel;
 import com.frontend.tutorcave.model.DiscussionWithAnswersModel;
 import com.frontend.tutorcave.model.FeedbackListItemModel;
 import com.frontend.tutorcave.model.HomeMenuDashboardItemModel;
+import com.frontend.tutorcave.model.TutorListItemModel;
 import com.frontend.tutorcave.model.UserInfoModel;
 import com.frontend.tutorcave.util.UrlUtil;
 import com.google.gson.Gson;
@@ -24,8 +22,11 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
@@ -35,6 +36,11 @@ public class ApiService {
 
     private static final String USER_ID = "userId";
     private static final String USERNAME = "username";
+    private static final String OWNER_USERNAME = "ownerUsername";
+    private static final String TITLE = "title";
+    private static final String REPUTATION = "reputation";
+    private static final String CREATED_AT = "createdAt";
+    private static final String LAST_UPDATED = "lastUpdatedAt";
     private OkHttpClient client = new OkHttpClient();
 
     public Map<String, String> listAccolades(String userId) {
@@ -101,10 +107,10 @@ public class ApiService {
                 JSONObject object = jsonArray.getJSONObject(i);
                 responseList.add(new DiscussionListItemModel(
                         object.get("id").toString(),
-                        object.getString("title"),
+                        object.getString(TITLE),
                         object.getString(USERNAME),
-                        object.get("createdAt").toString(),
-                        object.get("lastUpdatedAt").toString(),
+                        validateDate(object.get(CREATED_AT).toString()),
+                        validateDate(object.get(LAST_UPDATED).toString()),
                         object.get("vote").toString()
                 ));
             }
@@ -126,12 +132,12 @@ public class ApiService {
             Response response = client.newCall(request).execute();
             JSONObject object = new JSONObject(response.body().string());
             responseModel.setDiscussion(new DiscussionListItemModel(
-                    "null",
-                    object.getString("title"),
+                    object.get("id").toString(),
+                    object.getString(TITLE),
                     object.getString("desc"),
-                    object.getString("ownerUsername"),
-                    object.get("createdAt").toString(),
-                    object.get("lastUpdated").toString(),
+                    object.getString(OWNER_USERNAME),
+                    validateDate(object.get(CREATED_AT).toString()),
+                    validateDate(object.get("lastUpdated").toString()),
                     object.get("vote").toString()
                     ));
 
@@ -140,9 +146,11 @@ public class ApiService {
             for (int i=0; i< answersJSON.length(); i++) {
                 JSONObject itemAnswer = answersJSON.getJSONObject(i);
                 DiscussionAnswerModel  model = new DiscussionAnswerModel();
+                String id = getUserId(itemAnswer.getString(OWNER_USERNAME));
+                model.setOwnerPP(getUserImage(id));
                 model.setDescription(itemAnswer.getString("content"));
                 model.setVote(itemAnswer.get("vote").toString());
-                model.setOwnerUsername(itemAnswer.getString("ownerUsername"));
+                model.setOwnerUsername(itemAnswer.getString(OWNER_USERNAME));
                 answerList.add(model);
             }
             responseModel.setAnswerList(answerList);
@@ -172,9 +180,11 @@ public class ApiService {
                 responseList.add(new FeedbackListItemModel(
                         userImage,
                         object.getString(USERNAME),
-                        object.get("reputation").toString(),
+                        object.get(REPUTATION).toString(),
                         object.getString("servicePrice"),
-                        object.getString("serviceDesc")
+                        object.getString("serviceDesc"),
+                        object.getString("feedbackContent"),
+                        object.getString("feedbackFlag")
                 ));
             }
         } catch (JSONException | IOException exception) {
@@ -198,7 +208,7 @@ public class ApiService {
             responseItem.setUsername(object.getString(USERNAME));
             responseItem.setFullName(object.getString("fullName"));
             responseItem.setAccType(object.getString("accountType"));
-            responseItem.setReputation(object.get("reputation").toString());
+            responseItem.setReputation(object.get(REPUTATION).toString());
             responseItem.setImage(getUserImage(userId));
         } catch (JSONException | IOException exception) {
             throw new RuntimeException(exception.getMessage());
@@ -267,7 +277,7 @@ public class ApiService {
                 responseList.add(new HomeMenuDashboardItemModel(
                         object.getString("fullName"),
                         object.getString(USERNAME),
-                        object.get("reputation").toString(),
+                        object.get(REPUTATION).toString(),
                         imageData
                 ));
             }
@@ -312,7 +322,174 @@ public class ApiService {
         return responseList;
     }
 
-    private byte[] getUserImage(String userId) {
+    public String getAllDiscCount() {
+        Request request = new Request.Builder().url(UrlUtil.GET_ALL_DISCUSSION_COUNT).build();
+        String responseItem = "";
+        try {
+            Response response = client.newCall(request).execute();
+            responseItem = response.body().string();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseItem;
+    }
+
+    public String getDiscussionsInvolved(String userId) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.GET_DISCUSSIONS_INVOLVED_COUNT).newBuilder();
+        urlBuilder.addQueryParameter(USER_ID, userId);
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).build();
+
+        String responseItem = "";
+        try {
+            Response response = client.newCall(request).execute();
+            responseItem = response.body().string();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseItem;
+    }
+
+    public String getVotesReceived(String userId) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.GET_UP_VOTES_RECEIVED).newBuilder();
+        urlBuilder.addQueryParameter(USER_ID, userId);
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).build();
+
+        String responseItem = "";
+        try {
+            Response response = client.newCall(request).execute();
+            responseItem = response.body().string();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseItem;
+    }
+
+    public List<DiscussionListItemModel> searchDiscussion(String keyword) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.SEARCH_DISCUSSION).newBuilder();
+        urlBuilder.addQueryParameter("keyword", keyword);
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).build();
+        List<DiscussionListItemModel> responseList = new ArrayList<>();
+
+        try {
+            Response response = client.newCall(request).execute();
+            JSONArray jsonArray = new JSONArray(response.body().string());
+
+            for (int i=0; i< jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                responseList.add(new DiscussionListItemModel(
+                        object.get("id").toString(),
+                        object.getString(TITLE),
+                        object.getString(USERNAME),
+                        validateDate(object.get(CREATED_AT).toString()),
+                        validateDate(object.get(LAST_UPDATED).toString()),
+                        object.get("vote").toString()
+                ));
+            }
+        } catch (IOException | JSONException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseList;
+    }
+
+    public List<TutorListItemModel> searchTutor(String keyword) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.SEARCH_TUTOR).newBuilder();
+        urlBuilder.addQueryParameter("keyword", keyword);
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).build();
+
+        List<TutorListItemModel> responseList = new ArrayList<>();
+        try {
+            Response response = client.newCall(request).execute();
+            JSONArray jsonArray = new JSONArray(response.body().string());
+
+            for (int i=0; i< jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                responseList.add(validateTutorInfo(object));
+            }
+        } catch (IOException | JSONException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseList;
+    }
+
+    public List<TutorListItemModel> listTutorWithHighRep() {
+        Request request = new Request.Builder().url(UrlUtil.LIST_TUTORS_HIGH_REP).build();
+        List<TutorListItemModel> responseList = new ArrayList<>();
+
+        try {
+            Response response = client.newCall(request).execute();
+            JSONArray jsonArray = new JSONArray(response.body().string());
+
+            for (int i=0; i< jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                responseList.add(validateTutorInfo(object));
+            }
+        } catch (IOException | JSONException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseList;
+    }
+
+    public List<TutorListItemModel> listTutorTrending() {
+        Request request = new Request.Builder().url(UrlUtil.LIST_TUTORS_TRENDING).build();
+        List<TutorListItemModel> responseList = new ArrayList<>();
+
+        try {
+            Response response = client.newCall(request).execute();
+            JSONArray jsonArray = new JSONArray(response.body().string());
+            for (int i=0; i< jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                responseList.add(validateTutorInfo(object));
+            }
+        } catch (IOException | JSONException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseList;
+    }
+
+    public List<TutorListItemModel> listTutorNewcomer() {
+        Request request = new Request.Builder().url(UrlUtil.LIST_TUTOR_NEWCOMER).build();
+        List<TutorListItemModel> responseList = new ArrayList<>();
+        try {
+            Response response = client.newCall(request).execute();
+            JSONArray jsonArray = new JSONArray(response.body().string());
+            for (int i=0; i<jsonArray.length(); i++) {
+                JSONObject object = jsonArray.getJSONObject(i);
+                responseList.add(validateTutorInfo(object));
+            }
+        } catch (IOException | JSONException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return responseList;
+    }
+
+    public void saveImage(String userId, byte[] imageData, String fileName) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.SAVE_IMAGE).newBuilder();
+        urlBuilder.addQueryParameter(USER_ID, userId);
+        String url = urlBuilder.build().toString();
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .addFormDataPart(
+                        "file",
+                        fileName,
+                        RequestBody.create(
+                                MediaType.parse("image/jpeg"),
+                                imageData))
+                .setType(MultipartBody.FORM)
+                .build();
+        Request request = new Request.Builder().url(url).post(requestBody).build();
+
+        try {
+            client.newCall(request).execute();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
+
+    public byte[] getUserImage(String userId) {
         byte[] data = null;
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.GET_IMAGE).newBuilder();
@@ -327,5 +504,23 @@ public class ApiService {
             throw new RuntimeException(exception.getMessage());
         }
         return data;
+    }
+
+    private String validateDate(String date) {
+        int endIndex = date.indexOf("T", 0);
+        return date.substring(0, endIndex);
+    }
+
+    private TutorListItemModel validateTutorInfo(JSONObject object) throws JSONException{
+        TutorListItemModel newItem = new TutorListItemModel();
+        String userId = getUserId(object.getString(USERNAME));
+        byte[] imageData = getUserImage(userId);
+        newItem.setProfilePicture(imageData);
+        newItem.setUserId(userId);
+        newItem.setUsername(object.getString(USERNAME));
+        newItem.setAccType(object.getString("accountType"));
+        newItem.setFullName(object.getString("fullName"));
+        newItem.setReputation(object.getString(REPUTATION));
+        return newItem;
     }
 }

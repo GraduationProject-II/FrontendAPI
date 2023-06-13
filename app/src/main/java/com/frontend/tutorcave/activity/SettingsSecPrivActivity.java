@@ -3,6 +3,7 @@ package com.frontend.tutorcave.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
@@ -13,6 +14,9 @@ import com.frontend.tutorcave.service.SettingsService;
 /** @author Samet Vural Üstün */
 
 public class SettingsSecPrivActivity extends AppCompatActivity {
+
+    private final Intent currentIntent = getIntent();
+    private final String userId = currentIntent.getStringExtra("userId");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,6 @@ public class SettingsSecPrivActivity extends AppCompatActivity {
         settingsService.redirect(blocklist, SettingsSecPrivActivity.this, "Blocklist");
         settingsService.redirect(changeMail, SettingsSecPrivActivity.this, "Change mail");
         settingsService.redirect(changePassword, SettingsSecPrivActivity.this, "Change password");
-        settingsService.redirect(btnBackspace, SettingsSecPrivActivity.this, SettingsActivity.class);
+        settingsService.redirect(btnBackspace, SettingsSecPrivActivity.this, SettingsActivity.class, userId);
     }
 }

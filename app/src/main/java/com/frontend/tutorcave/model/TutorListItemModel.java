@@ -4,35 +4,31 @@ package com.frontend.tutorcave.model;
 /** @author Samet Vural Üstün */
 
 public class TutorListItemModel {
-    private String fullName;
+    private byte[] profilePicture;
+    private String userId;
     private String username;
-    private String fieldOfSpecialization;
-    private String aboutMe;
-    private String reputation; // consider int after backend api con.
-    private int profilePicture; // consider type after backend api con.
+    private String fullName;
+    private String accType;
+    private String reputation;
 
-    public TutorListItemModel(
-            String fullName,
-            String username,
-            String fieldOfSpecialization,
-            String aboutMe,
-            String reputation,
-            int profilePicture
-    ) {
-        this.fullName = fullName;
-        this.username = username;
-        this.fieldOfSpecialization = fieldOfSpecialization;
-        this.aboutMe = aboutMe;
-        this.reputation = reputation;
+    public TutorListItemModel() {
+        // Empty constructor
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -43,20 +39,20 @@ public class TutorListItemModel {
         this.username = username;
     }
 
-    public String getFieldOfSpecialization() {
-        return fieldOfSpecialization;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFieldOfSpecialization(String fieldOfSpecialization) {
-        this.fieldOfSpecialization = fieldOfSpecialization;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getAboutMe() {
-        return aboutMe;
+    public String getAccType() {
+        return accType;
     }
 
-    public void setAboutMe(String aboutMe) {
-        this.aboutMe = aboutMe;
+    public void setAccType(String accType) {
+        this.accType = accType;
     }
 
     public String getReputation() {
@@ -65,13 +61,5 @@ public class TutorListItemModel {
 
     public void setReputation(String reputation) {
         this.reputation = reputation;
-    }
-
-    public int getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(int profilePicture) {
-        this.profilePicture = profilePicture;
     }
 }

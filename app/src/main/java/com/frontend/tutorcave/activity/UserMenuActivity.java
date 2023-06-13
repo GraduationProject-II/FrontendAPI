@@ -2,6 +2,7 @@ package com.frontend.tutorcave.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.frontend.tutorcave.R;
@@ -14,24 +15,25 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserMenuActivity extends AppCompatActivity {
 
+    private final Intent currentIntent = getIntent();
+    private final String userId = currentIntent.getStringExtra("userId");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu);
-        getSupportFragmentManager().beginTransaction().replace(R.id.lytRelativeParent, new MenuHomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.lytRelativeParent, new MenuHomeFragment(userId)).commit();
 
         UserMenuService menuService = new UserMenuService();
         BottomNavigationView navBottom;
 
-        navBottom = (BottomNavigationView) findViewById(R.id.navVwUserMenu);
-
-        // TODO: set anim
+        navBottom = findViewById(R.id.navVwUserMenu);
 
         navBottom.setSelectedItemId(R.id.nav_home);
         navBottom.setOnItemSelectedListener(item -> {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.lytRelativeParent, menuService.setFragment(item))
+                    .replace(R.id.lytRelativeParent, menuService.setFragment(item, userId))
                     .commit();
             return true;
         });

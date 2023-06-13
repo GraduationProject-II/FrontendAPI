@@ -9,5 +9,5 @@ import androidx.fragment.app.Fragment;
 /** @author Samet Vural Üstün */
 
 public interface ViewProfileRepository {
-    Fragment setFragment(@NonNull MenuItem item);
+    Fragment setFragment(@NonNull MenuItem item, String userId, String userIdOther);
 }

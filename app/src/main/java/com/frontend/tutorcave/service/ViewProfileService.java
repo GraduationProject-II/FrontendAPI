@@ -25,12 +25,12 @@ public class ViewProfileService implements ViewProfileRepository {
     }
 
     @Override
-    public Fragment setFragment(@NonNull MenuItem item) {
+    public Fragment setFragment(@NonNull MenuItem item, String userId, String userIdOther) {
 
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new ProfileDiscussionFragment());
-        fragmentList.add(new ProfileFeedbackFragment());
-        fragmentList.add(new ServicesFragment());
+        fragmentList.add(new ProfileDiscussionFragment(userId, userIdOther));
+        fragmentList.add(new ProfileFeedbackFragment(userId, userIdOther));
+        fragmentList.add(new ServicesFragment(userId, userIdOther));
 
         int itmDiscussionsId = R.id.vwPrfDiscNav;
         int itmFeedbacksId = R.id.vwPrfFdbNav;

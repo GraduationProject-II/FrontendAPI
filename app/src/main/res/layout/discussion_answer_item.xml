@@ -147,37 +147,8 @@
                         android:orientation="horizontal"
                         android:layout_weight="1">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/answer_date"
-                            android:textSize="@dimen/_11ssp"
-                            android:textStyle="bold"
-                            android:textColor="@color/home_fragment_secondary_text" />
-
-                        <TextView
-                            android:id="@+id/dscAnswItmTxtDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/placeholder_date_1"
-                            android:textSize="@dimen/_11ssp"
-                            android:textStyle="italic"
-                            android:textColor="@color/home_fragment_secondary_text" />
-
-                    </LinearLayout>
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="2" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
-
                         <androidx.cardview.widget.CardView
+                            android:id="@+id/discAnswVwCrdUser"
                             android:layout_width="@dimen/_50sdp"
                             android:layout_height="@dimen/_50sdp"
                             app:cardCornerRadius="40dp"

@@ -28,10 +28,12 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
 
     private final List<HomeMenuDashboardItemModel> models;
     private final Context context;
+    private String actualUserId;
 
-    public HomeDashboardListAdapter(List<HomeMenuDashboardItemModel> models, Context context) {
+    public HomeDashboardListAdapter(List<HomeMenuDashboardItemModel> models, Context context, String actualUserId) {
         this.models = models;
         this.context = context;
+        this.actualUserId = actualUserId;
     }
 
     @NonNull
@@ -64,6 +66,8 @@ public class HomeDashboardListAdapter extends RecyclerView.Adapter<HomeDashboard
             intent.putExtra("rep", holder.rep.getText());
             intent.putExtra("image", models.get(position).getProfilePicture());
             intent.putExtra("accountType", apiService.getUserInfo(id).getAccType());
+            intent.putExtra("userIdOther", id);
+            intent.putExtra("userId", actualUserId);
             view.getContext().startActivity(intent);
         });
     }

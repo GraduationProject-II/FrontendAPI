@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.adapter.TutorListAdapter;
 import com.frontend.tutorcave.model.TutorListItemModel;
+import com.frontend.tutorcave.service.ApiService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,21 @@ import java.util.List;
 
 public class MenuTutorListFragment extends Fragment {
 
+    private final ApiService apiService = new ApiService();
+    private List<TutorListItemModel> rawList = new ArrayList<>();
+    private String userId;
+
     public MenuTutorListFragment() {
         // Required empty public constructor
+    }
+
+    public MenuTutorListFragment(String userId) {
+        this.userId = userId;
+    }
+
+    public MenuTutorListFragment(List<TutorListItemModel> rawList, String userId) {
+        this.rawList = rawList;
+        this.userId = userId;
     }
 
     @Override
@@ -33,47 +47,16 @@ public class MenuTutorListFragment extends Fragment {
 
         RecyclerView recyclerView;
         TutorListAdapter listAdapter;
-        List<TutorListItemModel> tutorListItemModels;
 
         recyclerView = view.findViewById(R.id.frgTutorRecyclerVw);
 
-        tutorListItemModels = new ArrayList<>();
-        // TODO: below model assignment is for test purposes
-        // retrieve actual data from backend api and delete below assignments
-        tutorListItemModels.add(new TutorListItemModel(
-                "Full Name #1",
-                "username#1",
-                "fwefwfwewfwefewffaf fsadf efdsf f wef",
-                "jefwefwejleowflff",
-                "1533",
-                R.drawable.test_profile_pic_1
-        ));
-        tutorListItemModels.add(new TutorListItemModel(
-                "Full Name #2",
-                "username#2",
-                "eıfw ef wefljwef wfjşojedf şwoefjfjs şofjoşew ",
-                "profpışfsafhasdhıdlcrefuşsfiwcuşsdfhsidfhılhnfgvurehncjklnj hgfekrlh ndslnf lfjlwdjf lx sfjlsaişfjfhewilflkw",
-                "97342",
-                R.drawable.test_profile_pic_2
-        ));
-        tutorListItemModels.add(new TutorListItemModel(
-                "Full Name #3",
-                "username#3",
-                "ıjper r ıe fwpj  pwjfpjw  pwşefpşwfş woşw",
-                "osfhhfshfhsdchcjıphıwpcpefıhflopeıcvfıhvıehvclsvpervvcrveverv",
-                "122",
-                R.drawable.test_profile_pic_3
-        ));
-        tutorListItemModels.add(new TutorListItemModel(
-                "Full Name #4",
-                "username#4",
-                "cewcwc wefewf ewf   we  fwef wefwe wefwefwefw   wef e fwe f wef wefwefwfw",
-                "sdcsnclscıhıeclechlıesclıescıecopeclsecnlıesncıesncıencıelnscseıcleıcnslecn",
-                "432",
-                R.drawable.test_profile_pic_4
-        ));
+        if (rawList.isEmpty()) {
+            List<TutorListItemModel> tutorListItemModels = new ArrayList<>(apiService.listTutorWithHighRep());
+            listAdapter = new TutorListAdapter(tutorListItemModels, view.getContext(), userId);
+        }
+        else
+            listAdapter = new TutorListAdapter(rawList, view.getContext(), userId);
 
-        listAdapter = new TutorListAdapter(tutorListItemModels, view.getContext());
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }

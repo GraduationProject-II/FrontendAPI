@@ -11,5 +11,4 @@ import androidx.appcompat.widget.AppCompatImageView;
 public interface ServiceRepository {
     void redirect(AppCompatImageView component, Context context, Class<?> cls, String userId);
     void redirect(RelativeLayout component, Context context, Class<?> cls, String userId);
-    void redirect(RelativeLayout component, Context context, String testMessage);
 }

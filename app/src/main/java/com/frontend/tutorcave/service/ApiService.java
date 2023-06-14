@@ -5,6 +5,9 @@ import com.frontend.tutorcave.model.DiscussionListItemModel;
 import com.frontend.tutorcave.model.DiscussionWithAnswersModel;
 import com.frontend.tutorcave.model.FeedbackListItemModel;
 import com.frontend.tutorcave.model.HomeMenuDashboardItemModel;
+import com.frontend.tutorcave.model.LoginModel;
+import com.frontend.tutorcave.model.NewDiscussionPayload;
+import com.frontend.tutorcave.model.RegisterModel;
 import com.frontend.tutorcave.model.TutorListItemModel;
 import com.frontend.tutorcave.model.UserInfoModel;
 import com.frontend.tutorcave.util.UrlUtil;
@@ -42,6 +45,47 @@ public class ApiService {
     private static final String CREATED_AT = "createdAt";
     private static final String LAST_UPDATED = "lastUpdatedAt";
     private OkHttpClient client = new OkHttpClient();
+
+    public String login(LoginModel payload) {
+        String jsonPayload = "{\r\n" +
+                " \"username\" : \"" + payload.getUsername() + "\",\r\n" +
+                "\"password\" : \"" + payload.getPassword() + "\"\r\n" +
+                "}";
+
+        MediaType mJSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody requestBody = RequestBody.create(mJSON, jsonPayload);
+        Request request = new Request.Builder().url(UrlUtil.LOGIN).post(requestBody).build();
+
+        String returnedId = "";
+        try {
+            Response response = client.newCall(request).execute();
+            JSONObject object = new JSONObject(response.body().string());
+            returnedId = object.get(USER_ID).toString();
+        } catch (IOException | JSONException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return returnedId;
+    }
+
+    public void register(RegisterModel payload) {
+        String fullName = payload.getFirstName() + " " + payload.getLastName();
+        String jsonPayload = "{\r\n" +
+                " \"username\" : \"" + payload.getUsername() + "\",\r\n" +
+                " \"password\" : \"" + payload.getPassword() + "\",\r\n" +
+                " \"email\" : \"" + payload.getEmail() + "\",\r\n" +
+                " \"fullName\" : \"" + fullName + "\"\r\n" +
+                "}";
+
+        MediaType mJSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody requestBody = RequestBody.create(mJSON, jsonPayload);
+        Request request = new Request.Builder().url(UrlUtil.REGISTER).post(requestBody).build();
+
+        try {
+            client.newCall(request).execute();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
 
     public Map<String, String> listAccolades(String userId) {
         Map<String, String> responseList = new HashMap<>();
@@ -147,6 +191,7 @@ public class ApiService {
                 JSONObject itemAnswer = answersJSON.getJSONObject(i);
                 DiscussionAnswerModel  model = new DiscussionAnswerModel();
                 String id = getUserId(itemAnswer.getString(OWNER_USERNAME));
+                model.setId(itemAnswer.get("answerId").toString());
                 model.setOwnerPP(getUserImage(id));
                 model.setDescription(itemAnswer.getString("content"));
                 model.setVote(itemAnswer.get("vote").toString());
@@ -504,6 +549,118 @@ public class ApiService {
             throw new RuntimeException(exception.getMessage());
         }
         return data;
+    }
+
+    public int applyTutor(String userId) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.APPLY_TUTOR).newBuilder();
+        urlBuilder.addQueryParameter(USER_ID, userId);
+        String url = urlBuilder.build().toString();
+        RequestBody requestBody = RequestBody.create(null, new byte[0]);
+        Request request = new Request.Builder().url(url).post(requestBody).build();
+
+        int returnCode = 1;
+        try {
+            Response response = client.newCall(request).execute();
+            String responseStatus = response.body().string();
+            if (!isStatus(responseStatus))
+                returnCode = 0;
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return returnCode;
+    }
+
+    public String voteUpAnswer(String answerId) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.VOTE_UP_ANSWER).newBuilder();
+        urlBuilder.addQueryParameter("answerId", answerId);
+        String url = urlBuilder.build().toString();
+        RequestBody requestBody = RequestBody.create(null, new byte[0]);
+        Request request = new Request.Builder().url(url).put(requestBody).build();
+
+        String newVote = "";
+        try {
+            Response response = client.newCall(request).execute();
+            newVote = response.body().string();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return newVote;
+    }
+
+    public String voteUpDiscussion(String discussionId) {
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.VOTE_UP).newBuilder();
+        urlBuilder.addQueryParameter("discussionId", discussionId);
+        String url = urlBuilder.build().toString();
+        RequestBody requestBody = RequestBody.create(null, new byte[0]);
+        Request request = new Request.Builder().url(url).put(requestBody).build();
+
+        String newVote = "";
+        try {
+            Response response = client.newCall(request).execute();
+            newVote = retrieveVote(response.body().string());
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return newVote;
+    }
+
+    public int newDiscussion(String userId, NewDiscussionPayload payload) {
+
+        String jsonPayload = "{\r\n" +
+                " \"title\" : \"" + payload.getDiscussionTitle() + "\",\r\n" +
+                " \"description\" : \"" + payload.getDiscussionDescription() + "\"\r\n" +
+                "}";
+        MediaType mJSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody requestBody = RequestBody.create(mJSON, jsonPayload);
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.NEW_DISCUSSION).newBuilder();
+        urlBuilder.addQueryParameter(USER_ID, userId);
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).post(requestBody).build();
+
+        int status = 0;
+        try {
+            client.newCall(request).execute();
+            status = 1;
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return status;
+    }
+
+    public int newAnswer(String userId, String discussionId, String content) {
+        String jsonPayload = "{\r\n" +
+                " \"content\": \"" + content + "\"\r\n" +
+                "}";
+        MediaType mJSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody requestBody = RequestBody.create(mJSON, jsonPayload);
+
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(UrlUtil.NEW_ANSWER).newBuilder();
+        urlBuilder.addQueryParameter(USER_ID, userId);
+        urlBuilder.addQueryParameter("discussionId", discussionId);
+        String url = urlBuilder.build().toString();
+        Request request = new Request.Builder().url(url).post(requestBody).build();
+
+        int status = 0;
+        try {
+            client.newCall(request).execute();
+            status = 1;
+        } catch (IOException exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+        return status;
+    }
+
+    private String retrieveVote(String body) {
+        int bIndex = body.indexOf(">") + 2;
+        return body.substring(bIndex);
+    }
+
+    private boolean isStatus(String param) {
+        boolean result = false;
+        if (!param.contains("failed"))
+            result = true;
+        return result;
     }
 
     private String validateDate(String date) {

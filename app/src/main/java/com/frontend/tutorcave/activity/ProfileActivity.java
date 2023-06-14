@@ -26,16 +26,20 @@ import com.frontend.tutorcave.service.ApiService;
 public class ProfileActivity extends AppCompatActivity {
 
     private final ApiService apiService = new ApiService();
-    private final Intent currentIntent = getIntent();
-    private final String userId = currentIntent.getStringExtra("userId");
+    private static final String USER_ID = "userId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        final Intent currentIntent = getIntent();
+        final String userId = currentIntent.getStringExtra(USER_ID);
         getSupportFragmentManager().beginTransaction().replace(R.id.profileBottomSelectionView, new ProfileDiscussionFragment(userId)).commit();
 
         AppCompatImageView profileImage;
+        AppCompatImageView btnBackspace;
+        AppCompatImageView btnCreateDisc;
         CardView lytDiscussion;
         CardView lytPrivilege;
         CardView lytAccolades;
@@ -47,6 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
         TextView txtAccType;
 
         profileImage = findViewById(R.id.profileImageVw);
+        btnBackspace = findViewById(R.id.profileBackspace);
+        btnCreateDisc = findViewById(R.id.prfNewDisc);
         lytDiscussion = findViewById(R.id.profileScrollObjectDiscussion);
         lytPrivilege = findViewById(R.id.profileScrollObjectPrivilege);
         lytAccolades = findViewById(R.id.profileScrollObjectAccolades);
@@ -70,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         lytSettings.setOnClickListener(view -> {
             Intent intent = new Intent(ProfileActivity.this, SettingsActivity.class);
-            intent.putExtra("userId", userId);
+            intent.putExtra(USER_ID, userId);
             startActivity(intent);
         });
 
@@ -88,6 +94,18 @@ public class ProfileActivity extends AppCompatActivity {
 
         lytFeedback.setOnClickListener(view -> {
             redirect(R.id.profileBottomSelectionView, new ProfileFeedbackFragment(userId));
+        });
+
+        btnBackspace.setOnClickListener(view -> {
+            Intent intent = new Intent(ProfileActivity.this, UserMenuActivity.class);
+            intent.putExtra(USER_ID, userId);
+            startActivity(intent);
+        });
+
+        btnCreateDisc.setOnClickListener(view -> {
+            Intent intent = new Intent(ProfileActivity.this, CreateDiscussionActivity.class);
+            intent.putExtra(USER_ID, userId);
+            startActivity(intent);
         });
     }
 

@@ -30,7 +30,11 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        final Intent currentIntent = getIntent();
+        final String userId = currentIntent.getStringExtra("userId");
+
         ImageView profilePic;
+        AppCompatImageView btnBackspace;
         TextView name;
         TextView username;
         EditText messageInput;
@@ -40,23 +44,19 @@ public class ChatActivity extends AppCompatActivity {
         ChatAdapter listAdapter;
 
         profilePic = findViewById(R.id.chatImgPP);
+        btnBackspace = findViewById(R.id.chatBackspace);
         name = findViewById(R.id.chatTxtName);
         username = findViewById(R.id.chatTxtUsername);
         messageInput = findViewById(R.id.chatTxtMsgInp);
         btnSend = findViewById(R.id.chatImgSend);
         recyclerView = findViewById(R.id.chatMsgListVw);
 
-        // TODO: below piece of code is for test purposes, delete afterwards
-        // retrieve actual data from backend api
-        Intent intent = getIntent();
-        profilePic.setImageResource(intent.getIntExtra("image", R.drawable.test_profile_pic_1));
-        name.setText(intent.getStringExtra("name"));
+        profilePic.setImageResource(currentIntent.getIntExtra("image", R.drawable.test_profile_pic_1));
+        name.setText(currentIntent.getStringExtra("name"));
         username.setText(getString(R.string.placeholder_username));
 
 
-        // TODO: below model assignments are for test purposes
-        // retrieve actual data from backend api
-        // delete afterwards
+        // below model assignments are for test purposes
         finestModelList = new ArrayList<>();
         finestModelList.add(new MessageOwnModel("Hey Leon! How's it going?", "23/04/2001 12:10"));
         finestModelList.add(new MessageOtherModel("All fine, Freya. Had a hard week full of hassles, tho. But things got better now. What about you?", "23/04/2001 12:14"));
@@ -73,11 +73,13 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
 
-        btnSend.setOnClickListener(view1 -> {
-            // TODO: send message request via backend api
-            // impl
+        btnBackspace.setOnClickListener(view -> {
+            Intent intent = new Intent(ChatActivity.this, UserMenuActivity.class);
+            intent.putExtra("userId", userId);
+            startActivity(intent);
+        });
 
-            // TODO: test, delete afterwards
+        btnSend.setOnClickListener(view1 -> {
             Toast.makeText(ChatActivity.this, "Successfully send !!!", Toast.LENGTH_SHORT).show();
         });
     }

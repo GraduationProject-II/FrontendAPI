@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,7 @@ import com.frontend.tutorcave.activity.ViewProfileActivity;
 import com.frontend.tutorcave.model.DiscussionAnswerModel;
 import com.frontend.tutorcave.model.UserInfoModel;
 import com.frontend.tutorcave.service.ApiService;
+import com.frontend.tutorcave.util.TimerUtil;
 
 import java.util.List;
 
@@ -84,6 +87,14 @@ public class DiscussionAnswerAdapter extends RecyclerView.Adapter<DiscussionAnsw
             intent.putExtra("userId", actualUserId);
             view.getContext().startActivity(intent);
         });
+
+        holder.voteUp.setOnClickListener(view -> {
+            String newVote = apiService.voteUpAnswer(models.get(position).getId());
+            holder.votes.setText(newVote);
+            Toast.makeText(context, "Operation successful", Toast.LENGTH_SHORT).show();
+            TimerUtil.disableVote(holder.voteUp, view.getClass().getName());
+            holder.voteUp.setEnabled(true);
+        });
     }
 
     @Override
@@ -98,6 +109,7 @@ public class DiscussionAnswerAdapter extends RecyclerView.Adapter<DiscussionAnsw
         TextView desc;
         TextView username;
         ImageView profilePic;
+        AppCompatImageView voteUp;
         CardView cardImage;
 
         public ViewHolder(@NonNull View itemView) {
@@ -107,6 +119,7 @@ public class DiscussionAnswerAdapter extends RecyclerView.Adapter<DiscussionAnsw
             desc = itemView.findViewById(R.id.dscAnswItmTxtDesc);
             username = itemView.findViewById(R.id.dscAnswItemTxtUsername);
             profilePic = itemView.findViewById(R.id.dscAnswItmImgVwPP);
+            voteUp = itemView.findViewById(R.id.dscAnswItmImgVwVote);
             cardImage = itemView.findViewById(R.id.discAnswVwCrdUser);
         }
     }

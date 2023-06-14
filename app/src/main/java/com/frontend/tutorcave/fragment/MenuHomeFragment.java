@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.activity.ProfileActivity;
 import com.frontend.tutorcave.activity.SettingsStatsActivity;
+import com.frontend.tutorcave.activity.WelcomeActivity;
 import com.frontend.tutorcave.service.ApiService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
@@ -41,12 +42,14 @@ public class MenuHomeFragment extends Fragment {
         getParentFragmentManager().beginTransaction().replace(R.id.frgHomeDashVwLyt, new MenuHomeDashboardFragment(userId)).commit();
 
         AppCompatImageView btnProfile;
+        AppCompatImageView btnBackspace;
         TextView viewStats;
         TextView accoladeCount;
         TextView repCount;
         TextView feedbackCount;
 
         viewStats = requireView().findViewById(R.id.frgHomeBtnViewAllStats);
+        btnBackspace = view.findViewById(R.id.frgMenuHomeBackspace);
         btnProfile = requireView().findViewById(R.id.frgHomeBtnProfile);
         accoladeCount = view.findViewById(R.id.homeAccoladeCount);
         repCount = view.findViewById(R.id.homeRepCount);
@@ -69,6 +72,11 @@ public class MenuHomeFragment extends Fragment {
             Intent intent;
             intent = new Intent(MenuHomeFragment.this.getContext(), ProfileActivity.class);
             intent.putExtra("userId", userId);
+            startActivity(intent);
+        });
+
+        btnBackspace.setOnClickListener(view1 -> {
+            Intent intent = new Intent(view.getContext(), WelcomeActivity.class);
             startActivity(intent);
         });
     }

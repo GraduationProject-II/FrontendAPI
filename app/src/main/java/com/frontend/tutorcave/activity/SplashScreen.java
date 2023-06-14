@@ -15,7 +15,7 @@ import com.frontend.tutorcave.util.ComponentUtil;
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
-public class SplashScreen extends AppCompatActivity { // TODO: check the warning
+public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,6 @@ public class SplashScreen extends AppCompatActivity { // TODO: check the warning
         layout = (LinearLayout) findViewById(R.id.lytSplashBG);
         appName = (TextView) findViewById(R.id.txtSplashMain);
 
-        // TODO: load text anim first
         appName.startAnimation(textAnim);
         appName.startAnimation(splashAnim);
         layout.startAnimation(splashAnim);

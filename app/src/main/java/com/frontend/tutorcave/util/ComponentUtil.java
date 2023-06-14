@@ -3,7 +3,6 @@ package com.frontend.tutorcave.util;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
@@ -54,21 +53,6 @@ public final class ComponentUtil {
             Intent intent = new Intent(context, goToClass);
             intent.putExtra("userId", userId);
             context.startActivity(intent);
-        });
-    }
-
-    /**
-     * @param button clickable component
-     * @param context context of the current view
-     * @param message test message to be shown
-     * @apiNote An onClick event to start a new activity
-     * @implNote Current implementation is for test purposes. Apply appropriate changes afterwards
-     */
-    public static void onClickNewActivity(RelativeLayout button, Context context, String message) {
-        button.setOnClickListener(view -> {
-            // TODO: impl logic
-            // TODO: below task is for test purposes, delete afterwards
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
         });
     }
 }

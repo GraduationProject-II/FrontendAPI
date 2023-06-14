@@ -1,5 +1,7 @@
 package com.frontend.tutorcave.util;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +27,25 @@ public final class TimerUtil {
                 } catch (InterruptedException exception) {
                     Logger.getLogger(name).log(Level.WARNING, "Interrupted!: ", exception);
                     Thread.currentThread().interrupt();
+                }
+            }
+        };
+        timer.start();
+    }
+
+    /**
+     * @param component component to be disabled
+     * @param className name of the class which this method invoked from
+     */
+    public static void disableVote(AppCompatImageView component, String className) {
+        Thread timer = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    component.setEnabled(false);
+                    sleep(120000);
+                } catch (InterruptedException exception) {
+                    Logger.getLogger(className).log(Level.WARNING, "Interrupted!: ", exception);
                 }
             }
         };

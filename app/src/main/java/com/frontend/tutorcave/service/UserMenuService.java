@@ -34,7 +34,7 @@ public class UserMenuService implements UserMenuRepository {
         fragmentList.add(new MenuHomeFragment(userId));
         fragmentList.add(new MenuDiscussionFragment(userId));
         fragmentList.add(new MenuSearchTutorFragment(userId));
-        fragmentList.add(new MenuMessageFragment());
+        fragmentList.add(new MenuMessageFragment(userId));
 
         selectionModel.setItemList(fragmentList);
         selectionModel.setMenuItem(menuItem);

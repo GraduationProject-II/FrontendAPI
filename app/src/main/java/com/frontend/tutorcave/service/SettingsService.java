@@ -26,9 +26,4 @@ public class SettingsService implements ServiceRepository {
     public void redirect(RelativeLayout component, Context context, Class<?> cls, String userId) {
         ComponentUtil.onClickNewActivity(component, context, cls, userId);
     }
-
-    @Override
-    public void redirect(RelativeLayout component, Context context, String testMessage) {
-        ComponentUtil.onClickNewActivity(component, context, testMessage);
-    }
 }

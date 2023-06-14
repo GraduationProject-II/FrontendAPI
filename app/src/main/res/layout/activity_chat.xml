@@ -23,6 +23,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/chatBackspace"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            app:srcCompat="@drawable/ic_backspace_24"
+            app:tint="@color/home_fragment_primary_text"
+            android:contentDescription="@string/content_desc_backspace" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -12,15 +12,37 @@
     tools:context=".activity.ViewProfileActivity"
     android:background="@color/test_palette_3.4">
 
+    <LinearLayout
+        android:id="@+id/vwPrfLytBackspace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_32sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vwPrfBackspace"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:clickable="true"
+            android:focusable="true"
+            app:srcCompat="@drawable/ic_backspace_24"
+            app:tint="@color/home_fragment_primary_text"
+            android:contentDescription="@string/content_desc_backspace" />
+
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/VwPrfLytHdr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_52sdp"
         android:padding="@dimen/_3sdp"
         android:gravity="center"
         android:foregroundGravity="center"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vwPrfLytBackspace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 

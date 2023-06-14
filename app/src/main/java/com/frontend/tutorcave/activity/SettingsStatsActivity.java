@@ -6,8 +6,12 @@ import androidx.appcompat.widget.AppCompatImageView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.fragment.ProfileAccoladeFragment;
+import com.frontend.tutorcave.fragment.ProfilePrivilegeFragment;
+import com.frontend.tutorcave.service.ApiService;
 import com.frontend.tutorcave.service.SettingsService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
@@ -15,37 +19,46 @@ import com.frontend.tutorcave.service.SettingsService;
 
 public class SettingsStatsActivity extends AppCompatActivity {
 
-    private final Intent currentIntent = getIntent();
-    private final String userId = currentIntent.getStringExtra("userId");
+    private final ApiService apiService = new ApiService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_stats);
 
+        final Intent currentIntent = getIntent();
+        final String userId = currentIntent.getStringExtra("userId");
+
         SettingsService settingsService = new SettingsService();
         RelativeLayout viewRep;
         RelativeLayout viewAccolades;
         RelativeLayout viewPrivileges;
-        RelativeLayout viewDiscussionsInvolved;
-        RelativeLayout viewTutoringSrv;
-        RelativeLayout viewFeedbacks;
         AppCompatImageView btnBackspace;
 
         viewRep = findViewById(R.id.setOptRltLytStatsRep);
         viewAccolades = findViewById(R.id.setOptRltLytStatsAccolade);
         viewPrivileges = findViewById(R.id.setOptRltLytStatsPrivilege);
-        viewDiscussionsInvolved = findViewById(R.id.setOptRltLytStatsDisInv);
-        viewTutoringSrv = findViewById(R.id.setOptRltLytStatsTutSrv);
-        viewFeedbacks = findViewById(R.id.setOptRltLytStatsFeedback);
         btnBackspace = findViewById(R.id.setStatsHeaderBackspace);
 
-        settingsService.redirect(viewRep, SettingsStatsActivity.this, "Reputation");
-        settingsService.redirect(viewAccolades, SettingsStatsActivity.this, "Accolades");
-        settingsService.redirect(viewPrivileges, SettingsStatsActivity.this, "Privileges");
-        settingsService.redirect(viewDiscussionsInvolved, SettingsStatsActivity.this, "Discussions involved");
-        settingsService.redirect(viewTutoringSrv, SettingsStatsActivity.this, "Tutoring services");
-        settingsService.redirect(viewFeedbacks, SettingsStatsActivity.this, "Feedbacks");
+        viewRep.setOnClickListener(view -> {
+            String username = apiService.getUserInfo(userId).getUsername();
+            Toast.makeText(this, apiService.getReputation(username), Toast.LENGTH_SHORT).show();
+        });
+
+        viewAccolades.setOnClickListener(view -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.setStatsLytBase, new ProfileAccoladeFragment(userId))
+                    .commit();
+        });
+
+        viewPrivileges.setOnClickListener(view -> {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.setStatsLytBase, new ProfilePrivilegeFragment(userId))
+                    .commit();
+        });
+
         settingsService.redirect(btnBackspace, SettingsStatsActivity.this, SettingsActivity.class, userId);
     }
 }

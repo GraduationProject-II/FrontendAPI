@@ -1,9 +1,11 @@
 package com.frontend.tutorcave.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.UserMenuActivity;
 import com.frontend.tutorcave.service.ApiService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
@@ -33,6 +36,8 @@ public class MenuDiscussionFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        AppCompatImageView btnBackspace;
         TextView discussionCount;
         TextView discInvolved;
         TextView upvotesReceived;
@@ -40,6 +45,7 @@ public class MenuDiscussionFragment extends Fragment {
 
         getParentFragmentManager().beginTransaction().replace(R.id.frgHomeDiscussionVwLyt, new ProfileDiscussionFragment(userId)).commit();
 
+        btnBackspace = view.findViewById(R.id.frgMenuDiscBackspace);
         discussionCount = view.findViewById(R.id.menuDiscTxtDiscCount);
         discInvolved = view.findViewById(R.id.menuDiscTxtDInv);
         upvotesReceived = view.findViewById(R.id.menuDiscTxtUpV);
@@ -74,6 +80,12 @@ public class MenuDiscussionFragment extends Fragment {
                         .commit();
                 return false;
             }
+        });
+
+        btnBackspace.setOnClickListener(view1 -> {
+            Intent intent = new Intent(view.getContext(), UserMenuActivity.class);
+            intent.putExtra("userId", userId);
+            startActivity(intent);
         });
     }
 

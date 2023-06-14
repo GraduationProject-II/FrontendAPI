@@ -23,11 +23,24 @@
             android:background="@drawable/round_menu_discussion"
             app:cardBackgroundColor="@color/user_menu_card3" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/frgMenuDiscBackspace"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginStart="@dimen/_8sdp"
+            app:layout_constraintTop_toTopOf="@id/frgDiscussionTxtVwTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_backspace_24"
+            app:tint="@color/white"
+            android:contentDescription="@string/content_desc_backspace" />
+
         <TextView
             android:id="@+id/frgDiscussionTxtVwTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_46sdp"

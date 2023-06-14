@@ -1,6 +1,7 @@
 package com.frontend.tutorcave.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,14 +20,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ViewProfileActivity extends AppCompatActivity {
 
-    private final Intent currentIntent = getIntent();
-    private final String userId = currentIntent.getStringExtra("userId");
-    private final String userIdOther = currentIntent.getStringExtra("userIdOther");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
+
+        final Intent currentIntent = getIntent();
+        final String userId = currentIntent.getStringExtra("userId");
+        final String userIdOther = currentIntent.getStringExtra("userIdOther");
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -35,6 +36,7 @@ public class ViewProfileActivity extends AppCompatActivity {
 
         ViewProfileService service = new ViewProfileService();
         ImageView profilePic;
+        AppCompatImageView btnBackspace;
         TextView name;
         TextView username;
         TextView rep;
@@ -42,6 +44,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         BottomNavigationView bottomNav;
 
         profilePic = findViewById(R.id.vwPrfImgPP);
+        btnBackspace = findViewById(R.id.vwPrfBackspace);
         name = findViewById(R.id.vwPrfTxtName);
         username = findViewById(R.id.vwPrfTxtUsername);
         rep = findViewById(R.id.vwPrfTxtRep);
@@ -63,6 +66,12 @@ public class ViewProfileActivity extends AppCompatActivity {
                     .replace(R.id.vwPrfLytViewSel, service.setFragment(item, userId, userIdOther))
                     .commit();
             return true;
+        });
+
+        btnBackspace.setOnClickListener(view -> {
+            Intent intent = new Intent(ViewProfileActivity.this, UserMenuActivity.class);
+            intent.putExtra("userId", userId);
+            startActivity(intent);
         });
     }
 }

@@ -25,10 +25,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     private final List<MessageItemModel> models;
     private final Context context;
+    private String userId;
 
-    public MessageAdapter(List<MessageItemModel> models, Context context) {
+    public MessageAdapter(List<MessageItemModel> models, Context context, String userId) {
         this.models = models;
         this.context = context;
+        this.userId = userId;
     }
 
     @NonNull
@@ -49,6 +51,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             Intent intent = new Intent(context, ChatActivity.class);
             intent.putExtra("image", models.get(position).getProfilePicture());
             intent.putExtra("name", holder.name.getText());
+            intent.putExtra("userId", userId);
             context.startActivity(intent);
         });
     }

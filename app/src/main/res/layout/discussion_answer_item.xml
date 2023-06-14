@@ -55,6 +55,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
+                            android:clickable="true"
+                            android:focusable="true"
                             app:srcCompat="@drawable/ic_vote_24" />
 
                         <TextView

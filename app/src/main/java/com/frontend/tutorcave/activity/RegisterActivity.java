@@ -2,17 +2,22 @@ package com.frontend.tutorcave.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.model.RegisterModel;
+import com.frontend.tutorcave.service.ApiService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
 public class RegisterActivity extends AppCompatActivity {
+
+    private final ApiService apiService = new ApiService();
 
     private RegisterModel registerPayload;
 
@@ -35,6 +40,9 @@ public class RegisterActivity extends AppCompatActivity {
         txtSurname = findViewById(R.id.editTextSurnameRegister);
         btnForward = findViewById(R.id.btnRegister);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         btnForward.setOnClickListener(view -> {
             if (isTextEmpty(txtUsername.getText().toString()))
                 invalidInput(R.string.invalid_username);
@@ -56,8 +64,10 @@ public class RegisterActivity extends AppCompatActivity {
                         txtName,
                         txtSurname
                 );
-                // TODO: redirect payload to backend api
-                // TODO: new intent for main menu
+                apiService.register(registerPayload);
+                Toast.makeText(this, "Proceed to login", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegisterActivity.this, WelcomeActivity.class);
+                startActivity(intent);
             }
         });
     }

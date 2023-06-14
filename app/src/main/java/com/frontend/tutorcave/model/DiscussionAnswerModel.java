@@ -4,7 +4,7 @@ package com.frontend.tutorcave.model;
 /** @author Samet Vural Üstün */
 
 public class DiscussionAnswerModel {
-    private int id;
+    private String id;
     private String title;
     private String description;
     private String ownerUsername;
@@ -13,7 +13,7 @@ public class DiscussionAnswerModel {
     private String vote;
 
     public DiscussionAnswerModel(
-            int id,
+            String id,
             String title,
             String description,
             String ownerUsername,
@@ -34,11 +34,11 @@ public class DiscussionAnswerModel {
         // Empty constructor
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

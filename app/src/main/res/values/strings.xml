@@ -41,6 +41,7 @@
     <string name="content_desc_logout">Logout</string>
     <string name="content_desc_rep">Reputation</string>
     <string name="content_desc_send">Send</string>
+    <string name="content_desc_create">Create new discussion/answer</string>
 
     <!-- SPLASH SCREEN -->
     <string name="act_splash_intro">Make your own way</string>
@@ -93,6 +94,11 @@
     <string name="total_votes_count">Votes count</string>
     <string name="discussions_involved">Dis. involved</string>
     <string name="up_votes">Up votes received</string>
+    <string name="title">Title: </string>
+    <string name="type_title">Type title…</string>
+    <string name="type_desc">Type description…</string>
+    <string name="backspace">Back</string>
+    <string name="save">Save</string>
 
     <!-- FIND TUTOR FRAGMENT -->
     <string name="top_rated">Top rated</string>
@@ -132,6 +138,8 @@
     <string name="settings_apply_tutor">Apply to become a tutor</string>
     <string name="settings_save">Save changes</string>
     <string name="settings_logout">Logout</string>
+    <string name="apply_tutor">Apply</string>
+    <string name="apply_validity">Minimum 400 reputation is required to apply</string>
 
     <!-- SECURITY AND PRIVACY SCREEN -->
     <string name="settings_opt_sec_and_priv_blocklist">Blocklist</string>

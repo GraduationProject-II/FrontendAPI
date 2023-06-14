@@ -2,19 +2,22 @@ package com.frontend.tutorcave.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.frontend.tutorcave.R;
 import com.frontend.tutorcave.model.LoginModel;
+import com.frontend.tutorcave.service.ApiService;
 
 //* Copyright (c) 2022, Samet Vural Üstün, All rights reserved.
 /** @author Samet Vural Üstün */
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginModel loginPayload;
+    private final ApiService apiService = new ApiService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +28,12 @@ public class LoginActivity extends AppCompatActivity {
         EditText editTextPassword;
         EditText btnLogin;
 
-        // TODO: set anim
-
         editTextUsername = findViewById(R.id.editTextUsernameLogin);
         editTextPassword = findViewById(R.id.editTextPasswordLogin);
         btnLogin = findViewById(R.id.btnLogin);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         btnLogin.setOnClickListener(view -> {
             if (isCredentials(
@@ -38,9 +42,12 @@ public class LoginActivity extends AppCompatActivity {
             ))
                 Toast.makeText(LoginActivity.this, R.string.invalid_credentials, Toast.LENGTH_SHORT).show();
             else {
-                setPayload(editTextUsername.getText().toString(), editTextPassword.getText().toString());
-                //TODO: send payload to backend api
-                //TODO: new intent for main menu
+                LoginModel loginPayload = setPayload(editTextUsername.getText().toString(), editTextPassword.getText().toString());
+                String userId = apiService.login(loginPayload);
+
+                Intent intent = new Intent(LoginActivity.this, UserMenuActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
     }
@@ -49,8 +56,10 @@ public class LoginActivity extends AppCompatActivity {
         return username.isEmpty() || password.isEmpty();
     }
 
-    private void setPayload(String username, String password) {
-        loginPayload.setUsername(username);
-        loginPayload.setPassword(password);
+    private LoginModel setPayload(String username, String password) {
+        LoginModel payload = new LoginModel();
+        payload.setUsername(username);
+        payload.setPassword(password);
+        return payload;
     }
 }

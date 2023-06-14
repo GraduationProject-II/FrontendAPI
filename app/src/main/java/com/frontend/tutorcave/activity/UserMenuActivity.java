@@ -15,13 +15,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class UserMenuActivity extends AppCompatActivity {
 
-    private final Intent currentIntent = getIntent();
-    private final String userId = currentIntent.getStringExtra("userId");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_menu);
+
+        Intent currentIntent = getIntent();
+        final String userId = currentIntent.getStringExtra("userId");
         getSupportFragmentManager().beginTransaction().replace(R.id.lytRelativeParent, new MenuHomeFragment(userId)).commit();
 
         UserMenuService menuService = new UserMenuService();

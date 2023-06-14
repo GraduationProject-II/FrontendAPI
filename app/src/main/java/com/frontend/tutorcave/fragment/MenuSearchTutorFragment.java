@@ -1,9 +1,11 @@
 package com.frontend.tutorcave.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.UserMenuActivity;
 import com.frontend.tutorcave.service.ApiService;
 import com.google.android.material.chip.Chip;
 
@@ -36,11 +39,13 @@ public class MenuSearchTutorFragment extends Fragment {
 
         getParentFragmentManager().beginTransaction().replace(R.id.frgSearchTutorListVw, new MenuTutorListFragment(userId)).commit();
 
+        AppCompatImageView btnBackspace;
         Chip chipTopRated;
         Chip chipTrending;
         Chip chipNewcomer;
         SearchView searchView;
 
+        btnBackspace = view.findViewById(R.id.frgMenuSrcTtrBackspace);
         chipTopRated = requireView().findViewById(R.id.frgSearchTutorChipTopRated);
         chipTrending = requireView().findViewById(R.id.frgSearchTutorChipTrending);
         chipNewcomer = requireView().findViewById(R.id.frgSearchTutorChipNewcomers);
@@ -105,6 +110,12 @@ public class MenuSearchTutorFragment extends Fragment {
                         .commit();
                 return false;
             }
+        });
+
+        btnBackspace.setOnClickListener(view1 -> {
+            Intent intent = new Intent(view.getContext(), UserMenuActivity.class);
+            intent.putExtra("userId", userId);
+            startActivity(intent);
         });
     }
 

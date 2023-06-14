@@ -1,9 +1,11 @@
 package com.frontend.tutorcave.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.activity.UserMenuActivity;
 import com.frontend.tutorcave.adapter.MessageAdapter;
 import com.frontend.tutorcave.model.MessageItemModel;
 
@@ -24,7 +27,6 @@ import java.util.List;
 
 public class MenuMessageFragment extends Fragment {
 
-    // TODO: test, delete afterwards
     private static final int PP_ITEM_1 = R.drawable.test_profile_pic_1;
     private static final int PP_ITEM_2 = R.drawable.test_profile_pic_2;
     private static final int PP_ITEM_3 = R.drawable.test_profile_pic_3;
@@ -32,23 +34,26 @@ public class MenuMessageFragment extends Fragment {
     private static final String TEST_NAME = "Test name #";
 
     private List<MessageItemModel> modelList;
-
-    // TODO: set anim
+    private String userId;
 
     public MenuMessageFragment() {
         // Required empty public constructor
     }
 
+    public MenuMessageFragment(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        AppCompatImageView btnBackspace;
         RecyclerView recyclerView;
         MessageAdapter listAdapter;
 
         recyclerView = view.findViewById(R.id.frgMsgRecyclerVw);
+        btnBackspace = view.findViewById(R.id.frgMsgBackspace);
 
-        // TODO: below model assignments are for test purposes, delete afterwards
-        // retrieve actual data from backend api
         modelList = new ArrayList<>();
         assignModel(PP_ITEM_1, TEST_NAME+1, "slhgsıdghsldghslıghselghseılgselgneşgweohgşwdvlwwoşrvro");
         assignModel(PP_ITEM_2, TEST_NAME+2, "ıreghıdghndflnrtbvldıkbvdbvdbdbdr");
@@ -62,9 +67,15 @@ public class MenuMessageFragment extends Fragment {
         assignModel(PP_ITEM_2, TEST_NAME+10, "prjhvıslrvnlnvşrsarnlnvernbebtbhntrrtrtjrtjretjrt");
         assignModel(PP_ITEM_3, TEST_NAME+11, "ejpwfjıcmnlşrvnevanvrreişvgırngvlrenişlkrnlernblernberb");
 
-        listAdapter = new MessageAdapter(modelList, view.getContext());
+        listAdapter = new MessageAdapter(modelList, view.getContext(), userId);
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+        btnBackspace.setOnClickListener(view1 -> {
+            Intent intent = new Intent(view.getContext(), UserMenuActivity.class);
+            intent.putExtra("userId", userId);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -77,7 +88,6 @@ public class MenuMessageFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_menu_message, container, false);
     }
 
-    // TODO: test, delete afterwards
     private void assignModel(int ppId, String name, String msg) {
         modelList.add(new MessageItemModel(ppId, name, msg));
     }

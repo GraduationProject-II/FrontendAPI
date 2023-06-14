@@ -37,9 +37,9 @@ public final class UrlUtil {
     public static final String LIST_DISCUSSIONS_HIGH_VOTE = URL + "/list/discussion";
 
     // POST
-    public static final String NEW_DISCUSSION = URL + "/discussion/save?userId=";
-    public static final String NEW_ANSWER = URL + "/discussion/answer?userId=";
-    public static final String NEW_ANSWER_2 = "&discussionId=";
+    public static final String APPLY_TUTOR = URL + "/user/apply";
+    public static final String NEW_DISCUSSION = URL + "/discussion/save";
+    public static final String NEW_ANSWER = URL + "/discussion/answer";
     public static final String LOGIN = URL + "/login";
     public static final String REGISTER = URL + "/register";
     public static final String SAVE_IMAGE = URL + "/user/image/save";
@@ -48,9 +48,11 @@ public final class UrlUtil {
     public static final String TEST_SET_RESET_TOKEN = URL + "/test/set_token";
 
     // PUT
+    public static final String VOTE_UP_ANSWER = URL + "/answer/vote/up";
+    public static final String VOTE_DOWN_ANSWER = URL + "/answer/vote/down";
     public static final String DELETE_DISCUSSION = URL + "/discussion/delete?discussionId=";
     public static final String DELETE_DISCUSSION_2 = "&userId=";
-    public static final String VOTE_UP = URL + "/discussion/vote/up?discussionId=";
+    public static final String VOTE_UP = URL + "/discussion/vote/up";
     public static final String VOTE_DOWN = URL + "/discussion/vote/down?discussionId=";
     public static final String RESET_PASSWORD = URL + "/password/reset";
     public static final String EDIT_IMAGE = URL + "/user/edit/pp?userId=";

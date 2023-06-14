@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,20 +34,20 @@ public class SettingsActivity extends AppCompatActivity {
     private ImageView profileImage;
     private final ApiService apiService = new ApiService();
     private int mCounter = 0;
-    private final Intent currentIntent = getIntent();
-    private final String userId = currentIntent.getStringExtra("userId");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        final Intent currentIntent = getIntent();
+        final String userId = currentIntent.getStringExtra("userId");
+
         // declarations
         SettingsService settingsService = new SettingsService();
         AppCompatImageView btnBackspace;
         AppCompatButton btnEditPP;
         AppCompatButton btnSaveSettings;
-        RelativeLayout btnNavToSecurity;
         RelativeLayout btnNavToStats;
         RelativeLayout btnNavToApplyTutor;
         RelativeLayout btnLogout;
@@ -56,18 +57,28 @@ public class SettingsActivity extends AppCompatActivity {
         btnEditPP = findViewById(R.id.settingsBtnEditPP);
         profileImage = findViewById(R.id.settingsImgVwPP);
         btnSaveSettings = findViewById(R.id.settingsBtnSave);
-        btnNavToSecurity = findViewById(R.id.settingsOptionRltLytNavSec);
         btnNavToStats = findViewById(R.id.settingsOptionRltLytNavStats);
         btnNavToApplyTutor = findViewById(R.id.settingsOptionRltLytNavApplyTutor);
         btnLogout = findViewById(R.id.settingsOptionRltLytLogout);
 
+        byte[] defImageData = apiService.getUserImage(userId);
+        Bitmap defBitmap = BitmapFactory.decodeByteArray(defImageData, 0, defImageData.length);
+        profileImage.setImageBitmap(defBitmap);
+
         settingsService.redirect(btnBackspace, SettingsActivity.this, ProfileActivity.class, userId);
-        settingsService.redirect(btnNavToSecurity, SettingsActivity.this, SettingsSecPrivActivity.class, userId);
         settingsService.redirect(btnNavToStats, SettingsActivity.this, SettingsStatsActivity.class, userId);
 
-        // TODO: refactor
-        settingsService.redirect(btnNavToApplyTutor, SettingsActivity.this, "Navigate to About Us");
-        settingsService.redirect(btnLogout, SettingsActivity.this, "Logout");
+        btnNavToApplyTutor.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, ApplyTutorActivity.class);
+            intent.putExtra("userId", userId);
+            startActivity(intent);
+        });
+
+        btnLogout.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, WelcomeActivity.class);
+            Toast.makeText(this, "Successfully logged out", Toast.LENGTH_SHORT).show();
+            startActivity(intent);
+        });
 
         btnEditPP.setOnClickListener(view -> {
             chooseImage();

@@ -24,8 +24,8 @@
         android:icon="@drawable/ic_tutor_search_24" />
 
     <!-- messages -->
-    <item
+    <!--<item
         android:id="@+id/nav_message"
         android:title="@string/message"
-        android:icon="@drawable/ic_message_24" />
+        android:icon="@drawable/ic_message_24" />-->
 </menu>

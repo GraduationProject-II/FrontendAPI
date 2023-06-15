@@ -43,12 +43,7 @@ public final class SelectionUtil {
                 intent = new Intent(context, options.get(1));
                 break;
             case 2:
-                // test
                 intent = new Intent(context, options.get(2));
-
-                // TODO: complete below task
-                //intent = new Intent(WelcomeActivity.this, GuestMenuActivity.class);
-                //startActivity(intent);
                 break;
             default:
                 Toast.makeText(context, R.string.selection_invalid, Toast.LENGTH_SHORT).show();

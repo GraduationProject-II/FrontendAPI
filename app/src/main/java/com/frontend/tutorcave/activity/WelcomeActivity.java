@@ -44,7 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
         classList = new ArrayList<>();
         classList.add(LoginActivity.class);
         classList.add(RegisterActivity.class);
-        classList.add(UserMenuActivity.class);
+        classList.add(GuestMenuActivity.class);
 
         models = new ArrayList<>();
         // login

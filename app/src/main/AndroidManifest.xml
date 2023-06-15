@@ -16,6 +16,10 @@
         android:theme="@style/Theme.TutorCave"
         tools:targetApi="31">
         <activity
+            android:name=".activity.GuestMenuActivity"
+            android:exported="false"
+            android:noHistory="true" />
+        <activity
             android:name=".activity.CreateAnswerActivity"
             android:exported="false"
             android:noHistory="true" />

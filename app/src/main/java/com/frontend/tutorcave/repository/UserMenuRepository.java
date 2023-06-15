@@ -9,4 +9,5 @@ import androidx.fragment.app.Fragment;
 
 public interface UserMenuRepository {
     Fragment setFragment(MenuItem item, String userId);
+    Fragment setGuestFragment(MenuItem item);
 }

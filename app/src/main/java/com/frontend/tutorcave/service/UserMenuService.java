@@ -5,9 +5,10 @@ import android.view.MenuItem;
 import androidx.fragment.app.Fragment;
 
 import com.frontend.tutorcave.R;
+import com.frontend.tutorcave.fragment.GuestMenuHomeFragment;
+import com.frontend.tutorcave.fragment.GuestMenuLockedFragment;
 import com.frontend.tutorcave.fragment.MenuDiscussionFragment;
 import com.frontend.tutorcave.fragment.MenuHomeFragment;
-import com.frontend.tutorcave.fragment.MenuMessageFragment;
 import com.frontend.tutorcave.fragment.MenuSearchTutorFragment;
 import com.frontend.tutorcave.model.MenuSelectionModel;
 import com.frontend.tutorcave.repository.UserMenuRepository;
@@ -34,14 +35,32 @@ public class UserMenuService implements UserMenuRepository {
         fragmentList.add(new MenuHomeFragment(userId));
         fragmentList.add(new MenuDiscussionFragment(userId));
         fragmentList.add(new MenuSearchTutorFragment(userId));
-        fragmentList.add(new MenuMessageFragment(userId));
+        //fragmentList.add(new MenuMessageFragment(userId));
 
         selectionModel.setItemList(fragmentList);
         selectionModel.setMenuItem(menuItem);
         selectionModel.setHomeId(R.id.nav_home);
         selectionModel.setDiscussionId(R.id.nav_discussion);
         selectionModel.setFindTutorId(R.id.nav_search_tutor);
-        selectionModel.setMessagesId(R.id.nav_message);
+        //selectionModel.setMessagesId(R.id.nav_message);
+
+        return SelectionUtil.menuSelection(selectionModel);
+    }
+
+    @Override
+    public Fragment setGuestFragment(MenuItem item) {
+        MenuSelectionModel selectionModel = new MenuSelectionModel();
+        List<Fragment> fragmentList = new ArrayList<>();
+
+        fragmentList.add(new GuestMenuHomeFragment());
+        fragmentList.add(new GuestMenuLockedFragment());
+        fragmentList.add(new GuestMenuLockedFragment());
+
+        selectionModel.setItemList(fragmentList);
+        selectionModel.setMenuItem(item);
+        selectionModel.setHomeId(R.id.nav_home);
+        selectionModel.setDiscussionId(R.id.nav_discussion);
+        selectionModel.setFindTutorId(R.id.nav_search_tutor);
 
         return SelectionUtil.menuSelection(selectionModel);
     }

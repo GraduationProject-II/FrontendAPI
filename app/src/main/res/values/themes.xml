@@ -50,4 +50,9 @@
         <item name="colorSwitchThumbNormal">@color/white</item>
         <item name="android:colorForeground">#99FFFFFF</item>
     </style>
+
+    <!-- Blurry theme for guest menu -->
+    <style name="Theme.BlurryDialog" parent="Theme.MaterialComponents.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>
